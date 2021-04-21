@@ -1,4 +1,4 @@
-<section>
+<article>
 	<header>
 		<h3><slot name="header" /></h3>
 		<p><slot name="location" /></p>
@@ -6,4 +6,4 @@
 	</header>
 
 	<slot />
-</section>
+</article>

@@ -1,4 +1,4 @@
-<section>
+<article>
 	<header>
 		<h4><slot name="header" /></h4>
 	</header>
@@ -12,4 +12,4 @@
 	<ul>
 		<slot name="links" />
 	</ul>
-</section>
+</article>
