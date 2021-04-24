@@ -20,72 +20,57 @@
 	$: offset4 = scrollY - $scrollSpring4.scrollY;
 	$: offset5 = scrollY - $scrollSpring5.scrollY;
 
-	function getVisibility(offset: number): 'visible' | 'hidden' {
+	function getHidden(offset: number): boolean {
 		if (offset >= 0.01 || offset <= -0.01) {
-			return 'visible';
+			return false;
 		}
-		return 'hidden';
+		return true;
 	}
 </script>
 
 <span class="wrapper">
 	<span
 		class="layer"
+		class:hidden={getHidden(offset1)}
 		style="
 		color: rgb(var(--c5));
-		transform: translate3d(0,{offset1}px,0);
-		visibility: {getVisibility(
-			offset1
-		)};
-	"
+		transform: translate3d(0,{offset1}px,0);"
 	>
 		<slot />
 	</span>
 	<span
 		class="layer"
+		class:hidden={getHidden(offset2)}
 		style="
 		color: rgb(var(--c4));
-		transform: translate3d(0,{offset2}px,0);
-		visibility: {getVisibility(
-			offset2
-		)};
-	"
+		transform: translate3d(0,{offset2}px,0);"
 	>
 		<slot />
 	</span>
 	<span
 		class="layer"
+		class:hidden={getHidden(offset3)}
 		style="
 		color: rgb(var(--c3));
-		transform: translate3d(0,{offset3}px,0);
-		visibility: {getVisibility(
-			offset3
-		)};
-	"
+		transform: translate3d(0,{offset3}px,0);"
 	>
 		<slot />
 	</span>
 	<span
 		class="layer"
+		class:hidden={getHidden(offset4)}
 		style="
 		color: rgb(var(--c2));
-		transform: translate3d(0,{offset4}px,0);
-		visibility: {getVisibility(
-			offset4
-		)};
-	"
+		transform: translate3d(0,{offset4}px,0);"
 	>
 		<slot />
 	</span>
 	<span
 		class="layer"
+		class:hidden={getHidden(offset5)}
 		style="
 		color: rgb(var(--c1));
-		transform: translate3d(0,{offset5}px,0);
-		visibility: {getVisibility(
-			offset5
-		)};
-	"
+		transform: translate3d(0,{offset5}px,0);"
 	>
 		<slot />
 	</span>
@@ -100,15 +85,6 @@
 	.wrapper {
 		position: relative;
 	}
-	.base-text,
-	.layer {
-		/*
-		This CSS just puts the base text in the same
-		drawing heirarchy as the layers
-		*/
-		will-change: transform;
-		transform: translate3d(0, 0, 0);
-	}
 	.layer {
 		pointer-events: none;
 		position: absolute;
@@ -116,5 +92,19 @@
 		height: 101%;
 		left: 0;
 		top: 0;
+
+		will-change: transform;
+
+		opacity: 1;
+		transition: opacity 0s;
+	}
+	.layer.hidden {
+		opacity: 0;
+		transition: opacity 1s;
+	}
+	.base-text {
+		/* Force stacking context */
+		position: relative;
+		z-index: 1;
 	}
 </style>
