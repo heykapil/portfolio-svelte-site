@@ -28,6 +28,7 @@
 
 		--bg: 245, 239, 214;
 		--text: var(--dark);
+		--not-text: var(--light);
 
 		--red: 213, 47, 34;
 		--orange: 236, 101, 55;

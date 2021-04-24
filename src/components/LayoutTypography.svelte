@@ -6,11 +6,9 @@
 	}
 
 	:global(body) {
-		background: white;
 		font-family: 'Open Sans', sans-serif;
 		font-weight: 400;
 		line-height: 1.75;
-		color: #000000;
 	}
 
 	:global(p, ul) {
@@ -96,5 +94,9 @@
 		:global(small) {
 			font-size: 0.75rem;
 		}
+	}
+
+	:global(a[target='_blank']) {
+		cursor: ne-resize;
 	}
 </style>

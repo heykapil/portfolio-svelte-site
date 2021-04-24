@@ -31,6 +31,7 @@
 <span class="wrapper">
 	<span
 		class="layer"
+		aria-hidden
 		class:hidden={getHidden(offset1)}
 		style="
 		color: rgb(var(--c5));
@@ -40,6 +41,7 @@
 	</span>
 	<span
 		class="layer"
+		aria-hidden
 		class:hidden={getHidden(offset2)}
 		style="
 		color: rgb(var(--c4));
@@ -49,6 +51,7 @@
 	</span>
 	<span
 		class="layer"
+		aria-hidden
 		class:hidden={getHidden(offset3)}
 		style="
 		color: rgb(var(--c3));
@@ -58,6 +61,7 @@
 	</span>
 	<span
 		class="layer"
+		aria-hidden
 		class:hidden={getHidden(offset4)}
 		style="
 		color: rgb(var(--c2));
@@ -67,6 +71,7 @@
 	</span>
 	<span
 		class="layer"
+		aria-hidden
 		class:hidden={getHidden(offset5)}
 		style="
 		color: rgb(var(--c1));

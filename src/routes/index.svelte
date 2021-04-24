@@ -1,6 +1,8 @@
 <script lang="ts">
 	import { MailIcon, GithubIcon, LinkedinIcon, InstagramIcon } from 'svelte-feather-icons';
 
+	import headshot from '../img/headshot.jpg';
+
 	import RadText from '../components/RadText.svelte';
 	import ShortMediumLong from '../components/ShortMediumLong.svelte';
 	import IconLink from '../components/IconLink.svelte';
@@ -13,51 +15,56 @@
 
 <section id="hero" class="container">
 	<header>
-		<p class="eyebrow">Hi there! My name is</p>
+		<p class="eyebrow">Hello there! My name is</p>
 		<h1><RadText>Darius Cepulis.</RadText></h1>
 	</header>
 
-	<ShortMediumLong defaultLength="medium">
-		<svelte:fragment slot="legend">Bio Length</svelte:fragment>
-		<svelte:fragment slot="short">
-			<p slot="short">
-				I develop and design awesome web experiences. I'm currently the web developer at
-				<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>.
-			</p>
-		</svelte:fragment>
-		<svelte:fragment slot="medium">
-			<p>
-				I'm a web developer with experience working across the stack, from cloud infrastructure to
-				production-grade back-ends to&mdash;my favorite&mdash;designing and developing front-end
-				experiences that just feel good.
-			</p>
-			<p>
-				I'm currently the web developer at
-				<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>, where I use web
-				technologies and good design to help healthcare providers wash their hands better.
-			</p>
-		</svelte:fragment>
-		<svelte:fragment slot="long">
-			<p>I develop and design awesome web experiences.</p>
-			<p>
-				A few years ago, I applied for an embedded systems job at
-				<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>&hellip; and they hired me as
-				web developer for their hand hygiene compliance project,
-				<a href="https://sanibit.com/">Sanibit</a>. That was the happiest mistake of my career.
-			</p>
-			<p>
-				Since then, I've built up my skills to match the needs of the modern monstrous monoliths
-				that are web apps. And I love working on it all, up and down the stack: optimizing databases
-				and plugging vulnerabilities on our back-end, ensuring reliability with rock-solid tests and
-				infrastructure on our
-				<abbr title="Continuous Integration and Deployment">CI/CD</abbr> pipeline and cloud, geeking
-				out over tooling to make sure developer experience leads to a maintanable product, and (most
-				importantly) using my
-				<abbr title="User Interaction and Experience">UI/UX</abbr>
-				and front-end skills to provide an awesome experience for our users.
-			</p>
-		</svelte:fragment>
-	</ShortMediumLong>
+	<img class="headshot" src={headshot} alt="Darius" />
+
+	<article>
+		<ShortMediumLong defaultLength="medium">
+			<svelte:fragment slot="legend">Bio Length</svelte:fragment>
+			<svelte:fragment slot="short">
+				<p>I develop and design awesome web experiences.</p>
+				<p>
+					I'm currently the web developer at
+					<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>.
+				</p>
+			</svelte:fragment>
+			<svelte:fragment slot="medium">
+				<p>I develop and design awesome web experiences.</p>
+				<p>
+					I have experience working across the stack, from and back-ends and cloud infrastructure
+					that handle production-grade demands to front-end experiences that just feel good.
+				</p>
+				<p>
+					I'm currently the web developer at
+					<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>, where I use web
+					technologies and good design to help healthcare providers wash their hands better.
+				</p>
+			</svelte:fragment>
+			<svelte:fragment slot="long">
+				<p>I develop and design awesome web experiences.</p>
+				<p>
+					A few years ago, I applied for an embedded systems job at
+					<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>&hellip; and they hired me
+					as web developer for their hand hygiene compliance project,
+					<a href="https://sanibit.com/">Sanibit</a>. That was the happiest mistake of my career.
+				</p>
+				<p>
+					Since then, I've built up my skills to match the needs of the modern monstrous monoliths
+					that are web apps. And I love working on it all, up and down the stack: optimizing
+					databases and plugging vulnerabilities on our back-end, ensuring reliability with
+					rock-solid tests and infrastructure on our
+					<abbr title="Continuous Integration and Deployment">CI/CD</abbr> pipeline and cloud,
+					geeking out over tooling to make sure developer experience leads to a maintanable product,
+					and (most importantly) using my
+					<abbr title="User Interaction and Experience">UI/UX</abbr>
+					and front-end skills to provide an awesome experience for our users.
+				</p>
+			</svelte:fragment>
+		</ShortMediumLong>
+	</article>
 </section>
 
 <section id="work" class="container">
@@ -298,6 +305,10 @@
 		<dd>
 			Thank You <a href="https://brittanychiang.com">Brittany Chiang</a>
 		</dd>
+		<dt>Mood Board and Rad Colors</dt>
+		<dd>
+			Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
+		</dd>
 	</dl>
 </section>
 
@@ -308,9 +319,31 @@
 	#hero {
 		padding-top: 2rem;
 		padding-top: max(env(safe-area-inset-top), 2rem);
+
 		min-height: 100vh;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
+
+		display: grid;
+		gap: 0 2rem;
+		align-content: center;
+		justify-content: start;
+	}
+	@media (min-width: 42rem) {
+		#hero {
+			grid-template-columns: auto auto;
+		}
+	}
+	#hero header {
+		grid-column: 1 / -1;
+	}
+	#hero article {
+		max-width: 65ch;
+	}
+	#hero .headshot {
+		max-width: 30ch;
+		width: 100%;
+		height: auto;
+		margin-bottom: 1rem;
+		border-radius: 1rem;
+		justify-self: center;
 	}
 </style>
