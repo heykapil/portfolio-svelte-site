@@ -140,6 +140,10 @@
 		display: grid;
 		gap: 2rem;
 		--card-width: calc(var(--container-width) / 3);
-		grid-template-columns: 1fr 1fr;
+	}
+	@media (min-width: 42rem) {
+		.other-project-section {
+			grid-template-columns: 1fr 1fr;
+		}
 	}
 </style>
