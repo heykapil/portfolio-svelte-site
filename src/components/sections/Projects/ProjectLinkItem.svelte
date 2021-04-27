@@ -2,7 +2,7 @@
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
 
-	import IconLink from './IconLink.svelte';
+	import IconLink from '../../IconLink.svelte';
 
 	type IconType = 'external' | 'info' | 'github';
 	export let href: string;

@@ -3,11 +3,11 @@
 
 	type Length = 'short' | 'medium' | 'long';
 
-	export let defaultLength: Length = 'long';
+	export let defaultLength: Length = 'medium';
 	let length: Length = defaultLength;
 </script>
 
-<form class="small">
+<form>
 	<fieldset class={length}>
 		<label>
 			<input type="radio" bind:group={length} value="short" />

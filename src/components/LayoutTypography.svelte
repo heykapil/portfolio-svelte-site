@@ -1,14 +1,25 @@
+,
+
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@900&display=swap');
+
+	:global(:root) {
+		--body-font-family: 'Open Sans', sans-serif;
+		--body-font-weight: 400;
+		--body-line-height: 1.75;
+		--header-font-family: 'Playfair Display', serif;
+		--header-font-weight: 900;
+		--header-line-height: 1.3;
+	}
 
 	:global(html) {
 		font-size: 100%;
 	}
 
 	:global(body) {
-		font-family: 'Open Sans', sans-serif;
-		font-weight: 400;
-		line-height: 1.75;
+		font-family: var(--body-font-family);
+		font-weight: var(--body-font-weight);
+		line-height: var(--body-line-height);
 	}
 
 	:global(p, ul) {
@@ -24,11 +35,23 @@
 	:global(.h4),
 	:global(h4),
 	:global(.h5),
+	:global(h5),
+	:global(.lead) {
+		font-family: var(--header-font-family);
+		font-weight: var(--header-font-weight);
+		line-height: var(--header-line-height);
+	}
+	:global(.h1),
+	:global(h1),
+	:global(.h2),
+	:global(h2),
+	:global(.h3),
+	:global(h3),
+	:global(.h4),
+	:global(h4),
+	:global(.h5),
 	:global(h5) {
 		margin: 3rem 0 1.38rem;
-		font-family: 'Playfair Display', serif;
-		font-weight: 900;
-		line-height: 1.3;
 	}
 
 	:global(.h1),
@@ -96,6 +119,17 @@
 		}
 	}
 
+	:global(a) {
+		color: inherit;
+		text-decoration-style: solid;
+		text-decoration-thickness: 2px;
+		text-decoration-color: rgb(var(--c4));
+	}
+	:global(a:hover),
+	:global(a[aria-current='location']) {
+		text-decoration-style: wavy;
+		text-decoration-color: rgb(var(--c5));
+	}
 	:global(a[target='_blank']) {
 		cursor: ne-resize;
 	}

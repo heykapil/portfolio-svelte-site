@@ -87,14 +87,17 @@
 <svelte:window bind:scrollY />
 
 <style>
+	span {
+		white-space: nowrap;
+	}
 	.wrapper {
 		position: relative;
 	}
 	.layer {
 		pointer-events: none;
 		position: absolute;
-		width: 101%;
-		height: 101%;
+		width: 100%;
+		height: 100%;
 		left: 0;
 		top: 0;
 

@@ -9,19 +9,26 @@
 </main>
 
 <style>
+	/* reset */
 	:global(html),
 	:global(body) {
-		/* reset */
 		padding: 0;
 		margin: 0;
+	}
+	/* behavior */
+	:global(html) {
+		scroll-behavior: smooth;
+		scroll-padding-top: 4rem;
 	}
 	:global(*) {
 		box-sizing: border-box;
 	}
 
+	/* variables */
 	:global(:root) {
-		/* variables */
 		--main-padding: 1rem;
+		--break-width: 42rem;
+		--container-width: calc(1.5 * var(--break-width));
 
 		--light: 255, 255, 255;
 		--dark: 0, 0, 0;
@@ -77,5 +84,9 @@
 		padding-left: max(env(safe-area-inset-left), var(--main-padding));
 		padding-right: max(env(safe-area-inset-right), var(--main-padding));
 		padding-bottom: max(env(safe-area-inset-bottom), var(--main-padding));
+
+		max-width: var(--container-width);
+		margin-left: auto;
+		margin-right: auto;
 	}
 </style>
