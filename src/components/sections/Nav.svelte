@@ -1,4 +1,4 @@
-<nav class="container">
+<nav class="full-bleed">
 	<a href="#hero">DC</a>
 	<a href="#about">About</a>
 	<a href="#work">Work</a>

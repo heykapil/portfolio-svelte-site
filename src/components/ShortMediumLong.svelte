@@ -89,7 +89,7 @@
 	label {
 		text-align: center;
 		cursor: pointer;
-		padding: 0.5em;
+		padding-bottom: 0.5em;
 		position: relative;
 	}
 	label:after {

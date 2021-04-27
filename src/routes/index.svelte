@@ -21,7 +21,6 @@
 		min-height: 75vh;
 		display: flex;
 		flex-direction: column;
-		justify-content: center;
 	} */
 	:global(h2) {
 		text-align: center;

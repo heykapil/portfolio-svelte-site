@@ -77,6 +77,7 @@
 		color: rgb(var(--text));
 	}
 
+	:global(.full-bleed),
 	:global(.container) {
 		padding-left: var(--main-padding);
 		padding-right: var(--main-padding);
@@ -84,7 +85,8 @@
 		padding-left: max(env(safe-area-inset-left), var(--main-padding));
 		padding-right: max(env(safe-area-inset-right), var(--main-padding));
 		padding-bottom: max(env(safe-area-inset-bottom), var(--main-padding));
-
+	}
+	:global(.container) {
 		max-width: var(--container-width);
 		margin-left: auto;
 		margin-right: auto;

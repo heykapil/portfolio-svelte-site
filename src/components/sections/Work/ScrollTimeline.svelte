@@ -56,7 +56,7 @@
 		const bottomProgress = bottom - innerHeight + delay;
 
 		if (topProgress > 0) {
-			scrollPercent.set({ value: 1 });
+			scrollPercent.set({ value: 1.01 });
 			return;
 		} else if (bottomProgress < 0) {
 			scrollPercent.set({ value: 0 });
@@ -118,5 +118,6 @@
 	}
 	.appear.visible {
 		transform: scale(1);
+		transition: transform 0.25s;
 	}
 </style>

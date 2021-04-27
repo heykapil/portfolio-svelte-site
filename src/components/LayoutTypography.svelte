@@ -1,5 +1,3 @@
-,
-
 <style>
 	@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@900&display=swap');
 
