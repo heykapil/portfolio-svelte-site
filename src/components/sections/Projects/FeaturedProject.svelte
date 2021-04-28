@@ -105,22 +105,24 @@
 		z-index: -2;
 		transition: background-color var(--transition-speed-medium);
 	}
+
 	article:nth-of-type(1):after {
-		background-color: rgb(var(--c4));
+		--project-bg: var(--c3);
 	}
-	:global(body.dark) article:nth-of-type(1):after {
-		background-color: rgba(var(--c4), 0.75);
+	:global(body.alt) article:nth-of-type(1):after {
+		--project-bg: var(--c1);
 	}
 	article:nth-of-type(2):after {
-		background-color: rgb(var(--c5));
-	}
-	:global(body.dark) article:nth-of-type(2):after {
-		background-color: rgba(var(--c5), 0.75);
+		--project-bg: var(--c5);
 	}
 	article:nth-of-type(3):after {
-		background-color: rgb(var(--c3));
+		--project-bg: var(--c4);
 	}
-	:global(body.dark) article:nth-of-type(3):after {
-		background-color: rgba(var(--c3), 0.75);
+	article:after {
+		--project-bg-alpha: 1;
+		background-color: rgba(var(--project-bg), var(--project-bg-alpha));
+	}
+	:global(body.dark) article:after {
+		--project-bg-alpha: 0.75;
 	}
 </style>
