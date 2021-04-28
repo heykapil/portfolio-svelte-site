@@ -44,7 +44,7 @@
 					AWS
 					<svelte:fragment slot="details">EC2, RDS, CLB, S3, ElastiCache</svelte:fragment>
 				</ProjectTechItem>
-				<ProjectTechItem>Github Actions</ProjectTechItem>
+				<ProjectTechItem>GitHub Actions</ProjectTechItem>
 			</svelte:fragment>
 			<svelte:fragment slot="links">
 				<ProjectLinkItem iconType="info" href="https://www.sanibit.com/" />
@@ -172,7 +172,7 @@
 				<h4>More</h4>
 			</svelte:fragment>
 			See so much more, including my graveyard of half-finished projects, on
-			<a href="https://github.com/decepulis?tab=repositories">Github</a>
+			<a href="https://github.com/decepulis?tab=repositories">GitHub</a>.
 		</OtherProject>
 	</section>
 </section>

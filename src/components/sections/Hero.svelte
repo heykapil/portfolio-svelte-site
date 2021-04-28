@@ -20,6 +20,8 @@
 		align-items: center;
 		justify-content: center;
 		text-align: center;
+
+		overflow: hidden;
 	}
 
 	.eyebrow,

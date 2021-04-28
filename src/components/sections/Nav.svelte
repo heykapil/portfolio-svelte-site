@@ -93,9 +93,6 @@
 		margin-left: auto;
 	}
 	@media (max-width: 42rem) {
-		nav {
-			padding: 0 1.5rem;
-		}
 		.menu {
 			position: absolute;
 			z-index: 10;
@@ -120,12 +117,13 @@
 		.menu-toggle {
 			display: block;
 			position: relative;
-			width: 1rem;
-			height: 1rem;
+			width: 2rem;
+			height: 2rem;
 			margin: 0;
 			z-index: 11;
 			-webkit-appearance: none;
 			appearance: none;
+			border: 0;
 		}
 		.menu-toggle:before,
 		.menu-toggle:after {
@@ -139,16 +137,16 @@
 			transition: transform var(--transition-speed-medium);
 		}
 		.menu-toggle:before {
-			top: calc(1rem / 3 - 0.075rem);
+			top: calc(2rem / 3 - 0.075rem);
 		}
 		.menu-toggle:after {
-			bottom: calc(1rem / 3 - 0.075rem);
+			bottom: calc(2rem / 3 - 0.075rem);
 		}
 		.menu-toggle:checked:before {
-			transform: translateY(calc(1rem / 6)) rotateZ(135deg);
+			transform: translateX(-0.5rem) translateY(calc(2rem / 6 + 0.5rem)) rotateZ(135deg);
 		}
 		.menu-toggle:checked:after {
-			transform: translateY(calc(-1rem / 6)) rotateZ(45deg);
+			transform: translateX(-0.5rem) translateY(calc(-2rem / 6 + 0.5rem)) rotateZ(45deg);
 		}
 		.menu-toggle:checked ~ .menu {
 			opacity: 1;

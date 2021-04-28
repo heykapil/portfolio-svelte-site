@@ -5,12 +5,8 @@
 		--break-width: 42rem;
 		--container-width: calc(1.5 * var(--break-width));
 
-		--light: 255, 255, 255;
+		--light: 245, 239, 214;
 		--dark: 43, 40, 40;
-
-		--bg: var(--light);
-		--text: var(--dark);
-		--not-text: var(--light);
 
 		--red: 213, 47, 34;
 		--orange: 236, 101, 55;
@@ -25,6 +21,10 @@
 	}
 
 	:global(body) {
+		--bg: var(--light);
+		--text: var(--dark);
+		--not-text: var(--light);
+
 		--c1: var(--peach);
 		--c2: var(--pink);
 		--c3: var(--red);
