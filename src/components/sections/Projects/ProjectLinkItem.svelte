@@ -36,13 +36,15 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-right: 1rem;
 		border-radius: 0.5rem;
 		position: relative;
 
 		background-color: rgba(var(--c4), 0.5);
 		transition: background-color var(--transition-speed-medium),
 			box-shadow var(--transition-speed-medium);
+	}
+	li:not(:last-of-type) {
+		margin-right: 1rem;
 	}
 
 	li:hover {

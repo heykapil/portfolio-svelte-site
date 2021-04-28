@@ -30,7 +30,8 @@
 		position: relative;
 
 		display: grid;
-		padding: calc(2 * var(--main-padding)) var(--main-padding);
+		padding: var(--main-padding) var(--main-padding) calc(2 * var(--main-padding))
+			var(--main-padding);
 		gap: var(--main-padding);
 		align-content: center;
 		align-items: center;
@@ -79,6 +80,10 @@
 		z-index: -1;
 	}
 	@media (min-width: 42rem) {
+		article {
+			padding: calc(2 * var(--main-padding)) var(--main-padding);
+			padding-left: 0;
+		}
 		article:before {
 			top: var(--main-padding);
 			right: 0;

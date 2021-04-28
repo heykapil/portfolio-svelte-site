@@ -30,7 +30,7 @@
 		position: sticky;
 		z-index: 1;
 		top: 0;
-		padding: 0 1rem;
+		padding-bottom: 0;
 		background-color: rgb(var(--bg));
 		transition: background-color var(--transition-speed-medium);
 		display: flex;
