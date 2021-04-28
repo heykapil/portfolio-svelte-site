@@ -6,9 +6,9 @@
 		--container-width: calc(1.5 * var(--break-width));
 
 		--light: 255, 255, 255;
-		--dark: 0, 0, 0;
+		--dark: 43, 40, 40;
 
-		--bg: 245, 239, 214;
+		--bg: var(--light);
 		--text: var(--dark);
 		--not-text: var(--light);
 
@@ -20,6 +20,8 @@
 		--yellow: 231, 218, 106;
 		--blue: 148, 194, 188;
 		--green: 174, 198, 110;
+
+		--transition-speed-medium: 0.25s;
 	}
 
 	:global(body) {
@@ -37,7 +39,8 @@
 		--c5: var(--blue);
 	}
 	:global(body.dark) {
-		--bg: 0, 0, 0;
+		--bg: var(--dark);
 		--text: var(--light);
+		--not-text: var(--dark);
 	}
 </style>

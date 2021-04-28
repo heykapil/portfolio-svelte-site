@@ -105,14 +105,15 @@
 		stroke-width: 1rem;
 		stroke-linecap: round;
 		fill: none;
+		transition: stroke var(--transition-speed-medium);
 	}
 	.appear {
 		stroke-dasharray: 1;
 		stroke-dashoffset: 1;
-		transition: stroke-dashoffset 0.1s;
+		transition: stroke-dashoffset 0.1s, stroke var(--transition-speed-medium);
 	}
 	.appear.visible {
 		stroke-dashoffset: 0;
-		transition: stroke-dashoffset 0.5s;
+		transition: stroke-dashoffset 0.5s, stroke var(--transition-speed-medium);
 	}
 </style>

@@ -41,7 +41,8 @@
 		position: relative;
 
 		background-color: rgba(var(--c4), 0.5);
-		transition: box-shadow 0.25s;
+		transition: background-color var(--transition-speed-medium),
+			box-shadow var(--transition-speed-medium);
 	}
 
 	li:hover {

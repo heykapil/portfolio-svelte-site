@@ -25,6 +25,8 @@
 		border-radius: 1rem;
 		padding: var(--main-padding);
 		background-color: rgb(var(--bg));
+		transition: background-color var(--transition-speed-medium),
+			box-shadow var(--transition-speed-medium);
 		box-shadow: 0 0 0 calc(1rem / 6) rgb(var(--c3)), 0 0 0 calc(2rem / 6) rgb(var(--c4)),
 			0 0 0 calc(3rem / 6) rgb(var(--c5));
 	}

@@ -35,8 +35,11 @@
 	:global(body) {
 		background-color: rgb(var(--bg));
 		color: rgb(var(--text));
+		transition: background-color var(--transition-speed-medium),
+			color var(--transition-speed-medium);
 	}
 
+	/* Utilities */
 	:global(.full-bleed),
 	:global(.container) {
 		padding-left: var(--main-padding);
@@ -50,5 +53,14 @@
 		max-width: var(--container-width);
 		margin-left: auto;
 		margin-right: auto;
+	}
+	:global(.visually-hidden) {
+		clip: rect(0 0 0 0);
+		clip-path: inset(50%);
+		height: 1px;
+		overflow: hidden;
+		position: absolute;
+		white-space: nowrap;
+		width: 1px;
 	}
 </style>

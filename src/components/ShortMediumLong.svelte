@@ -68,6 +68,7 @@
 		position: absolute;
 		width: 100%;
 		background-color: rgb(var(--c1));
+		transition: background-color var(--transition-speed-medium);
 	}
 	fieldset:after {
 		/* highlight */
@@ -75,7 +76,7 @@
 		position: absolute;
 		width: calc(100% / 3);
 		background-color: rgb(var(--c2));
-		transition: transform 0.4s;
+		transition: transform 0.4s, background-color var(--transition-speed-medium);
 	}
 	fieldset.short:after {
 		transform: translateX(0%);

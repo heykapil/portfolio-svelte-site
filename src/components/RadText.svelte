@@ -105,6 +105,8 @@
 
 		opacity: 1;
 		transition: opacity 0s;
+
+		transition: color var(--transition-speed-medium);
 	}
 	.layer.hidden {
 		opacity: 0;

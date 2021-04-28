@@ -122,6 +122,7 @@
 		text-decoration-style: solid;
 		text-decoration-thickness: 2px;
 		text-decoration-color: rgb(var(--c4));
+		transition: text-decoration-color var(--transition-speed-medium);
 	}
 	:global(a:hover),
 	:global(a[aria-current='location']) {

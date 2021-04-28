@@ -185,12 +185,13 @@
 		margin-top: var(--section-padding);
 
 		display: grid;
-		gap: var(--main-padding);
+		gap: calc(2 * var(--main-padding));
 		--card-width: calc(var(--container-width) / 3);
 	}
 	@media (min-width: 42rem) {
 		.other-project-section {
 			grid-template-columns: 1fr 1fr;
+			gap: var(--main-padding);
 		}
 	}
 </style>
