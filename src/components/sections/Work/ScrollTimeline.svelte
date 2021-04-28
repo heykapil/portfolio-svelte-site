@@ -85,6 +85,7 @@
 	{#each coordinates as { x, y }}
 		<path
 			d="M {x},{y} C {x + 50},{y - 50} {x + 50},{y + 50} {x},{y}"
+			pathLength="1"
 			transform-origin="{x} {y}"
 			class="appear"
 			class:visible={height * (1 - $scrollPercent.value) >= y}
@@ -95,29 +96,23 @@
 <style>
 	svg {
 		height: 100vh;
-		min-height: var(--container-width);
+		min-height: color(--container-width);
 		width: 100%;
 		overflow: visible;
 	}
-	circle,
 	path {
-		stroke-width: 0.5rem;
-		stroke: rgb(var(--c2));
-	}
-	path {
+		stroke: rgb(var(--c3));
+		stroke-width: 1rem;
 		stroke-linecap: round;
 		fill: none;
 	}
-	circle {
-		fill: rgb(var(--bg));
-		r: 0.5rem;
-	}
 	.appear {
-		transform: scale(0);
-		transition: transform 0.1s;
+		stroke-dasharray: 1;
+		stroke-dashoffset: 1;
+		transition: stroke-dashoffset 0.1s;
 	}
 	.appear.visible {
-		transform: scale(1);
-		transition: transform 0.25s;
+		stroke-dashoffset: 0;
+		transition: stroke-dashoffset 0.5s;
 	}
 </style>

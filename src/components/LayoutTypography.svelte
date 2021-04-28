@@ -1,5 +1,5 @@
 <style>
-	@import url('https://fonts.googleapis.com/css2?family=Open+Sans&family=Playfair+Display:wght@900&display=swap');
+	@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital@0;1&family=Playfair+Display:wght@900&display=swap');
 
 	:global(:root) {
 		--body-font-family: 'Open Sans', sans-serif;
@@ -49,7 +49,7 @@
 	:global(h4),
 	:global(.h5),
 	:global(h5) {
-		margin: 3rem 0 1.38rem;
+		margin: var(--section-padding) 0 1.38rem;
 	}
 
 	:global(.h1),

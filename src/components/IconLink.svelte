@@ -5,10 +5,13 @@
 
 <a {href} {title}>
 	<slot />
-	<span class="visually-hidden">{title}</span>
+	<span class="visually-hidden" />
 </a>
 
 <style>
+	a :global(svg) {
+		vertical-align: -0.125em;
+	}
 	.visually-hidden {
 		clip: rect(0 0 0 0);
 		clip-path: inset(50%);

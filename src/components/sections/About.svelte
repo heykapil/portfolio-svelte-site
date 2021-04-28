@@ -58,7 +58,7 @@
 <style>
 	article {
 		display: grid;
-		gap: 0 2rem;
+		gap: 0 var(--main-padding);
 		align-content: center;
 		justify-content: start;
 
