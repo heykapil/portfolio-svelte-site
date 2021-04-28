@@ -1,6 +1,6 @@
 <li>
 	<slot />
-	<!-- <span class="small"><slot name="details" /></span> -->
+	<span class="visually-hidden"><slot name="details" /></span>
 </li>
 
 <style>

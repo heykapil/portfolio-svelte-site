@@ -1,7 +1,3 @@
-<script lang="ts">
-	export let details: string;
-</script>
-
 <ul>
 	<slot />
 </ul>

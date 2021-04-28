@@ -2,7 +2,7 @@
 	import ProjectLinkList from './ProjectLinkList.svelte';
 	import ProjectTechList from './ProjectTechList.svelte';
 
-	export let image: string;
+	export let image: string | undefined = undefined;
 	export let noBorder = false;
 </script>
 

@@ -1,27 +1,7 @@
 <script lang="ts">
-	import { SunIcon, MoonIcon } from 'svelte-feather-icons';
-	import { slide } from 'svelte/transition';
+	import ModeToggles from '../ModeToggles.svelte';
 
-	let darkMode = false;
-	let altMode = false;
 	let menuOpen = false;
-
-	$: {
-		if (typeof document === 'undefined') break $;
-		if (darkMode) {
-			document.body.classList.add('dark');
-		} else {
-			document.body.classList.remove('dark');
-		}
-	}
-	$: {
-		if (typeof document === 'undefined') break $;
-		if (altMode) {
-			document.body.classList.add('alt');
-		} else {
-			document.body.classList.remove('alt');
-		}
-	}
 
 	const closeMenu = () => (menuOpen = false);
 </script>
@@ -41,26 +21,7 @@
 		<a on:click={closeMenu} href="#projects">Projects</a>
 		<a on:click={closeMenu} href="#contact">Contact</a>
 		<a on:click={closeMenu} href="#credit">Credit</a>
-		<div class="toggles">
-			<label>
-				<input
-					class="mode-toggle"
-					type="checkbox"
-					bind:checked={darkMode}
-					title="Toggle Dark Mode"
-				/>
-				{#if darkMode}
-					<div class="transition" transition:slide><MoonIcon size="1.5x" /></div>
-				{:else}
-					<div class="transition" transition:slide><SunIcon size="1.5x" /></div>
-				{/if}
-				<span class="visually-hidden">Dark Mode</span>
-			</label>
-			<label class="alt-toggle" class:checked={altMode} title="Toggle Alternate Color Mode">
-				<input class="mode-toggle" type="checkbox" bind:checked={altMode} />
-				<span class="visually-hidden">Alternate Color Mode</span>
-			</label>
-		</div>
+		<ModeToggles />
 	</div>
 </nav>
 
@@ -85,11 +46,11 @@
 		align-items: center;
 		justify-content: center;
 	}
-	a,
-	.toggles {
+	.menu a,
+	.menu :global(.toggles) {
 		padding: 1rem 0.5rem;
 	}
-	.toggles {
+	.menu :global(.toggles) {
 		margin-left: auto;
 	}
 	@media (max-width: 42rem) {
@@ -153,7 +114,8 @@
 			transform: scale(1);
 			pointer-events: auto;
 		}
-		.toggles {
+
+		.menu :global(.toggles) {
 			margin-left: 0;
 		}
 	}
@@ -162,58 +124,5 @@
 	[href='#hero'] {
 		font-family: var(--header-font-family);
 		font-weight: var(--header-font-weight);
-	}
-
-	/* toggles */
-	.mode-toggle {
-		border: 0;
-		clip: rect(0 0 0 0);
-		height: 1px;
-		margin: -1px;
-		overflow: hidden;
-		padding: 0;
-		position: absolute;
-		width: 1px;
-	}
-	.toggles {
-		display: flex;
-		--toggle-height: 24px;
-		--toggle-stroke: 0.1rem;
-	}
-	label {
-		cursor: pointer;
-	}
-	label:not(.alt-toggle) {
-		margin-right: 0.5rem;
-	}
-	label :global(svg) {
-		vertical-align: -0.125em;
-		stroke-width: var(--toggle-stroke);
-	}
-	.alt-toggle {
-		height: var(--toggle-height);
-		width: 36px;
-		border-radius: var(--toggle-height);
-		border-width: var(--toggle-stroke);
-		border-style: solid;
-		border-color: rgb(var(--text));
-		transition: border-color var(--transition-speed-medium);
-		position: relative;
-	}
-	.alt-toggle:after {
-		content: '';
-		position: absolute;
-		z-index: 1;
-		width: calc(var(--toggle-height) - 4 * var(--toggle-stroke));
-		height: calc(var(--toggle-height) - 4 * var(--toggle-stroke));
-		border-radius: 50%;
-		background-color: rgb(var(--c5));
-		transition: background-color var(--transition-speed-medium),
-			transform var(--transition-speed-medium);
-		left: var(--toggle-stroke);
-		top: var(--toggle-stroke);
-	}
-	.alt-toggle.checked:after {
-		transform: translateX(calc(100% - 3 * var(--toggle-stroke)));
 	}
 </style>

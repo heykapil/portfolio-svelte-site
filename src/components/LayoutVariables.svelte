@@ -20,11 +20,9 @@
 		--transition-speed-medium: 0.25s;
 	}
 
-	:global(body) {
-		--bg: var(--light);
-		--text: var(--dark);
-		--not-text: var(--light);
-
+	/* Modes and their variables */
+	:global(body), /* default while js loads */
+	:global(body.primary) {
 		--c1: var(--peach);
 		--c2: var(--pink);
 		--c3: var(--red);
@@ -38,9 +36,27 @@
 		--c4: var(--green);
 		--c5: var(--blue);
 	}
+	:global(body.light) {
+		--bg: var(--light);
+		--text: var(--dark);
+		--not-text: var(--light);
+	}
 	:global(body.dark) {
 		--bg: var(--dark);
 		--text: var(--light);
 		--not-text: var(--dark);
+	}
+	/* Defaults while JS Lodas */
+	:global(body) {
+		--bg: var(--light);
+		--text: var(--dark);
+		--not-text: var(--light);
+	}
+	@media (prefers-color-scheme: dark) {
+		:global(body) {
+			--bg: var(--dark);
+			--text: var(--light);
+			--not-text: var(--dark);
+		}
 	}
 </style>
