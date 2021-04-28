@@ -116,4 +116,10 @@
 		stroke-dashoffset: 0;
 		transition: stroke-dashoffset 0.5s, stroke var(--transition-speed-medium);
 	}
+	@media (prefers-reduced-motion: reduce) {
+		path {
+			stroke-dasharray: none !important;
+			stroke-dashoffset: none !important;
+		}
+	}
 </style>

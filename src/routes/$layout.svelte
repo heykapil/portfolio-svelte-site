@@ -22,8 +22,19 @@
 		scroll-behavior: smooth;
 		scroll-padding-top: 4rem;
 	}
-	:global(*) {
+	:global(*),
+	:global(*:before),
+	:global(*:after) {
 		box-sizing: border-box;
+	}
+	@media (prefers-reduced-motion) {
+		:global(*),
+		:global(*:before),
+		:global(*:after) {
+			transition: none !important;
+			animation-delay: 0ms !important;
+			animation-duration: 0ms !important;
+		}
 	}
 
 	@media (min-width: 42rem) {

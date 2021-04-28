@@ -30,7 +30,7 @@
 
 <span class="wrapper">
 	<span
-		class="layer"
+		class="layer layer-1"
 		aria-hidden
 		class:hidden={getHidden(offset1)}
 		style="
@@ -40,7 +40,7 @@
 		<slot />
 	</span>
 	<span
-		class="layer"
+		class="layer layer-2"
 		aria-hidden
 		class:hidden={getHidden(offset2)}
 		style="
@@ -50,7 +50,7 @@
 		<slot />
 	</span>
 	<span
-		class="layer"
+		class="layer layer-3"
 		aria-hidden
 		class:hidden={getHidden(offset3)}
 		style="
@@ -60,7 +60,7 @@
 		<slot />
 	</span>
 	<span
-		class="layer"
+		class="layer layer-4"
 		aria-hidden
 		class:hidden={getHidden(offset4)}
 		style="
@@ -70,7 +70,7 @@
 		<slot />
 	</span>
 	<span
-		class="layer"
+		class="layer layer-5"
 		aria-hidden
 		class:hidden={getHidden(offset5)}
 		style="
@@ -111,6 +111,26 @@
 	.layer.hidden {
 		opacity: 0;
 		transition: opacity 1s;
+	}
+	@media (prefers-reduced-motion) {
+		.layer {
+			opacity: 0.66 !important;
+		}
+		.layer-5 {
+			transform: translate(1px, 1px) !important;
+		}
+		.layer-4 {
+			transform: translate(2px, 2px) !important;
+		}
+		.layer-3 {
+			transform: translate(3px, 3px) !important;
+		}
+		.layer-2 {
+			transform: translate(4px, 4px) !important;
+		}
+		.layer-1 {
+			transform: translate(5px, 5px) !important;
+		}
 	}
 	.base-text {
 		/* Force stacking context */
