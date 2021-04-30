@@ -171,8 +171,10 @@
 			<svelte:fragment slot="header">
 				<h4>More</h4>
 			</svelte:fragment>
-			See so much more, including my graveyard of half-finished projects, on
-			<a href="https://github.com/decepulis?tab=repositories">GitHub</a>.
+			<p>
+				See so much more, including my graveyard of half-finished projects, on
+				<a href="https://github.com/decepulis?tab=repositories">GitHub</a>.
+			</p>
 		</OtherProject>
 	</section>
 </section>
@@ -185,7 +187,7 @@
 		margin-top: var(--section-padding);
 
 		display: grid;
-		gap: calc(2 * var(--main-padding));
+		gap: var(--main-padding);
 		--card-width: calc(var(--container-width) / 3);
 	}
 	@media (min-width: 42rem) {

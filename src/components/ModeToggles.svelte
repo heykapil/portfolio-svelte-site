@@ -45,14 +45,15 @@
 	<label>
 		<input class="mode-toggle" type="checkbox" bind:checked={darkMode} title="Toggle Dark Mode" />
 		{#if darkMode}
-			<div class="transition" transition:slide><MoonIcon size="1.5x" /></div>
+			<div class="icon" transition:slide><MoonIcon size="1.5x" /></div>
 		{:else}
-			<div class="transition" transition:slide><SunIcon size="1.5x" /></div>
+			<div class="icon" transition:slide><SunIcon size="1.5x" /></div>
 		{/if}
 		<span class="visually-hidden">Dark Mode</span>
 	</label>
-	<label class="alt-toggle" class:checked={altMode} title="Toggle Alternate Color Mode">
-		<input class="mode-toggle" type="checkbox" bind:checked={altMode} />
+	<label class="alt-toggle-label" title="Toggle Alternate Color Mode">
+		<input class="mode-toggle alt-toggle" type="checkbox" bind:checked={altMode} />
+		<span class="alt-toggle-slider" />
 		<span class="visually-hidden">Alternate Color Mode</span>
 	</label>
 </div>
@@ -70,31 +71,36 @@
 	}
 	.toggles {
 		display: flex;
+		align-items: center;
 		--toggle-height: 24px;
 		--toggle-stroke: 0.1rem;
 	}
 	label {
 		cursor: pointer;
 	}
-	label:not(.alt-toggle) {
+	label:not(.alt-toggle-label) {
 		margin-right: 0.5rem;
 	}
 	label :global(svg) {
 		vertical-align: -0.125em;
 		stroke-width: var(--toggle-stroke);
 	}
-	.alt-toggle {
+	.icon {
+		display: flex;
+		align-items: center;
+	}
+	.alt-toggle-label {
 		height: var(--toggle-height);
 		width: 36px;
 		border-radius: var(--toggle-height);
 		border-width: var(--toggle-stroke);
 		border-style: solid;
 		border-color: rgb(var(--text));
-		transition: border-color var(--transition-speed-medium);
+		transition: border-color var(--transition-speed-medium),
+			background-color var(--transition-speed-medium);
 		position: relative;
 	}
-	.alt-toggle:after {
-		content: '';
+	.alt-toggle-slider {
 		position: absolute;
 		z-index: 1;
 		width: calc(var(--toggle-height) - 4 * var(--toggle-stroke));
@@ -106,7 +112,13 @@
 		left: var(--toggle-stroke);
 		top: var(--toggle-stroke);
 	}
-	.alt-toggle.checked:after {
+	.alt-toggle:checked ~ .alt-toggle-slider {
 		transform: translateX(calc(100% - 3 * var(--toggle-stroke)));
+	}
+	input:focus ~ div :global(svg) {
+		stroke: rgb(var(--c3));
+	}
+	input:focus ~ .alt-toggle-slider {
+		box-shadow: 0 0 0 0.1rem rgb(var(--c3));
 	}
 </style>

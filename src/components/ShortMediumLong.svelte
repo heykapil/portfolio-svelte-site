@@ -9,18 +9,18 @@
 
 <form>
 	<fieldset class={length}>
-		<label>
-			<input type="radio" bind:group={length} value="short" />
-			<span>Short</span>
-		</label>
-		<label>
-			<input type="radio" bind:group={length} value="medium" />
-			<span>Medium</span>
-		</label>
-		<label>
-			<input type="radio" bind:group={length} value="long" />
-			<span>Long</span>
-		</label>
+		<div class="sml-option">
+			<input type="radio" bind:group={length} id="sml-short" value="short" />
+			<label for="sml-short">Short</label>
+		</div>
+		<div class="sml-option">
+			<input type="radio" bind:group={length} id="sml-medium" value="medium" />
+			<label for="sml-medium">Medium</label>
+		</div>
+		<div class="sml-option">
+			<input type="radio" bind:group={length} id="sml-long" value="long" />
+			<label for="sml-long">Long</label>
+		</div>
 	</fieldset>
 </form>
 
@@ -87,11 +87,15 @@
 	fieldset.long:after {
 		transform: translateX(200%);
 	}
+	.sml-option {
+		position: relative;
+	}
 	label {
+		display: inline-block;
+		width: 100%;
 		text-align: center;
 		cursor: pointer;
 		padding-bottom: 0.5em;
-		position: relative;
 	}
 	label:after {
 		content: '';
@@ -99,7 +103,8 @@
 		width: 100%;
 		transition: background-color 0.1s;
 	}
-	label:hover:after {
+	label:hover:after,
+	[type='radio']:focus ~ label:after {
 		background-color: rgba(var(--c2), 0.5);
 	}
 	[type='radio'] {
@@ -112,9 +117,6 @@
 		position: absolute;
 		width: 1px;
 	}
-	/* [type='radio']:checked + span {
-		color: rgb(var(--light));
-	} */
 
 	div > :global(p:first-child) {
 		margin-top: 0;

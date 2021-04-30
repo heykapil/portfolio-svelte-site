@@ -5,6 +5,8 @@
 		--break-width: 42rem;
 		--container-width: calc(1.5 * var(--break-width));
 
+		--border-width: 0.1rem;
+
 		--light: 245, 239, 214;
 		--dark: 43, 40, 40;
 

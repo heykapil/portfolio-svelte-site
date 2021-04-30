@@ -2,8 +2,6 @@
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
 
-	import IconLink from '../../IconLink.svelte';
-
 	type IconType = 'external' | 'info' | 'github';
 	export let href: string;
 	export let iconType: IconType;
@@ -21,9 +19,10 @@
 </script>
 
 <li>
-	<IconLink {href} title={iconLabel[iconType]}>
+	<a {href} title={iconLabel[iconType]} class="no-effect">
 		<svelte:component this={icon[iconType]} size="1x" />
-	</IconLink>
+		<span class="visually-hidden">{iconLabel[iconType]}</span>
+	</a>
 </li>
 
 <style>
@@ -31,36 +30,40 @@
 		width: 2rem;
 		height: 2rem;
 		font-size: 1.25rem;
-		--tap-target-width: calc((44px - 2rem) / 2);
-		--tap-target-height: calc((44px - 2rem) / 2);
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		border-radius: 0.5rem;
 		position: relative;
+	}
+	li:not(:last-of-type) {
+		margin-right: 1.5rem;
+	}
+	a {
+		position: absolute;
 
 		background-color: rgba(var(--c4), 0.5);
 		transition: background-color var(--transition-speed-medium),
 			box-shadow var(--transition-speed-medium);
-	}
-	li:not(:last-of-type) {
-		margin-right: 1rem;
-	}
 
-	li:hover {
-		box-shadow: 0 0 0 calc(1rem / 6) rgb(var(--c5)), 0 0 0 calc(2rem / 6) rgb(var(--c3));
-	}
-	li :global(a) {
-		position: absolute;
-
-		margin: calc(-1 * var(--tap-target-width));
-		padding: calc(var(--tap-target-width));
+		--tap-target: calc((44px - 2rem) / 2);
+		margin: calc(-1 * var(--tap-target));
+		padding: calc(var(--tap-target));
 		top: 0;
 		right: 0;
 		bottom: 0;
 		left: 0;
+		border-radius: 50%;
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+
+	a:focus {
+		outline: none;
+		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c5)), 0 0 0 0 rgb(var(--c3));
+	}
+	a:hover {
+		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c5)),
+			0 0 0 calc(4 * var(--border-width)) rgb(var(--c3));
 	}
 </style>

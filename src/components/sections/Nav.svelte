@@ -1,9 +1,51 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	import ModeToggles from '../ModeToggles.svelte';
 
 	let menuOpen = false;
-
 	const closeMenu = () => (menuOpen = false);
+
+	const sections = [
+		{ id: 'about', label: 'About' },
+		{ id: 'work', label: 'Work' },
+		{ id: 'projects', label: 'Projects' },
+		{ id: 'contact', label: 'Contact' },
+		{ id: 'credit', label: 'Credit' }
+	];
+	let sectionObservations: { [id: string]: number } = {};
+
+	$: currentSectionId = Object.entries(sectionObservations).reduce(
+		(current, [id, observation]) =>
+			current.observation < observation ? { id, observation } : current,
+		{ id: null, observation: 0 }
+	).id;
+
+	onMount(() => {
+		if (typeof IntersectionObserver === 'undefined') {
+			return;
+		}
+
+		const observerConfig: IntersectionObserverInit = {
+			root: null,
+			threshold: [0, 0.25, 0.5, 0.75, 1]
+		};
+		const observer = new IntersectionObserver((entries) => {
+			entries.forEach(
+				({ target, intersectionRatio }) =>
+					(sectionObservations = {
+						...sectionObservations,
+						[target.getAttribute('id')]: intersectionRatio
+					})
+			);
+		}, observerConfig);
+
+		sections.forEach(({ id }) => {
+			observer.observe(document.querySelector(`#${id}`));
+		});
+
+		return () => observer.disconnect();
+	});
 </script>
 
 <nav class="full-bleed">
@@ -16,11 +58,15 @@
 		aria-label="Toggle Menu"
 	/>
 	<div class="menu">
-		<a on:click={closeMenu} href="#about">About</a>
-		<a on:click={closeMenu} href="#work">Work</a>
-		<a on:click={closeMenu} href="#projects">Projects</a>
-		<a on:click={closeMenu} href="#contact">Contact</a>
-		<a on:click={closeMenu} href="#credit">Credit</a>
+		{#each sections as { id, label }}
+			<a
+				on:click={closeMenu}
+				href="#{id}"
+				aria-current={currentSectionId === id ? 'section' : undefined}
+			>
+				{label}
+			</a>
+		{/each}
 		<ModeToggles />
 	</div>
 </nav>
@@ -46,19 +92,23 @@
 		align-items: center;
 		justify-content: center;
 	}
+	a {
+		text-decoration: none;
+	}
 	a,
 	.menu :global(.toggles) {
-		padding: 1rem 0.5rem;
+		padding: 0.5rem 1rem;
 	}
 	.menu :global(.toggles) {
 		margin-left: auto;
+		padding-right: 0;
 	}
 	@media (max-width: 42rem) {
 		.menu {
 			position: absolute;
 			z-index: 10;
 			background-color: rgb(var(--bg));
-			border: 0.1rem solid rgb(var(--c5));
+			border: var(--border-width) solid rgba(var(--text), 0.5);
 			top: calc(var(--main-padding) / 2);
 			left: calc(var(--main-padding) / 2);
 			right: calc(var(--main-padding) / 2);
@@ -92,7 +142,7 @@
 			background-color: rgb(var(--text));
 			position: absolute;
 			height: 0.15rem;
-			border-radius: 0.1rem;
+			border-radius: var(--border-width);
 			left: 0;
 			right: 0;
 			transition: transform var(--transition-speed-medium);
@@ -104,10 +154,10 @@
 			bottom: calc(2rem / 3 - 0.075rem);
 		}
 		.menu-toggle:checked:before {
-			transform: translateX(-0.5rem) translateY(calc(2rem / 6 + 0.5rem)) rotateZ(135deg);
+			transform: translateX(-0.5rem) translateY(calc(2rem / 6 + 1rem)) rotateZ(135deg);
 		}
 		.menu-toggle:checked:after {
-			transform: translateX(-0.5rem) translateY(calc(-2rem / 6 + 0.5rem)) rotateZ(45deg);
+			transform: translateX(-0.5rem) translateY(calc(-2rem / 6 + 1rem)) rotateZ(45deg);
 		}
 		.menu-toggle:checked ~ .menu {
 			opacity: 1;

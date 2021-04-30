@@ -119,15 +119,21 @@
 
 	:global(a) {
 		color: inherit;
-		text-decoration-style: solid;
-		text-decoration-thickness: 2px;
-		text-decoration-color: rgb(var(--c4));
-		transition: text-decoration-color var(--transition-speed-medium);
 	}
-	:global(a:hover),
-	:global(a[aria-current='location']) {
-		text-decoration-style: wavy;
-		text-decoration-color: rgb(var(--c5));
+	:global(a:not(.no-effect)) {
+		text-decoration: none;
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4));
+		transition: box-shadow var(--transition-speed-medium);
+	}
+	:global(a:not(.no-effect):focus),
+	:global(a:not(.no-effect)[aria-current='section']) {
+		outline: none;
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
+			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 0 rgb(var(--c3));
+	}
+	:global(a:not(.no-effect):hover) {
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
+			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 var(--border-width) rgb(var(--c3));
 	}
 	:global(a[target='_blank']) {
 		cursor: ne-resize;

@@ -101,6 +101,8 @@
 		}, observerConfig);
 
 		observer.observe(svgElement);
+
+		return () => observer.disconnect();
 	});
 </script>
 
@@ -135,7 +137,7 @@
 						height={2 * r + strokePx}
 					>
 						<a
-							class="svg-link"
+							class="svg-link no-effect"
 							class:show
 							title={link.title}
 							href={link.href}
