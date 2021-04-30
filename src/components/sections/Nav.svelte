@@ -35,6 +35,7 @@
 	let scrollY = 0;
 	let lowestScrollY = 0;
 	let showThreshold = 5;
+	let atDocumentBottom = false;
 	$: {
 		if (scrollY < navTop || menuOpen) {
 			// first up, no hiding if the nav isn't even at the top
@@ -51,6 +52,10 @@
 			lowestScrollY = scrollY;
 			hide = false;
 		}
+		// Finally, for navbar purposes,
+		if (typeof window !== 'undefined') {
+			atDocumentBottom = scrollY + window.innerHeight === document.documentElement.scrollHeight;
+		}
 	}
 
 	const sections = [
@@ -62,11 +67,13 @@
 	];
 	let sectionObservations: { [id: string]: number } = {};
 
-	$: currentSectionId = Object.entries(sectionObservations).reduce(
-		(current, [id, observation]) =>
-			current.observation < observation ? { id, observation } : current,
-		{ id: null, observation: 0 }
-	).id;
+	$: currentSectionId = atDocumentBottom
+		? sections[sections.length - 1].id
+		: Object.entries(sectionObservations).reduce(
+				(current, [id, observation]) =>
+					current.observation < observation ? { id, observation } : current,
+				{ id: null, observation: 0 }
+		  ).id;
 
 	onMount(() => {
 		if (typeof IntersectionObserver === 'undefined') {
