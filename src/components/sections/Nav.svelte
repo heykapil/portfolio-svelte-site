@@ -6,6 +6,52 @@
 	let menuOpen = false;
 	const closeMenu = () => (menuOpen = false);
 
+	let resizing = false;
+	let resizeTimeout: ReturnType<typeof setTimeout>;
+	let navElement: HTMLElement;
+	let navTop = 0;
+	const onResize = () => {
+		// Two things happen in this resize listener.
+		// First, we forbid animations from firing
+		// to prevent an annoying animation from firing with the menu
+		resizing = true;
+		clearTimeout(resizeTimeout);
+		resizeTimeout = setTimeout(() => (resizing = false), 100);
+
+		// Second, we update how far from the top the navbar is.
+		// we wouldn't want to hide it above the viewport
+		// if it hasn't stickied yet.
+		if (typeof navElement === 'undefined') return;
+		navTop = navElement.offsetTop + 2 * navElement.offsetHeight;
+	};
+	$: {
+		// run this hook on page load
+		if (typeof navElement === 'undefined') break $;
+		onResize();
+	}
+
+	let hide = false;
+	let scrollY = 0;
+	let lowestScrollY = 0;
+	let showThreshold = 5;
+	$: {
+		if (scrollY < navTop || menuOpen) {
+			// first up, no hiding if the nav isn't even at the top
+			// or if the menu is open
+			hide = false;
+		} else if (scrollY > lowestScrollY) {
+			// if we're scrolling down, we hide
+			// and store the lowest scroll Y
+			lowestScrollY = scrollY;
+			hide = true;
+		} else if (scrollY < lowestScrollY - showThreshold) {
+			// if we're showThreshold above the lowest we've seen,
+			// we assume we're scrolling up
+			lowestScrollY = scrollY;
+			hide = false;
+		}
+	}
+
 	const sections = [
 		{ id: 'about', label: 'About' },
 		{ id: 'work', label: 'Work' },
@@ -48,8 +94,10 @@
 	});
 </script>
 
-<nav class="full-bleed">
-	<a href="#hero">DC</a>
+<svelte:window bind:scrollY on:resize={onResize} />
+
+<nav class="full-bleed" class:hide class:resizing bind:this={navElement}>
+	<a href="#hero" class="no-effect">DC</a>
 	<input
 		class="menu-toggle"
 		type="checkbox"
@@ -63,6 +111,7 @@
 				on:click={closeMenu}
 				href="#{id}"
 				aria-current={currentSectionId === id ? 'section' : undefined}
+				class="no-effect"
 			>
 				{label}
 			</a>
@@ -78,7 +127,8 @@
 		top: 0;
 		padding-bottom: 0;
 		background-color: rgb(var(--bg));
-		transition: background-color var(--transition-speed-medium);
+		transition: background-color var(--transition-speed-medium),
+			transform var(--transition-speed-medium);
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
@@ -94,6 +144,22 @@
 	}
 	a {
 		text-decoration: none;
+		transition: box-shadow var(--transition-speed-medium);
+	}
+	a:focus {
+		outline: none;
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)), inset 0 0 rgb(var(--c5)),
+			0 0 rgb(var(--c3));
+	}
+	a[aria-current='section'] {
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
+			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 0 rgb(var(--c3));
+	}
+	a:hover {
+		outline: none;
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
+			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)),
+			inset 0 calc(-3 * var(--border-width)) rgb(var(--c3));
 	}
 	a,
 	.menu :global(.toggles) {
@@ -104,11 +170,17 @@
 		padding-right: 0;
 	}
 	@media (max-width: 42rem) {
+		nav.hide {
+			transform: translateY(-100%);
+		}
+		nav.resizing > .menu {
+			transition: none;
+		}
 		.menu {
 			position: absolute;
 			z-index: 10;
 			background-color: rgb(var(--bg));
-			border: var(--border-width) solid rgba(var(--text), 0.5);
+			border: var(--border-width) solid rgba(var(--c5), 1);
 			top: calc(var(--main-padding) / 2);
 			left: calc(var(--main-padding) / 2);
 			right: calc(var(--main-padding) / 2);
@@ -167,11 +239,13 @@
 
 		.menu :global(.toggles) {
 			margin-left: 0;
+			padding-left: 0;
 		}
 	}
 
 	/* Links */
 	[href='#hero'] {
+		padding-left: 0;
 		font-family: var(--header-font-family);
 		font-weight: var(--header-font-weight);
 	}

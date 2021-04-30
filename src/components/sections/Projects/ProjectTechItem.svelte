@@ -1,6 +1,6 @@
 <li>
-	<slot />
 	<span class="visually-hidden"><slot name="details" /></span>
+	<slot />
 </li>
 
 <style>
@@ -9,6 +9,6 @@
 		font-style: italic;
 	}
 	li:not(:last-of-type):after {
-		content: ', ';
+		content: ',';
 	}
 </style>
