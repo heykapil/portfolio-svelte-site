@@ -20,11 +20,19 @@
 		line-height: var(--body-line-height);
 	}
 
-	:global(p, ul) {
+	:global(p, ul, figure, blockquote) {
 		margin-bottom: 1rem;
 	}
-
-	:global(.h1),
+	:global(figure),
+	:global(blockquote) {
+		margin-left: 0;
+		margin-right: 0;
+	}
+	/* :global(blockquote) {
+		padding-left: 1rem;
+		border-left: var(--border-width) solid rgb(var(--c5));
+	} */
+	:global :global(.h1),
 	:global(h1),
 	:global(.h2),
 	:global(h2),
