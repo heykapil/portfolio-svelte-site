@@ -59,8 +59,6 @@
 		gap: 0 var(--main-padding);
 		align-content: center;
 		justify-content: start;
-
-		--content-width: 65ch;
 	}
 	@media (min-width: 42rem) {
 		article {

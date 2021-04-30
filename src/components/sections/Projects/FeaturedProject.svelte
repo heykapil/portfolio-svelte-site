@@ -36,8 +36,6 @@
 		align-content: center;
 		align-items: center;
 		justify-content: start;
-
-		--content-width: 65ch;
 	}
 	@media (min-width: 42rem) {
 		article {

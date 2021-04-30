@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { Positions } from './position.d';
-
+	import bulletImg from './chevrons-right.svg';
 	import ScrollTimeline from './ScrollTimeline.svelte';
 
 	const positions: Positions = [
 		{
-			role: 'Full-Stack Web Developer and UI/UX Nut',
+			role: 'Full-Stack Web Developer',
 			employer: 'Microsensor Labs',
 			location: 'Chicago, IL',
 			start: 'August 2018',
@@ -42,13 +42,92 @@
 	];
 </script>
 
-<section id="work" class="container">
-	<h2>Where I've Worked</h2>
-	<ScrollTimeline {positions} />
+<section id="work" style="--iconUrl:url({bulletImg});">
+	<h2 class="full-bleed">Some Places I've Worked</h2>
+	<section class="slideshow">
+		{#each positions as { role, employer, location, start, end, points }}
+			<article>
+				<header>
+					<h3 class="h4">{role}</h3>
+					<p class="employer h5">@ {employer}</p>
+					<p class="location">{location}</p>
+					<p class="duration">{start} &ndash {end}</p>
+				</header>
+				<ul>
+					{#each points as point}
+						<li>{point}</li>
+					{/each}
+				</ul>
+			</article>
+		{/each}
+	</section>
 </section>
 
 <style>
 	#work {
 		position: relative;
+	}
+	h2 {
+		padding-bottom: 0;
+	}
+	.slideshow {
+		--x-spacing: 1rem;
+		--card-width: 80vw;
+		display: flex;
+		overflow-x: scroll;
+		scroll-snap-type: x mandatory;
+		scrollbar-width: none;
+	}
+	.slideshow::-webkit-scrollbar {
+		display: none;
+	}
+	.slideshow:before,
+	.slideshow:after {
+		content: '';
+		flex: 0 0 calc((100vw - var(--card-width)) / 2);
+	}
+	article {
+		scroll-snap-align: center;
+		flex: 1 0 var(--card-width);
+		max-width: var(--content-width);
+		background-color: rgba(var(--c1), 0.5);
+		border-radius: 1rem;
+		padding: 1rem;
+		max-height: 90vh;
+		overflow: scroll;
+	}
+	article:not(:last-of-type) {
+		margin-right: var(--x-spacing);
+	}
+	header > * {
+		margin-top: 0;
+		margin-bottom: 0;
+	}
+	.employer {
+		margin-bottom: 1rem;
+	}
+	header {
+		background-color: rgba(var(--bg), 0.5);
+		border-radius: 1rem;
+		padding: 1rem;
+	}
+	ul {
+		list-style-type: none;
+	}
+	li {
+		position: relative;
+	}
+	li:before {
+		content: '';
+		background-image: var(--iconUrl);
+		background-size: 1rem 1rem;
+		width: 1rem;
+		height: 1rem;
+		position: absolute;
+		left: -1.325rem;
+		top: 0.325rem;
+	}
+	article > *:last-child {
+		margin-bottom: 0;
 	}
 </style>

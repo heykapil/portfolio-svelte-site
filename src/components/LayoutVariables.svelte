@@ -4,6 +4,7 @@
 		--section-padding: 3rem;
 		--break-width: 42rem;
 		--container-width: calc(1.5 * var(--break-width));
+		--content-width: 65ch;
 
 		--border-width: 0.1rem;
 

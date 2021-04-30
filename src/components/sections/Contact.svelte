@@ -167,13 +167,12 @@
 		margin-left: -50vw;
 		margin-right: -50vw;
 
-		--transition-speed-stroke: 1s;
+		--transition-speed-stroke: 1.25s;
 
 		overflow: visible;
 	}
 	path {
 		fill: none;
-		stroke-linecap: round;
 
 		stroke-dashoffset: 1;
 		/* we also transition opacity to avoid visual glitches at offset = 1*/
@@ -196,10 +195,10 @@
 		color: rgb(var(--dark));
 		pointer-events: none;
 		opacity: 0;
-		transform: scale(0.85);
-		transition: opacity calc(var(--transition-speed-medium) / 4)
-				calc(var(--transition-speed-stroke) * 0.66),
-			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.66);
+		transform: scale(0.5);
+		transition: opacity calc(var(--transition-speed-medium) * 0.25)
+				calc(var(--transition-speed-stroke) * 0.75),
+			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.75);
 	}
 	.svg-link.show {
 		pointer-events: auto;
