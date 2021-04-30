@@ -1,7 +1,10 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { MailIcon, GithubIcon, LinkedinIcon, InstagramIcon } from 'svelte-feather-icons';
 	import type { SvelteComponent } from 'svelte/internal';
+	import { onMount } from 'svelte';
+
+	import { MailIcon, GithubIcon, LinkedinIcon, InstagramIcon } from 'svelte-feather-icons';
+
+	import Boopable from '../Boopable.svelte';
 
 	const strokePx = 24;
 	const r = strokePx;
@@ -136,16 +139,18 @@
 						width={2 * r + strokePx}
 						height={2 * r + strokePx}
 					>
-						<a
-							class="svg-link no-effect"
-							class:show
-							title={link.title}
-							href={link.href}
-							style="background-color:{color};"
-						>
-							<svelte:component this={link.icon} size="1.5x" />
-							<span class="visually-hidden">{link.title}</span>
-						</a>
+						<Boopable let:boopage>
+							<a
+								class="svg-link no-effect"
+								class:show
+								title={link.title}
+								href={link.href}
+								style="background-color:{color};--boopage:{boopage};"
+							>
+								<svelte:component this={link.icon} size="1.5x" />
+								<span class="visually-hidden">{link.title}</span>
+							</a>
+						</Boopable>
 					</foreignObject>
 				{/if}
 			</g>
@@ -162,7 +167,7 @@
 		margin-left: -50vw;
 		margin-right: -50vw;
 
-		--transition-speed-stroke: 1.5s;
+		--transition-speed-stroke: 1s;
 
 		overflow: visible;
 	}
@@ -192,7 +197,7 @@
 		pointer-events: none;
 		opacity: 0;
 		transform: scale(0.85);
-		transition: opacity calc(var(--transition-speed-medium) / 2)
+		transition: opacity calc(var(--transition-speed-medium) / 4)
 				calc(var(--transition-speed-stroke) * 0.66),
 			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.66);
 	}
@@ -200,5 +205,9 @@
 		pointer-events: auto;
 		opacity: 1;
 		transform: scale(1);
+	}
+	.svg-link :global(svg) {
+		transform: scale(calc(1 - 0.2 * var(--boopage)));
+		will-change: transform;
 	}
 </style>

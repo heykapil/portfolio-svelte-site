@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 
 	import ModeToggles from '../ModeToggles.svelte';
 
@@ -24,6 +24,7 @@
 		if (typeof navElement === 'undefined') return;
 		navTop = navElement.offsetTop + 2 * navElement.offsetHeight;
 	};
+	onDestroy(() => clearTimeout(resizeTimeout));
 	$: {
 		// run this hook on page load
 		if (typeof navElement === 'undefined') break $;
@@ -245,7 +246,6 @@
 
 	/* Links */
 	[href='#hero'] {
-		padding-left: 0;
 		font-family: var(--header-font-family);
 		font-weight: var(--header-font-weight);
 	}

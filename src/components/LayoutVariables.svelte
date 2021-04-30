@@ -19,6 +19,7 @@
 		--blue: 148, 194, 188;
 		--green: 174, 198, 110;
 
+		--transition-speed-short: 0.15s;
 		--transition-speed-medium: 0.25s;
 	}
 

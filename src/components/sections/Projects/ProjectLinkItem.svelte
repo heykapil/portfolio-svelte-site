@@ -1,6 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
+	import Boopable from '../../Boopable.svelte';
 
 	type IconType = 'external' | 'info' | 'github';
 	export let href: string;
@@ -19,10 +20,12 @@
 </script>
 
 <li>
-	<a {href} title={iconLabel[iconType]} class="no-effect">
-		<svelte:component this={icon[iconType]} size="1x" />
-		<span class="visually-hidden">{iconLabel[iconType]}</span>
-	</a>
+	<Boopable let:boopage>
+		<a {href} title={iconLabel[iconType]} class="no-effect" style="--boopage:{boopage};">
+			<svelte:component this={icon[iconType]} size="1x" />
+			<span class="visually-hidden">{iconLabel[iconType]}</span>
+		</a>
+	</Boopable>
 </li>
 
 <style>
@@ -38,12 +41,16 @@
 	li:not(:last-of-type) {
 		margin-right: 1.5rem;
 	}
+	li :global(span) {
+		width: 100%;
+		height: 100%;
+	}
 	a {
 		position: absolute;
 
 		background-color: rgba(var(--c4), 0.5);
-		transition: background-color var(--transition-speed-medium),
-			box-shadow var(--transition-speed-medium);
+		transition: background-color var(--transition-speed-short),
+			box-shadow var(--transition-speed-short);
 
 		--tap-target: calc((44px - 2rem) / 2);
 		margin: calc(-1 * var(--tap-target));
@@ -65,5 +72,11 @@
 	a:hover {
 		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c5)),
 			0 0 0 calc(4 * var(--border-width)) rgb(var(--c3));
+	}
+
+	a :global(svg) {
+		vertical-align: -0.125em;
+		transform: scale(calc(1 + 0.1 * var(--boopage)));
+		will-change: transform;
 	}
 </style>

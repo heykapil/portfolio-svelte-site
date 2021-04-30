@@ -10,14 +10,10 @@
 		<div class="content">
 			<ShortMediumLong>
 				<svelte:fragment slot="short">
+					<p>I'm a full-stack web developer.</p>
 					<p>
-						I'm currently the web developer at
-						<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>, where I use web
-						technologies and good design to help healthcare providers wash their hands better.
-					</p>
-					<p>
-						I have experience working across the stack, from back-ends and infrastructure that
-						handle production-grade demands to front-end experiences that just feel good.
+						Some people might say that that means I failed to specialize. But I prefer to think of
+						it as "having a variety of interests".
 					</p>
 				</svelte:fragment>
 				<svelte:fragment slot="medium">
@@ -27,8 +23,8 @@
 						technologies and good design to help healthcare providers wash their hands better.
 					</p>
 					<p>
-						I have experience working across the stack, from back-ends and infrastructure that
-						handle production-grade demands to front-end experiences that just feel good.
+						I enjoy working across the stack, from back-ends and infrastructure that handle
+						production-grade demands to front-end experiences that just feel good.
 					</p>
 				</svelte:fragment>
 				<svelte:fragment slot="long">
@@ -40,9 +36,11 @@
 					</p>
 					<p>
 						Since then, I've built up my skills to match the needs of the modern monstrous monoliths
-						that are web apps. And I love working on it all, up and down the stack: optimizing
-						databases and plugging vulnerabilities on our back-end, ensuring reliability with
-						rock-solid tests and infrastructure on our
+						that are web apps. And I love working on it all, up and down the stack.
+					</p>
+					<p>
+						Optimizing databases and plugging vulnerabilities on our back-end, ensuring reliability
+						with rock-solid tests and infrastructure on our
 						<abbr title="Continuous Integration and Deployment">CI/CD</abbr> pipeline and cloud,
 						geeking out over tooling to make sure developer experience leads to a maintanable
 						product, and (most importantly) using my

@@ -3,6 +3,7 @@
 	import { slide } from 'svelte/transition';
 
 	import { SunIcon, MoonIcon } from 'svelte-feather-icons';
+	import Boopable from './Boopable.svelte';
 
 	let listenerInitialized = false;
 	let darkMode = false;
@@ -44,11 +45,17 @@
 <div class="toggles">
 	<label>
 		<input class="mode-toggle" type="checkbox" bind:checked={darkMode} title="Toggle Dark Mode" />
-		{#if darkMode}
-			<div class="icon" transition:slide><MoonIcon size="1.5x" /></div>
-		{:else}
-			<div class="icon" transition:slide><SunIcon size="1.5x" /></div>
-		{/if}
+		<Boopable let:boopage>
+			{#if darkMode}
+				<div class="icon" style="--boopage:{boopage};" transition:slide>
+					<MoonIcon size="1.5x" />
+				</div>
+			{:else}
+				<div class="icon" style="--boopage:{boopage};" transition:slide>
+					<SunIcon size="1.5x" />
+				</div>
+			{/if}
+		</Boopable>
 		<span class="visually-hidden">Dark Mode</span>
 	</label>
 	<label class="alt-toggle-label" title="Toggle Alternate Color Mode">
@@ -88,6 +95,8 @@
 	.icon {
 		display: flex;
 		align-items: center;
+		transform: rotate(calc(var(--boopage) * 15deg));
+		will-change: transform;
 	}
 	.alt-toggle-label {
 		height: var(--toggle-height);
@@ -112,10 +121,19 @@
 		left: var(--toggle-stroke);
 		top: var(--toggle-stroke);
 	}
+	.alt-toggle-slider:hover {
+		transform: translateX(var(--toggle-stroke));
+	}
 	.alt-toggle:checked ~ .alt-toggle-slider {
 		transform: translateX(calc(100% - 3 * var(--toggle-stroke)));
 	}
-	input:focus ~ div :global(svg) {
+	.alt-toggle-slider:hover {
+		transform: translateX(15%);
+	}
+	.alt-toggle:checked ~ .alt-toggle-slider:hover {
+		transform: translateX(calc(100% - 4 * var(--toggle-stroke)));
+	}
+	input:focus ~ span :global(svg) {
 		stroke: rgb(var(--c3));
 	}
 	input:focus ~ .alt-toggle-slider {

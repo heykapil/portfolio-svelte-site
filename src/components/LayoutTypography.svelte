@@ -123,7 +123,7 @@
 	:global(a:not(.no-effect)) {
 		text-decoration: none;
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4));
-		transition: box-shadow var(--transition-speed-medium);
+		transition: box-shadow var(--transition-speed-short);
 	}
 	:global(a:not(.no-effect):focus),
 	:global(a:not(.no-effect)[aria-current='section']) {
