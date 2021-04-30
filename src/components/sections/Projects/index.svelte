@@ -2,15 +2,15 @@
 	import OtherProject from './OtherProject.svelte';
 	import FeaturedProject from './FeaturedProject.svelte';
 	import ProjectLinkItem from './ProjectLinkItem.svelte';
-
-	import sanibitImg from './img/sanibit.png';
-	import microsensorImg from './img/microsensor.png';
-	import pisuiteImg from './img/pisuite.png';
-	import kcdcImg from './img/kcdc.png';
-	import clockImg from './img/weasley-clock.png';
-	import midwestImg from './img/midwest-microbio.png';
-	import f1Img from './img/formula-fun.png';
 	import ProjectTechItem from './ProjectTechItem.svelte';
+
+	import sanibitImg from './img/sanibit.jpg';
+	import microsensorImg from './img/microsensor.jpg';
+	import pisuiteImg from './img/pisuite.png';
+	import kcdcImg from './img/kcdc.jpg';
+	import clockImg from './img/weasley-clock.jpg';
+	import midwestImg from './img/midwest-microbio.jpg';
+	import f1Img from './img/formula-fun.png';
 </script>
 
 <section id="projects" class="container">
