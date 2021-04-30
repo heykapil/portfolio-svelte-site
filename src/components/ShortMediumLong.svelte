@@ -58,7 +58,6 @@
 	fieldset:after,
 	label:after {
 		height: 0.25em;
-		border-radius: 0.125em;
 		left: 0;
 		bottom: 0;
 	}

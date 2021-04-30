@@ -12,7 +12,7 @@
 				<svelte:fragment slot="short">
 					<p>I'm a full-stack web developer.</p>
 					<p>
-						Some people might say that that means I failed to specialize. But I prefer to think of
+						Some people might say that that means I "failed to specialize". But I prefer to think of
 						it as "having a variety of interests".
 					</p>
 				</svelte:fragment>
