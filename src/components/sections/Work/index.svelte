@@ -40,23 +40,22 @@
 	];
 </script>
 
-<section id="work">
-	<h2 class="container">Some Places I've Worked</h2>
-	<section class="slideshow">
-		{#each positions as { role, employer, location, start, end, points }}
-			<article>
-				<header>
-					<h3 class="h4">{role}</h3>
-					<p class="employer h5">@ {employer}</p>
+<section id="work" class="container">
+	<h2>Some Places I've Worked</h2>
+	<section class="accordion">
+		{#each positions as { role, employer, location, start, end, points }, index}
+			<details open={index === 0}>
+				<summary>
+					<h3 class="h5">{role}<br />@ {employer}</h3>
 					<p class="location">{location}</p>
 					<p class="duration">{start} &ndash {end}</p>
-				</header>
+				</summary>
 				<ul>
 					{#each points as point}
 						<li>{point}</li>
 					{/each}
 				</ul>
-			</article>
+			</details>
 		{/each}
 	</section>
 </section>
@@ -64,87 +63,53 @@
 <style>
 	#work {
 		position: relative;
-		--x-spacing: 0.5rem;
-		/* TODO: iffy compatability? */
-		--card-width: min(85vw, var(--content-width) + 4rem);
 	}
-	@media (min-width: 42rem) {
-		#work {
-			--x-spacing: 1rem;
-		}
+	.accordion {
+		background-color: rgb(var(--c2));
+	}
+	details {
+		background-color: rgba(var(--bg), 0.8);
+	}
+	.accordion,
+	details {
+		transition: background-color var(--transition-speed-medium);
+		border-radius: 1rem;
+		padding: 1rem;
 	}
 
-	h2 {
-		padding-bottom: 0;
+	details:not(:last-child) {
+		margin-bottom: 1rem;
 	}
-	.slideshow {
-		display: flex;
-		overflow-x: scroll;
-		overflow-y: hidden;
-		scroll-snap-type: x mandatory;
-		scrollbar-width: none;
-	}
-	.slideshow::-webkit-scrollbar {
+	summary::-webkit-details-marker {
 		display: none;
 	}
-
-	.slideshow:before,
-	.slideshow:after {
-		content: '';
-		/* center cards in view */
-		flex: 0 0 calc(100vw - var(--card-width) / 2 + var(--x-spacing));
-	}
-
-	article:not(:last-of-type) {
-		margin-right: var(--x-spacing);
-	}
-	article {
-		flex: 1 0 var(--card-width);
-		scroll-snap-align: center;
-		background-color: rgb(var(--c2));
-		border-radius: 1rem;
-		padding: 1rem;
-		max-height: calc(100vh - 4rem);
-
-		display: flex;
-		flex-direction: column;
+	summary {
+		list-style: none;
+		padding-right: 3rem;
 		position: relative;
 	}
-	@media (min-width: 42rem) {
-		/* align card with start of container*/
-		.slideshow:before {
-			flex: 0 0 calc(var(--main-padding) + var(--container-margin-width));
-		}
-		.slideshow:after {
-			/* allow last card to align with snap start*/
-			flex: 0 0
-				calc(100vw - var(--container-margin-width) - var(--main-padding) - var(--card-width));
-		}
-		.slideshow {
-			scroll-padding-left: calc(var(--main-padding) + var(--container-margin-width));
-		}
-		article {
-			scroll-snap-align: start;
-		}
+	summary:after {
+		content: '\25BE';
+		font-size: 1.25rem;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 3rem;
+		height: 100%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		transform: rotate(-90deg);
+		transition: transform var(--transition-speed-medium);
 	}
-	article,
-	header,
-	ul {
-		transition: background-color var(--transition-speed-medium);
+	details[open] summary:after {
+		transform: rotate(0);
 	}
-	header {
-		padding: 1rem;
+	summary > * {
+		margin: 0;
+		padding: 0;
 	}
-	header,
-	ul {
-		background-color: rgb(var(--c2-x-bg));
-		border-radius: 1rem;
-	}
-	header > * {
-		margin-top: 0;
-		margin-bottom: 0;
-	}
-	.employer {
+	.h5 {
 		margin-bottom: 1rem;
 	}
 	.duration {
@@ -152,42 +117,6 @@
 	}
 
 	ul {
-		flex: 1;
-		list-style-type: '\203A   ';
-		overflow-y: scroll;
-		--padding: 1rem; /* top/bottom enforced by before/after */
-		padding-right: var(--padding);
-		--padding-left: 2rem;
-		padding-left: var(--padding-left);
-	}
-	ul:before,
-	ul:after {
-		/* padding top & bottom */
-		/* also scroll indicators */
-		height: var(--padding);
-		content: '';
-		display: list-item;
-		width: calc(100% + var(--padding-left) + var(--padding));
-		margin-left: calc(-1 * var(--padding-left));
-		transition: box-shadow var(--transition-speed-medium);
-	}
-	ul:before {
-		position: sticky;
-		z-index: 1;
-		top: 0;
-		border-radius: 1rem 1rem 0 0;
-		box-shadow: inset 0 0.5rem 0.5rem rgb(var(--c2-x-bg));
-	}
-	ul:after {
-		position: sticky;
-		border-radius: 0 0 1rem 1rem;
-		bottom: 0;
-		box-shadow: inset 0 -0.5rem 0.5rem rgb(var(--c2-x-bg));
-	}
-	li {
-		position: relative;
-	}
-	article > *:last-child {
-		margin-bottom: 0;
+		padding-left: 2rem;
 	}
 </style>

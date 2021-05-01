@@ -53,6 +53,7 @@
 
 	/* Utilities */
 	:global(.full-bleed),
+	:global(.content-container),
 	:global(.container) {
 		padding-left: var(--main-padding);
 		padding-right: var(--main-padding);
@@ -61,10 +62,16 @@
 		padding-right: max(env(safe-area-inset-right), var(--main-padding));
 		padding-bottom: max(env(safe-area-inset-bottom), var(--main-padding));
 	}
+	:global(.content-container),
 	:global(.container) {
-		max-width: var(--container-width);
 		margin-left: auto;
 		margin-right: auto;
+	}
+	:global(.content-container) {
+		max-width: var(--content-width);
+	}
+	:global(.container) {
+		max-width: var(--container-width);
 	}
 	:global(.visually-hidden) {
 		clip: rect(0 0 0 0);
