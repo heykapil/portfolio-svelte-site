@@ -1,5 +1,7 @@
 <script lang="ts">
 	import type { Positions } from './position.d';
+	import { slide } from 'svelte/transition';
+	import Boopable from '../../Boopable.svelte';
 
 	const positions: Positions = [
 		{
@@ -11,7 +13,7 @@
 			points: [
 				'Worked closely with hardware team and stakeholders to design, develop, and deploy a full-stack data analysis and visualization application for improving hygiene compliance in hospitals, currently used by dozens of users in a clinical trial setting.',
 				'Provided input across hardware and software to ensure simple and coherent user interactions and experiences.',
-				'Developed marketing materials and web sites while establishing and maintaining our corporate visual identity.'
+				'Established and maintained our corporate visual identity while developing marketing materials and web sites.'
 			]
 		},
 		{
@@ -32,30 +34,39 @@
 			start: 'January',
 			end: 'December 2015',
 			points: [
-				'Worked closely with stakeholders to design, develop, and deploy an iOS app for automobile inspections saving them over an hour a day.',
-				'Assisted Deep Learning research efforts by benchmarking clusters and preparing datasets.',
-				'Designed & built Raspberry Pi robot for exploring 3D imaging techniques.'
+				'Worked closely with stakeholders to design, develop, and deploy an iOS app for automobile inspections, saving them over an hour a day.',
+				'Assisted Deep Learning research efforts by benchmarking clusters and preparing datasets.'
 			]
 		}
 	];
+
+	let openIndex: number = 0;
 </script>
 
 <section id="work" class="container">
 	<h2>Some Places I've Worked</h2>
 	<section class="accordion">
 		{#each positions as { role, employer, location, start, end, points }, index}
-			<details open={index === 0}>
-				<summary>
-					<h3 class="h5">{role}<br />@ {employer}</h3>
-					<p class="location">{location}</p>
-					<p class="duration">{start} &ndash {end}</p>
-				</summary>
-				<ul>
-					{#each points as point}
-						<li>{point}</li>
-					{/each}
-				</ul>
-			</details>
+			<article>
+				<Boopable let:boopage>
+					<button
+						class:open={openIndex === index}
+						on:click={() => (openIndex = index)}
+						style="--boopage:{boopage};"
+					>
+						<h3 class="h5">{role}<br />@ {employer}</h3>
+						<p class="location small">{location}</p>
+						<p class="duration small">{start} &ndash {end}</p>
+					</button>
+				</Boopable>
+				{#if openIndex === index}
+					<ul transition:slide>
+						{#each points as point}
+							<li>{point}</li>
+						{/each}
+					</ul>
+				{/if}
+			</article>
 		{/each}
 	</section>
 </section>
@@ -64,31 +75,39 @@
 	#work {
 		position: relative;
 	}
-	.accordion {
-		background-color: rgb(var(--c2));
-	}
-	details {
-		background-color: rgba(var(--bg), 0.8);
-	}
 	.accordion,
-	details {
+	article {
 		transition: background-color var(--transition-speed-medium);
 		border-radius: 1rem;
 		padding: 1rem;
 	}
+	.accordion {
+		background-color: rgb(var(--c2));
+		display: grid;
+		gap: 1rem;
+	}
+	article {
+		background-color: rgba(var(--bg), 0.8);
+	}
+	button {
+		display: block;
+		width: 100%;
+		text-align: left;
+		border: 0;
+		font-size: initial;
+		color: initial;
 
-	details:not(:last-child) {
 		margin-bottom: 1rem;
-	}
-	summary::-webkit-details-marker {
-		display: none;
-	}
-	summary {
-		list-style: none;
+
+		background: none;
+		-webkit-appearance: none;
+		appearance: none;
+
 		padding-right: 3rem;
 		position: relative;
+		cursor: pointer;
 	}
-	summary:after {
+	button:after {
 		content: '\25BE';
 		font-size: 1.25rem;
 		position: absolute;
@@ -99,13 +118,11 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		transform: rotate(-90deg);
-		transition: transform var(--transition-speed-medium);
+
+		transform: translateY(calc(0.3rem * var(--boopage)));
+		will-change: transform;
 	}
-	details[open] summary:after {
-		transform: rotate(0);
-	}
-	summary > * {
+	button > * {
 		margin: 0;
 		padding: 0;
 	}
@@ -117,6 +134,7 @@
 	}
 
 	ul {
+		margin: 0;
 		padding-left: 2rem;
 	}
 </style>
