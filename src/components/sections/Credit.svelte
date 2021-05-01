@@ -9,30 +9,29 @@
 			</cite>
 		</footer>
 	</blockquote>
-	<figcaption>
-		<dl>
-			<dt>Content Structure</dt>
-			<dd>
-				Thank You <a href="https://brittanychiang.com">Brittany Chiang</a>
-			</dd>
-			<dt>Bio Length</dt>
-			<dd>
-				Thank You <a href="https://chriscoyier.net">Chris Coyier</a>
-			</dd>
-			<dt>Boop</dt>
-			<dd>
-				Thank You <a href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
-			</dd>
-			<dt>Mood Board</dt>
-			<dd>
-				Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
-			</dd>
-		</dl>
-	</figcaption>
+	<dl>
+		<dt>Content Structure</dt>
+		<dd>
+			Thank You <a href="https://brittanychiang.com">Brittany Chiang</a>
+		</dd>
+		<dt>Bio Length</dt>
+		<dd>
+			Thank You <a href="https://chriscoyier.net">Chris Coyier</a>
+		</dd>
+		<dt>Boop</dt>
+		<dd>
+			Thank You <a href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
+		</dd>
+		<dt>Mood Board</dt>
+		<dd>
+			Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
+		</dd>
+	</dl>
 </section>
 
 <style>
-	dl {
+	dl,
+	blockquote {
 		text-align: center;
 	}
 	dd {
@@ -40,7 +39,8 @@
 		margin-bottom: 1rem;
 	}
 	@media (min-width: 42rem) {
-		dl {
+		dl,
+		blockquote {
 			text-align: initial;
 		}
 		dd {
