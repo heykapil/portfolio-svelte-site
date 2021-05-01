@@ -131,7 +131,7 @@
 <style>
 	nav {
 		position: sticky;
-		z-index: 1;
+		z-index: 1000;
 		top: 0;
 		padding-bottom: 0;
 		background-color: rgb(var(--bg));
@@ -186,7 +186,7 @@
 		}
 		.menu {
 			position: absolute;
-			z-index: 10;
+			z-index: 1001;
 			background-color: rgb(var(--bg));
 			border: var(--border-width) solid rgba(var(--c5), 1);
 			top: calc(var(--main-padding) / 2);
@@ -211,7 +211,7 @@
 			width: 2rem;
 			height: 2rem;
 			margin: 0;
-			z-index: 11;
+			z-index: 1002;
 			-webkit-appearance: none;
 			appearance: none;
 			border: 0;
