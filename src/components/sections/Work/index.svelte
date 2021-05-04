@@ -8,7 +8,7 @@
 			role: 'Full-Stack Web Developer',
 			employer: 'Microsensor Labs',
 			location: 'Chicago, IL',
-			start: 'August 2018',
+			start: 'November 2018',
 			end: 'Present',
 			points: [
 				'Worked closely with hardware team and stakeholders to design, develop, and deploy a full-stack data analysis and visualization application for improving hygiene compliance in hospitals, currently used by dozens of users in a clinical trial setting.',
@@ -26,6 +26,14 @@
 				'Designed and developed web app suite for large-scale, intuitive sensor data aggregation and analysis.',
 				'Lived and worked in a diverse, multilingual, international environment.'
 			]
+		},
+		{
+			role: 'Student Researcher',
+			employer: 'University of Cincinnati',
+			location: 'Cincinnati, OH',
+			start: 'May',
+			end: 'July 2016',
+			points: ['Simulated neural network hardware in MATLAB to support research.']
 		},
 		{
 			role: 'Innovation Lab Co-Op',

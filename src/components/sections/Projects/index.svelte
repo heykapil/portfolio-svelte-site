@@ -42,8 +42,11 @@
 				</ProjectTechItem>
 				<ProjectTechItem>
 					AWS
-					<svelte:fragment slot="details">EC2, RDS, CLB, S3, ElastiCache</svelte:fragment>
+					<svelte:fragment slot="details">
+						EC2, RDS, CLB, S3, ElastiCache, Cloudfront, Route53
+					</svelte:fragment>
 				</ProjectTechItem>
+				<ProjectTechItem>Redis</ProjectTechItem>
 				<ProjectTechItem>GitHub Actions</ProjectTechItem>
 			</svelte:fragment>
 			<svelte:fragment slot="links">
