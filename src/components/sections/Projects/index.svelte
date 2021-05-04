@@ -47,7 +47,7 @@
 				<ProjectTechItem>GitHub Actions</ProjectTechItem>
 			</svelte:fragment>
 			<svelte:fragment slot="links">
-				<ProjectLinkItem iconType="info" href="https://www.sanibit.com/" />
+				<ProjectLinkItem iconType="info" href="https://www.microsensorlabs.com/sanibit" />
 			</svelte:fragment>
 		</FeaturedProject>
 		<FeaturedProject image={microsensorImg}>
