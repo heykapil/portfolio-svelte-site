@@ -137,7 +137,7 @@
 	}
 	header,
 	ul {
-		background-color: rgb(var(--c2-x-bg));
+		background-color: rgba(var(--bg), 0.25);
 		border-radius: 1rem;
 	}
 	header > * {
@@ -176,13 +176,13 @@
 		z-index: 1;
 		top: 0;
 		border-radius: 1rem 1rem 0 0;
-		box-shadow: inset 0 0.5rem 0.5rem rgb(var(--c2-x-bg));
+		box-shadow: inset 0 0.5rem 0.5rem rgba(var(--bg), 0.25);
 	}
 	ul:after {
 		position: sticky;
 		border-radius: 0 0 1rem 1rem;
 		bottom: 0;
-		box-shadow: inset 0 -0.5rem 0.5rem rgb(var(--c2-x-bg));
+		box-shadow: inset 0 -0.5rem 0.5rem rgba(var(--bg), 0.25);
 	}
 	li {
 		position: relative;
