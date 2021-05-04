@@ -197,8 +197,8 @@
 		opacity: 0;
 		transform: scale(0.5);
 		transition: opacity calc(var(--transition-speed-medium) * 0.25)
-				calc(var(--transition-speed-stroke) * 0.75),
-			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.75);
+				calc(var(--transition-speed-stroke) * 0.66),
+			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.66);
 	}
 	.svg-link.show {
 		pointer-events: auto;
