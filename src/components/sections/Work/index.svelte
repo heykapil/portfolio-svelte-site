@@ -60,11 +60,11 @@
 					<button
 						class:open={openIndex === index}
 						on:click={() => (openIndex = index)}
-						style="--boopage:{boopage};"
+						style="--boopage:{openIndex === index ? 0 : boopage};"
 					>
 						<h3 class="h5">{role}<br />@ {employer}</h3>
-						<p class="location small">{location}</p>
-						<p class="duration small">{start} &ndash {end}</p>
+						<p class="location">{location}</p>
+						<p class="duration">{start} &ndash {end}</p>
 					</button>
 				</Boopable>
 				{#if openIndex === index}
@@ -103,7 +103,7 @@
 		text-align: left;
 		border: 0;
 		font-size: initial;
-		color: initial;
+		color: inherit;
 
 		margin-bottom: 1rem;
 

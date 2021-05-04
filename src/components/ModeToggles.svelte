@@ -3,11 +3,13 @@
 	import { slide } from 'svelte/transition';
 
 	import { SunIcon, MoonIcon } from 'svelte-feather-icons';
+
 	import Boopable from './Boopable.svelte';
+	import FaviconManager from './FaviconManager.svelte';
 
 	let listenerInitialized = false;
 	let darkMode = false;
-	let altMode = false;
+	let altMode = false; // TODO store in LocalStorage
 
 	$: {
 		if (typeof document === 'undefined') break $;
@@ -41,6 +43,8 @@
 		listenerInitialized = true;
 	});
 </script>
+
+<FaviconManager {darkMode} {altMode} />
 
 <div class="toggles">
 	<label>
