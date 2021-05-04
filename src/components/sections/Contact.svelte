@@ -39,7 +39,7 @@
 				y: halfHeight - 2 * strokePx,
 				xMax: halfWidth - 1.5 * widthInterval,
 				circle: 'up',
-				link: { title: 'E-Mail', href: 'mailto:hello@decepulis.com', icon: MailIcon }
+				link: { title: 'E-Mail', href: 'mailto:de.cepulis@gmail.com', icon: MailIcon }
 			},
 			{
 				color: 'rgb(var(--c2))',
