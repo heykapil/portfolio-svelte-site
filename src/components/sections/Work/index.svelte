@@ -103,6 +103,7 @@
 		text-align: left;
 		border: 0;
 		font-size: initial;
+		font-family: inherit;
 		color: inherit;
 
 		margin-bottom: 1rem;
@@ -136,9 +137,6 @@
 	}
 	.h5 {
 		margin-bottom: 1rem;
-	}
-	.duration {
-		font-style: italic;
 	}
 
 	ul {
