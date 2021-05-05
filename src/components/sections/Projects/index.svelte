@@ -16,7 +16,10 @@
 <section id="projects" class="container">
 	<h2>Some Things I've Built</h2>
 	<section>
-		<FeaturedProject image={sanibitImg}>
+		<FeaturedProject
+			image={sanibitImg}
+			alt="The Sanibit Dashboard, feturing a line graph of hand hygine compliance over time"
+		>
 			<svelte:fragment slot="header">
 				<h4>Sanibit Web Platform</h4>
 			</svelte:fragment>
@@ -53,7 +56,7 @@
 				<ProjectLinkItem iconType="info" href="https://www.microsensorlabs.com/sanibit" />
 			</svelte:fragment>
 		</FeaturedProject>
-		<FeaturedProject image={microsensorImg}>
+		<FeaturedProject image={microsensorImg} alt="The Microsensor Labs home page">
 			<svelte:fragment slot="header">
 				<h4>Microsensor Labs Site</h4>
 			</svelte:fragment>
@@ -73,7 +76,10 @@
 				<ProjectLinkItem iconType="external" href="https://www.microsensorlabs.com/" />
 			</svelte:fragment>
 		</FeaturedProject>
-		<FeaturedProject image={pisuiteImg}>
+		<FeaturedProject
+			image={pisuiteImg}
+			alt="The Sensor Analyitcs Platform home page, featuring a complex query below and a line graph of its result above"
+		>
 			<svelte:fragment slot="header">
 				<h4>Sensor Analytics Platform</h4>
 			</svelte:fragment>
@@ -90,7 +96,10 @@
 	</section>
 	<section class="other-project-section">
 		<h3>Other Noteworthy Projects</h3>
-		<OtherProject image={kcdcImg}>
+		<OtherProject
+			image={kcdcImg}
+			alt="The home page of the wedding website; a sunset with a city skyline in front of it."
+		>
 			<svelte:fragment slot="header">
 				<h4>Wedding Website</h4>
 			</svelte:fragment>
@@ -111,7 +120,10 @@
 				<ProjectLinkItem iconType="github" href="https://github.com/decepulis/kcdc.fun" />
 			</svelte:fragment>
 		</OtherProject>
-		<OtherProject image={clockImg}>
+		<OtherProject
+			image={clockImg}
+			alt="A clock, except instead of hours around the edges, locations like 'Home' and 'Away'"
+		>
 			<svelte:fragment slot="header">
 				<h4>Serverless Weasley Clock</h4>
 			</svelte:fragment>
@@ -133,7 +145,7 @@
 				<ProjectLinkItem iconType="github" href="https://github.com/decepulis/weasley-clock" />
 			</svelte:fragment>
 		</OtherProject>
-		<OtherProject image={midwestImg}>
+		<OtherProject image={midwestImg} alt="The Midwest Microbio home page">
 			<svelte:fragment slot="header">
 				<h4>Midwest Microbio</h4>
 			</svelte:fragment>
@@ -150,7 +162,7 @@
 				/>
 			</svelte:fragment>
 		</OtherProject>
-		<OtherProject image={f1Img}>
+		<OtherProject image={f1Img} alt="A website featuring a large table of statistics">
 			<svelte:fragment slot="header">
 				<h4>Formula Fun</h4>
 			</svelte:fragment>

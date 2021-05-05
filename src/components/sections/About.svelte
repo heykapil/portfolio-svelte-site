@@ -6,7 +6,7 @@
 <section id="about" class="container">
 	<h2>About Me</h2>
 	<article>
-		<img src={headshot} alt="Darius" />
+		<img loading="lazy" src={headshot} alt="Darius" />
 		<div class="content">
 			<ShortMediumLong>
 				<svelte:fragment slot="short">

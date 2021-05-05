@@ -3,10 +3,11 @@
 	import ProjectTechList from './ProjectTechList.svelte';
 
 	export let image: string;
+	export let alt: string;
 </script>
 
 <article>
-	<img src={image} />
+	<img loading="lazy" {alt} src={image} />
 	<div class="content">
 		<slot name="image" />
 
