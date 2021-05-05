@@ -1,6 +1,18 @@
+<script lang="ts">
+	import Popover from '../../Popover.svelte';
+</script>
+
 <li>
-	<span class="visually-hidden"><slot name="details" /></span>
-	<slot />
+	{#if $$slots.details}
+		<Popover>
+			<slot />
+			<svelte:fragment slot="content">
+				<slot name="details" />
+			</svelte:fragment>
+		</Popover>
+	{:else}
+		<slot />
+	{/if}
 </li>
 
 <style>
