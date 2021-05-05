@@ -22,7 +22,7 @@
 		// we wouldn't want to hide it above the viewport
 		// if it hasn't stickied yet.
 		if (typeof navElement === 'undefined') return;
-		navTop = navElement.offsetTop + 2 * navElement.offsetHeight;
+		navTop = navElement.offsetTop + 5 * navElement.offsetHeight;
 	};
 	onDestroy(() => clearTimeout(resizeTimeout));
 	$: {
@@ -34,7 +34,7 @@
 	let hide = false;
 	let scrollY = 0;
 	let lowestScrollY = 0;
-	let showThreshold = 5;
+	let showThreshold = 10;
 	let atDocumentBottom = false;
 	$: {
 		if (scrollY < navTop || menuOpen) {
@@ -171,13 +171,17 @@
 	}
 	a,
 	.menu :global(.toggles) {
-		padding: 0.5rem 1rem;
+		padding: 1rem;
 	}
 	.menu :global(.toggles) {
 		margin-left: auto;
 		padding-right: 0;
 	}
 	@media (max-width: 42rem) {
+		a,
+		.menu :global(.toggles) {
+			padding: 0.5rem 1rem;
+		}
 		nav.hide {
 			transform: translateY(-100%);
 		}
