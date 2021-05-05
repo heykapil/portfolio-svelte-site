@@ -90,7 +90,7 @@
 		opacity: 0;
 		pointer-events: none;
 		transform: scale(0.5);
-		transform-origin: top;
+		transform-origin: top left;
 		will-change: transform;
 
 		transition: background-color var(--transition-speed-medium),
