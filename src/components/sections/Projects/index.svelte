@@ -205,6 +205,9 @@
 		gap: var(--main-padding);
 		--card-width: calc(var(--container-width) / 3);
 	}
+	.other-project-section h3 {
+		padding: var(--main-padding);
+	}
 	@media (min-width: 42rem) {
 		.other-project-section {
 			grid-template-columns: 1fr 1fr;

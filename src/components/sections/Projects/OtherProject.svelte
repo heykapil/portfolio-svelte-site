@@ -12,15 +12,19 @@
 
 	<!-- <img loading="lazy" src={image} {alt} /> -->
 
-	<ProjectTechList>
-		<slot name="technologies" />
-	</ProjectTechList>
+	{#if $$slots.technologies}
+		<ProjectTechList>
+			<slot name="technologies" />
+		</ProjectTechList>
+	{/if}
 
 	<slot />
 
-	<ProjectLinkList>
-		<slot name="links" />
-	</ProjectLinkList>
+	{#if $$slots.links}
+		<ProjectLinkList>
+			<slot name="links" />
+		</ProjectLinkList>
+	{/if}
 </article>
 
 <style>
