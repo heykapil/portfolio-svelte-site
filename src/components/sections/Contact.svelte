@@ -196,10 +196,10 @@
 		pointer-events: none;
 		opacity: 0;
 		transform: scale(0.5);
+		--transition-delay-link: calc(var(--transition-speed-stroke) * 0.75);
 		transition: background-color var(--transition-speed-medium),
-			opacity calc(var(--transition-speed-medium) * 0.25)
-				calc(var(--transition-speed-stroke) * 0.66),
-			transform var(--transition-speed-medium) calc(var(--transition-speed-stroke) * 0.66);
+			opacity var(--transition-speed-medium) var(--transition-delay-link),
+			transform var(--transition-speed-medium) var(--transition-delay-link);
 	}
 	.svg-link.show {
 		pointer-events: auto;
