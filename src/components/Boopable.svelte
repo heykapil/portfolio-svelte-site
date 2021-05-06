@@ -4,7 +4,7 @@
 	import { spring } from 'svelte/motion';
 
 	export let timing = 150;
-	export let spanClass: string;
+	export let spanClass = '';
 
 	// When booped is set to true,
 	// start a timer which sets it back to false.
