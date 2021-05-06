@@ -201,6 +201,19 @@
 			opacity var(--transition-speed-medium) var(--transition-delay-link),
 			transform var(--transition-speed-medium) var(--transition-delay-link);
 	}
+	/* [type='radio']:focus ~ label {
+		outline-style: solid;
+	}
+	[type='radio']:focus:not(:focus-visible) ~ label {
+		outline: 0;
+	} */
+	.svg-link:focus-visible {
+		outline: 0;
+	}
+	.svg-link:focus-visible > :global(svg) {
+		/* Focus ring isn't visible in chrome so we outline the svg instead */
+		outline-style: solid;
+	}
 	.svg-link.show {
 		pointer-events: auto;
 		opacity: 1;

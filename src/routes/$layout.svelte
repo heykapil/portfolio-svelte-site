@@ -27,6 +27,9 @@
 	:global(*:before),
 	:global(*:after) {
 		box-sizing: border-box;
+
+		outline-color: rgb(var(--c3));
+		transition: outline-color var(--transition-speed-medium);
 	}
 	@media (prefers-reduced-motion) {
 		:global(*),

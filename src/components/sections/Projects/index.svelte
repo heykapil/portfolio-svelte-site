@@ -78,7 +78,7 @@
 		</FeaturedProject>
 		<FeaturedProject
 			image={pisuiteImg}
-			alt="The Sensor Analyitcs Platform home page, featuring a complex query below and a line graph of its result above"
+			alt="The Sensor Analytics Platform home page, featuring a complex query below and a line graph of its result above"
 		>
 			<svelte:fragment slot="header">
 				<h4>Sensor Analytics Platform</h4>

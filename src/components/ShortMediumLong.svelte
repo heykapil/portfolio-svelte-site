@@ -43,7 +43,6 @@
 		margin-bottom: 1rem;
 	}
 	fieldset {
-		overflow: hidden;
 		padding: 0;
 		border: 0;
 
@@ -102,9 +101,14 @@
 		width: 100%;
 		transition: background-color 0.1s;
 	}
-	label:hover:after,
-	[type='radio']:focus ~ label:after {
+	label:hover:after {
 		background-color: rgba(var(--c2), 0.5);
+	}
+	[type='radio']:focus ~ label {
+		outline-style: solid;
+	}
+	[type='radio']:focus:not(:focus-visible) ~ label {
+		outline: 0;
 	}
 	[type='radio'] {
 		border: 0;

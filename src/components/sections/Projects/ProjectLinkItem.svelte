@@ -65,10 +65,6 @@
 		justify-content: center;
 	}
 
-	a:focus {
-		outline: none;
-		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c5)), 0 0 0 0 rgb(var(--c3));
-	}
 	a:hover {
 		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c5)),
 			0 0 0 calc(4 * var(--border-width)) rgb(var(--c3));

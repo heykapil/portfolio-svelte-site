@@ -110,8 +110,8 @@
 		class="menu-toggle"
 		type="checkbox"
 		bind:checked={menuOpen}
-		title="Toggle Menu"
-		aria-label="Toggle Menu"
+		title="Toggle Menu Visibility"
+		aria-label="Toggle Menu Visibility"
 	/>
 	<div class="menu">
 		{#each sections as { id, label }}
@@ -154,17 +154,11 @@
 		text-decoration: none;
 		transition: box-shadow var(--transition-speed-medium);
 	}
-	a:focus {
-		outline: none;
-		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)), inset 0 0 rgb(var(--c5)),
-			0 0 rgb(var(--c3));
-	}
 	a[aria-current='section'] {
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
 			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 0 rgb(var(--c3));
 	}
 	a:hover {
-		outline: none;
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
 			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)),
 			inset 0 calc(-3 * var(--border-width)) rgb(var(--c3));

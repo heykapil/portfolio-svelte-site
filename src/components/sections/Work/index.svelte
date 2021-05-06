@@ -61,6 +61,7 @@
 						class:open={openIndex === index}
 						on:click={() => (openIndex = index)}
 						style="--boopage:{openIndex === index ? 0 : boopage};"
+						aria-label="{role} at {employer} in {location} from {start} to {end}. Click to toggle position details."
 					>
 						<h3 class="h5">{role}<br />@ {employer}</h3>
 						<p class="location">{location}</p>

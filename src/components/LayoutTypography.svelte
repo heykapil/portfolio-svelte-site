@@ -28,6 +28,10 @@
 		margin-left: 0;
 		margin-right: 0;
 	}
+	:global(abbr) {
+		text-decoration-color: rgb(var(--c5));
+		text-decoration-style: dotted;
+	}
 	/* :global(blockquote) {
 		padding-left: 1rem;
 		border-left: var(--border-width) solid rgb(var(--c5));
@@ -133,9 +137,7 @@
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4));
 		transition: box-shadow var(--transition-speed-short);
 	}
-	:global(a:not(.no-effect):focus),
 	:global(a:not(.no-effect)[aria-current='section']) {
-		outline: none;
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
 			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 0 rgb(var(--c3));
 	}
