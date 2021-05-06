@@ -7,6 +7,14 @@
 		<title>Darius Cepulis</title>
 
 		<script>
+		// Initialize viewport height variable
+		(function() {
+			var root = window.document.documentElement;
+			var loadVh = window.innerHeight / 100
+			root.style.setProperty('--load-vh', loadVh + 'px');
+		})();
+
+		// Initialize theming variables
 		(function() {
 			// an action to send state back down to svelte
 			window.__onThemeStateChange = function () {};
@@ -37,8 +45,6 @@
 						? window.__systemTheme
 						: window.__darkModePreference;
 				window.__altMode = window.__altModePreference;
-
-				console.log('hey!');
 
 				if (window.__darkMode === 'light') {
 					root.style.setProperty('--bg', 'var(--light)');
