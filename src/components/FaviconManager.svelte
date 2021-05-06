@@ -2,15 +2,14 @@
 	import { darkMode, altMode } from '../stores';
 
 	$: href =
-		darkMode && altMode
+		$darkMode === 'dark' && $altMode === 'alt'
 			? 'favicon-dark-alt.png'
-			: darkMode
+			: $darkMode === 'dark'
 			? 'favicon-dark.png'
-			: altMode
+			: $altMode === 'alt'
 			? 'favicon-light-alt.png'
 			: 'favicon-light.png';
-
-	$: themeColor = altMode ? '#94c2bc' : '#edc0be';
+	$: themeColor = $altMode === 'alt' ? '#94c2bc' : '#edc0be';
 </script>
 
 <!-- TODO: handle preload; SVG icons with media queries and classes? -->
