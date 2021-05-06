@@ -90,7 +90,7 @@
 		padding: 1rem;
 	}
 	.accordion {
-		background-color: rgb(var(--c2));
+		background-color: rgba(var(--c2), var(--intensity));
 		display: grid;
 		gap: 1rem;
 	}

@@ -60,9 +60,6 @@
 			opacity: 0.66;
 			mix-blend-mode: soft-light;
 		}
-		:global(body.dark) img {
-			opacity: 0.5;
-		}
 	}
 	article.no-border {
 		border: none;

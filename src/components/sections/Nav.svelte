@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
-	import ModeToggles from '../ModeToggles.svelte';
+	import ModeToggles from '../DarkModeManager.svelte';
 
 	let menuOpen = false;
 	const closeMenu = () => (menuOpen = false);
@@ -251,7 +251,6 @@
 
 		.menu :global(.toggles) {
 			margin-left: 0;
-			padding-left: 0;
 		}
 	}
 

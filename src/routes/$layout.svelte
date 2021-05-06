@@ -1,10 +1,10 @@
 <script>
-	import LayoutVariables from '../components/LayoutVariables.svelte';
+	import FaviconManager from '../components/FaviconManager.svelte';
 	import LayoutTypography from '../components/LayoutTypography.svelte';
 </script>
 
-<LayoutVariables />
 <LayoutTypography />
+<FaviconManager />
 
 <main>
 	<slot />
@@ -42,13 +42,6 @@
 		:global(main) {
 			--main-padding: 2rem;
 		}
-	}
-
-	:global(body) {
-		background-color: rgb(var(--bg));
-		color: rgb(var(--text));
-		transition: background-color var(--transition-speed-medium),
-			color var(--transition-speed-medium);
 	}
 
 	/* Utilities */

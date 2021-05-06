@@ -4,6 +4,7 @@
 	import { spring } from 'svelte/motion';
 
 	export let timing = 150;
+	export let spanClass: string;
 
 	let booped = false;
 	let boopTimeout: ReturnType<typeof setTimeout>;
@@ -21,7 +22,7 @@
 	$: boopage.set({ value: booped ? 1 : 0 });
 </script>
 
-<span on:mouseenter={boop} on:click={boop}>
+<span on:mouseenter={boop} on:click={boop} class={spanClass}>
 	<slot {booped} boopage={$boopage.value} />
 </span>
 

@@ -1,6 +1,5 @@
 <script lang="ts">
-	export let darkMode: boolean;
-	export let altMode: boolean;
+	import { darkMode, altMode } from '../stores';
 
 	$: href =
 		darkMode && altMode

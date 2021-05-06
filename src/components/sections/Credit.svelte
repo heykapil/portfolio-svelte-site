@@ -22,6 +22,15 @@
 		<dd>
 			Thank You <a href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
 		</dd>
+		<dt>Dark Mode LocalStorage Solution</dt>
+		<dd>
+			Thank You <a href="https://github.com/gaearon/overreacted.io/blob/master/src/html.js">
+				Dan Abramov
+			</a>
+		</dd>
+		<dd>
+			Thank You <a href="https://www.joshwcomeau.com/react/dark-mode/">Josh W. Comeau </a>
+		</dd>
 		<dt>Mood Board</dt>
 		<dd>
 			Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>

@@ -122,10 +122,6 @@
 		--project-bg: var(--c4);
 	}
 	article:after {
-		--project-bg-alpha: 1;
-		background-color: rgba(var(--project-bg), var(--project-bg-alpha));
-	}
-	:global(body.dark) article:after {
-		--project-bg-alpha: 0.75;
+		background-color: rgba(var(--project-bg), var(--intensity));
 	}
 </style>
