@@ -22,15 +22,17 @@
 		<dd>
 			Thank You <a href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
 		</dd>
-		<dt>Dark Mode LocalStorage Solution</dt>
-		<dd>
-			Thank You <a href="https://github.com/gaearon/overreacted.io/blob/master/src/html.js">
-				Dan Abramov
-			</a>
-		</dd>
-		<dd>
-			Thank You <a href="https://www.joshwcomeau.com/react/dark-mode/">Josh W. Comeau </a>
-		</dd>
+		<dt>Dark Mode <abbr title="Flash of unstyled content">FOUC</abbr> Solution</dt>
+		<div>
+			<dd>
+				Thank You <a href="https://github.com/gaearon/overreacted.io/blob/master/src/html.js">
+					Dan Abramov
+				</a>
+			</dd>
+			<dd>
+				Thank You <a href="https://www.joshwcomeau.com/react/dark-mode/">Josh W. Comeau </a>
+			</dd>
+		</div>
 		<dt>Mood Board</dt>
 		<dd>
 			Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
@@ -46,6 +48,9 @@
 	dd {
 		margin-left: 0;
 		margin-bottom: 1rem;
+	}
+	div dd:not(:last-child) {
+		margin-bottom: 0;
 	}
 	@media (min-width: 42rem) {
 		dl,
