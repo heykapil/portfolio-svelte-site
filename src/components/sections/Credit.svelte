@@ -5,37 +5,40 @@
 		<footer>
 			<cite>
 				Pablo Picasso,
-				<a href="https://www.uvu.edu/arts/applause/posts/stealing.html"> Probably</a>
+				<a target="_blank" href="https://www.uvu.edu/arts/applause/posts/stealing.html">Probably</a>
 			</cite>
 		</footer>
 	</blockquote>
 	<dl>
 		<dt>Content Structure</dt>
 		<dd>
-			Thank You <a href="https://brittanychiang.com">Brittany Chiang</a>
+			Thank You <a target="_blank" href="https://brittanychiang.com">Brittany Chiang</a>
 		</dd>
 		<dt>Bio Length</dt>
 		<dd>
-			Thank You <a href="https://chriscoyier.net">Chris Coyier</a>
+			Thank You <a target="_blank" href="https://chriscoyier.net">Chris Coyier</a>
 		</dd>
 		<dt>Boop</dt>
 		<dd>
-			Thank You <a href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
+			Thank You <a target="_blank" href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
 		</dd>
 		<dt>Dark Mode <abbr title="Flash of unstyled content">FOUC</abbr> Solution</dt>
 		<div>
 			<dd>
-				Thank You <a href="https://github.com/gaearon/overreacted.io/blob/master/src/html.js">
+				Thank You
+				<a target="_blank" href="https://github.com/gaearon/overreacted.io/blob/master/src/html.js">
 					Dan Abramov
 				</a>
 			</dd>
 			<dd>
-				Thank You <a href="https://www.joshwcomeau.com/react/dark-mode/">Josh W. Comeau </a>
+				Thank You <a target="_blank" href="https://www.joshwcomeau.com/react/dark-mode/">
+					Josh W. Comeau
+				</a>
 			</dd>
 		</div>
 		<dt>Mood Board</dt>
 		<dd>
-			Thank You <a href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
+			Thank You <a target="_blank" href="https://www.jackboxgames.com/fibbage-three/">Fibbage 3</a>
 		</dd>
 	</dl>
 </section>

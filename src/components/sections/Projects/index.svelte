@@ -62,8 +62,8 @@
 			</svelte:fragment>
 			<p>
 				A marketing website providing not only information regarding Microsensor Labs' projects, but
-				also a lightweight <a href="https://jamstack.wtf">JAMStack</a> blog and jobs listing built on
-				Netlify and Gatsby.
+				also a lightweight <a href="https://jamstack.wtf" target="_blank">JAMStack</a> blog and jobs
+				listing built on Netlify and Gatsby.
 			</p>
 			<svelte:fragment slot="technologies">
 				<ProjectTechItem>
@@ -106,8 +106,8 @@
 			<p>
 				We're getting married! No better time to learn Svelte + Sapper, lean into a bold design, and
 				finally write a tribute to the legendary
-				<a href="http://www.firewatchgame.com">Firewatch parallax effect</a>, like I've always
-				wanted to.
+				<a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>, like
+				I've always wanted to.
 			</p>
 			<svelte:fragment slot="technologies">
 				<ProjectTechItem>
@@ -129,7 +129,9 @@
 			</svelte:fragment>
 			<p>
 				I've been wanting to build a
-				<a href="https://harrypotter.fandom.com/wiki/Weasley_Clock">Weasley Clock</a>
+				<a href="https://harrypotter.fandom.com/wiki/Weasley_Clock" target="_blank">
+					Weasley Clock
+				</a>
 				for a long time. Some cell phone location data, a Raspberry Pi or Arduino, a bit of clockwork,
 				and you've got something that seems like magic.
 			</p>
