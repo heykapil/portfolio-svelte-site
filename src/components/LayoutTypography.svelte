@@ -32,10 +32,14 @@
 		text-decoration-color: rgb(var(--c5));
 		text-decoration-style: dotted;
 	}
-	/* :global(blockquote) {
-		padding-left: 1rem;
-		border-left: var(--border-width) solid rgb(var(--c5));
-	} */
+	:global(blockquote) {
+		background-color: rgba(var(--c4), 0.2);
+		transition: background-color var(--transition-speed-medium);
+		border-radius: 1rem;
+		padding: 1rem;
+		margin: -0.5rem;
+		margin-bottom: 0.5rem;
+	}
 	:global :global(.h1),
 	:global(h1),
 	:global(.h2),
