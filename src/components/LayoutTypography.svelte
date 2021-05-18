@@ -137,13 +137,9 @@
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4));
 		transition: box-shadow var(--transition-speed-short);
 	}
-	:global(a:not(.no-effect)[aria-current='section']) {
-		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
-			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 0 rgb(var(--c3));
-	}
 	:global(a:not(.no-effect):hover) {
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c4)),
-			inset 0 calc(-2 * var(--border-width)) rgb(var(--c5)), 0 var(--border-width) rgb(var(--c3));
+			0 var(--border-width) rgb(var(--c5)), 0 calc(2 * var(--border-width)) rgb(var(--c3));
 	}
 	:global(a[target='_blank']) {
 		cursor: ne-resize;

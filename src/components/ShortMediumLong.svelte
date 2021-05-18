@@ -41,6 +41,7 @@
 <style>
 	form {
 		margin-bottom: 1rem;
+		--height: calc(2 * var(--border-width));
 	}
 	fieldset {
 		padding: 0;
@@ -53,17 +54,13 @@
 
 		position: relative;
 	}
-	fieldset:before,
-	fieldset:after,
-	label:after {
-		height: 0.25em;
-		left: 0;
-		bottom: 0;
-	}
 	fieldset:before {
 		/* track */
 		content: '';
 		position: absolute;
+		height: var(--height);
+		left: 0;
+		bottom: 0;
 		width: 100%;
 		background-color: rgb(var(--c1));
 		transition: background-color var(--transition-speed-medium);
@@ -72,6 +69,9 @@
 		/* highlight */
 		content: '';
 		position: absolute;
+		height: var(--height);
+		left: 0;
+		bottom: calc(-1 * var(--height));
 		width: calc(100% / 3);
 		background-color: rgb(var(--c2));
 		transition: transform 0.4s, background-color var(--transition-speed-medium);
@@ -94,15 +94,10 @@
 		text-align: center;
 		cursor: pointer;
 		padding-bottom: 0.5em;
+		transition: box-shadow var(--transition-speed-short);
 	}
-	label:after {
-		content: '';
-		position: absolute;
-		width: 100%;
-		transition: background-color 0.1s;
-	}
-	label:hover:after {
-		background-color: rgba(var(--c2), 0.5);
+	label:hover {
+		box-shadow: 0 var(--height) rgb(var(--c1));
 	}
 	[type='radio']:focus ~ label {
 		outline-style: solid;

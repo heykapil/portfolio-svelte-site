@@ -69,7 +69,7 @@
 	.wrapper:hover .text,
 	.wrapper.open .text {
 		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c2)),
-			inset 0 calc(-2 * var(--border-width)) rgb(var(--c1)), 0 var(--border-width) rgb(var(--c3));
+			0 var(--border-width) rgb(var(--c3));
 	}
 
 	.wrapper {
