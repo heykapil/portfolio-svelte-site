@@ -10,12 +10,18 @@
 	// start a timer which sets it back to false.
 	let booped = false;
 	let boopTimeout: ReturnType<typeof setTimeout>;
-	const boop = () => (booped = true);
-	$: {
-		if (!booped) break $;
+	const mouseenter = () => {
+		booped = true;
 		clearTimeout(boopTimeout);
 		setTimeout(() => (booped = false), timing);
-	}
+	};
+	const mousedown = () => {
+		booped = true;
+		clearTimeout(boopTimeout);
+	};
+	const mouseup = () => {
+		booped = false;
+	};
 	onDestroy(() => clearTimeout(boopTimeout));
 
 	// When the user prefers reduced motion,
@@ -43,7 +49,7 @@
 	}
 </script>
 
-<span on:mouseenter={boop} on:click={boop} class={spanClass}>
+<span on:mouseenter={mouseenter} on:mousedown={mousedown} on:mouseup={mouseup} class={spanClass}>
 	<slot {booped} boopage={$boopage.value} />
 </span>
 

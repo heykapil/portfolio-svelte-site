@@ -72,7 +72,7 @@
 
 	a :global(svg) {
 		vertical-align: -0.125em;
-		transform: scale(calc(1 + 0.1 * var(--boopage)));
+		transform: scale(calc(1 - 0.1 * var(--boopage)));
 		will-change: transform;
 	}
 </style>
