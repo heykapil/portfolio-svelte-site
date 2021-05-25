@@ -34,7 +34,7 @@
 	let hide = false;
 	let scrollY = 0;
 	let lowestScrollY = 0;
-	let showThreshold = 10;
+	let showThreshold = 50;
 	let atDocumentBottom = false;
 	$: {
 		if (scrollY < navTop || menuOpen) {
@@ -172,7 +172,9 @@
 		padding-right: 0;
 	}
 	@media (max-width: 42rem) {
-		a,
+		a {
+			padding: 0.5rem;
+		}
 		.menu :global(.toggles) {
 			padding: 0.5rem 1rem;
 		}
@@ -191,7 +193,6 @@
 			left: calc(var(--main-padding) / 2);
 			right: calc(var(--main-padding) / 2);
 			border-radius: 1rem;
-			padding: var(--main-padding);
 			display: flex;
 			flex-direction: column;
 			align-items: center;
@@ -213,6 +214,14 @@
 			-webkit-appearance: none;
 			appearance: none;
 			border: 0;
+			transform: translateX(0) translateY(0);
+			cursor: pointer;
+		}
+		.menu-toggle,
+		.menu-toggle:before,
+		.menu-toggle:after {
+			transition: transform var(--transition-speed-medium);
+			will-change: transform;
 		}
 		.menu-toggle:before,
 		.menu-toggle:after {
@@ -220,10 +229,8 @@
 			background-color: rgb(var(--text));
 			position: absolute;
 			height: 0.15rem;
-			border-radius: var(--border-width);
 			left: 0;
 			right: 0;
-			transition: transform var(--transition-speed-medium);
 		}
 		.menu-toggle:before {
 			top: calc(2rem / 3 - 0.075rem);
@@ -231,11 +238,14 @@
 		.menu-toggle:after {
 			bottom: calc(2rem / 3 - 0.075rem);
 		}
+		.menu-toggle:checked {
+			transform: translateX(-0.5rem) translateY(1rem);
+		}
 		.menu-toggle:checked:before {
-			transform: translateX(-0.5rem) translateY(calc(2rem / 6 + 1rem)) rotateZ(135deg);
+			transform: translateY(calc(2rem / 6)) rotateZ(135deg);
 		}
 		.menu-toggle:checked:after {
-			transform: translateX(-0.5rem) translateY(calc(-2rem / 6 + 1rem)) rotateZ(45deg);
+			transform: translateY(calc(-2rem / 6)) rotateZ(45deg);
 		}
 		.menu-toggle:checked ~ .menu {
 			opacity: 1;
