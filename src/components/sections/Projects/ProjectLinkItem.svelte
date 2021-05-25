@@ -2,17 +2,17 @@
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
 	import Boopable from '../../Boopable.svelte';
+	import type { LinkType } from './projects.d';
 
-	type IconType = 'external' | 'info' | 'github';
 	export let href: string;
-	export let iconType: IconType;
+	export let iconType: LinkType;
 
-	const icon: Record<IconType, typeof SvelteComponent> = {
+	const icon: Record<LinkType, typeof SvelteComponent> = {
 		external: ExternalLinkIcon,
 		info: InfoIcon,
 		github: GithubIcon
 	};
-	const iconLabel: Record<IconType, string> = {
+	const iconLabel: Record<LinkType, string> = {
 		external: 'View Site',
 		info: 'Learn More',
 		github: 'View Source'

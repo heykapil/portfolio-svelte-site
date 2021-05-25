@@ -21,6 +21,6 @@
 		font-style: italic;
 	}
 	li:not(:last-of-type):after {
-		content: ',';
+		content: ', ';
 	}
 </style>
