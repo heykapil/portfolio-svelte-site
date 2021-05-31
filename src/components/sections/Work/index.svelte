@@ -1,7 +1,6 @@
 <script lang="ts">
 	import type { Positions } from './position.d';
-	import { slide } from 'svelte/transition';
-	import Boopable from '../../Boopable.svelte';
+	import SlidingDetails from '../../SlidingDetails.svelte';
 
 	const positions: Positions = [
 		{
@@ -47,35 +46,24 @@
 			]
 		}
 	];
-
-	let openIndex: number = 0;
 </script>
 
 <section id="work" class="container">
 	<h2>Some Places I've Worked</h2>
 	<section class="accordion">
 		{#each positions as { role, employer, location, start, end, points }, index}
-			<article>
-				<Boopable let:boopage>
-					<button
-						class:open={openIndex === index}
-						on:click={() => (openIndex = index)}
-						style="--boopage:{openIndex === index ? 0 : boopage};"
-						aria-label="{role} at {employer} in {location} from {start} to {end}. Click to toggle position details."
-					>
-						<h3 class="h5">{role}<br />@ {employer}</h3>
-						<p class="location">{location}</p>
-						<p class="duration">{start} &ndash {end}</p>
-					</button>
-				</Boopable>
-				{#if openIndex === index}
-					<ul transition:slide>
-						{#each points as point}
-							<li>{point}</li>
-						{/each}
-					</ul>
-				{/if}
-			</article>
+			<SlidingDetails initial={index === 0 ? 'open' : undefined}>
+				<svelte:fragment slot="summary">
+					<h3 class="h5">{role}<br />@ {employer}</h3>
+					<p class="location">{location}</p>
+					<p class="duration">{start} &ndash {end}</p>
+				</svelte:fragment>
+				<ul>
+					{#each points as point}
+						<li>{point}</li>
+					{/each}
+				</ul>
+			</SlidingDetails>
 		{/each}
 	</section>
 </section>
@@ -85,56 +73,38 @@
 		position: relative;
 	}
 	.accordion,
-	article {
-		transition: background-color var(--transition-speed-medium);
+	:global(details) {
+		transition: background-color var(--transition-speed-medium),
+			box-shadow var(--transition-speed-medium);
 		border-radius: 1rem;
-		padding: 1rem;
 	}
 	.accordion {
 		background-color: rgba(var(--c2), var(--intensity));
 		display: grid;
 		gap: 1rem;
+		padding: 1rem;
 	}
-	article {
+	:global(details) {
 		background-color: rgba(var(--bg), 0.8);
+		box-shadow: 0 0 0 0 rgb(var(--c2)), 0 0 0 0 rgb(var(--c1));
 	}
-	button {
-		display: block;
-		width: 100%;
-		text-align: left;
-		border: 0;
-		font-size: initial;
-		font-family: inherit;
-		color: inherit;
-
-		margin-bottom: 1rem;
-
-		background: none;
-		-webkit-appearance: none;
-		appearance: none;
-
-		padding-right: 3rem;
-		position: relative;
-		cursor: pointer;
+	:global(details:hover) {
+		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c3)),
+			0 0 0 calc(4 * var(--border-width)) rgb(var(--c1));
 	}
-	button:after {
-		content: '\25BE';
-		font-size: 1.25rem;
-		position: absolute;
-		right: 0;
-		top: 0;
-		width: 3rem;
-		height: 100%;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		transform: translateY(calc(0.3rem * var(--boopage)));
-		will-change: transform;
+	:global(summary) {
+		padding: 1rem;
 	}
-	button > * {
-		margin: 0;
-		padding: 0;
+	:global(.content) {
+		padding: 1rem;
+		padding-top: 0;
+	}
+
+	.location {
+		margin-bottom: 0;
+	}
+	.duration {
+		margin-top: 0;
 	}
 	.h5 {
 		margin-bottom: 1rem;

@@ -22,6 +22,15 @@
 		<dd>
 			Thank You <a target="_blank" href="https://www.joshwcomeau.com/react/boop/">Josh W. Comeau</a>
 		</dd>
+		<dt>WAAPI Accordion</dt>
+		<dd>
+			Thank You <a
+				target="_blank"
+				href="https://css-tricks.com/how-to-animate-the-details-element-using-waapi/"
+			>
+				Louis Hoebregts
+			</a>
+		</dd>
 		<dt>Dark Mode <abbr title="Flash of unstyled content">FOUC</abbr> Solution</dt>
 		<div>
 			<dd>
