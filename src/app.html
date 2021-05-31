@@ -84,10 +84,12 @@
 				localStorage.setItem('altModePreference', newAltModePreference);
 				(window.__altModePreference = newAltModePreference), updateThemeState();
 			};
-			darkQuery.addEventListener('change', function(e) {
-				window.__systemTheme = e.matches ? 'dark' : 'light';
-				updateThemeState();
-			});
+			if (typeof darkQuery !== 'undefined' && typeof darkQuery.addEventListener === 'function') {
+				darkQuery.addEventListener('change', function(e) {
+					window.__systemTheme = e.matches ? 'dark' : 'light';
+					updateThemeState();
+				});
+			}
 		})()
 		</script>
 		<style>
