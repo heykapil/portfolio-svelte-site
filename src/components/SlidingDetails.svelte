@@ -3,6 +3,7 @@
 
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import Boopable from './Boopable.svelte';
 
 	// Adapted from
 	// https://css-tricks.com/how-to-animate-the-details-element-using-waapi/
@@ -101,24 +102,26 @@
 	onMount(() => {});
 </script>
 
-<details
-	on:click={toggle}
-	bind:this={detailsElement}
-	style={state === 'shrinking'
-		? 'overflow:hidden;'
-		: state === 'expanding'
-		? `overflow:hidden;height:${detailsElement.offsetHeight}px`
-		: ''}
-	open={state !== 'closed'}
-	class={state}
->
-	<summary bind:this={summaryElement} style="--duration:{duration}ms;">
-		<slot name="summary" />
-	</summary>
-	<div class="content" bind:this={contentElement}>
-		<slot />
-	</div>
-</details>
+<Boopable let:boopage>
+	<details
+		on:click={toggle}
+		bind:this={detailsElement}
+		style={state === 'shrinking'
+			? 'overflow:hidden;'
+			: state === 'expanding'
+			? `overflow:hidden;height:${detailsElement.offsetHeight}px`
+			: ''}
+		open={state !== 'closed'}
+		class={state}
+	>
+		<summary bind:this={summaryElement} style="--duration:{duration}ms;--boopage:{boopage};">
+			<slot name="summary" />
+		</summary>
+		<div class="content" bind:this={contentElement}>
+			<slot />
+		</div>
+	</details>
+</Boopable>
 
 <style>
 	details {
@@ -143,8 +146,20 @@
 		position: absolute;
 		right: 1em;
 		top: 50%;
+		width: 1.5em;
+		height: 1.5em;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 		transform: translateY(-50%) rotate(-90deg);
 		transition: transform var(--duration);
+		/*
+            We can't use transform for our boop effect
+            on account of it having a transition property;
+            We use the scale property instead,
+            despite its limited browser compatability
+        */
+		scale: calc(1 - 0.1 * var(--boopage));
 	}
 	details.expanding summary:after,
 	details.open summary:after {

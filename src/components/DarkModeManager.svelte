@@ -62,8 +62,8 @@
 </script>
 
 <div class="toggles">
-	<button class="dark-button" on:click={cycleDarkMode} title="Cycle Dark Mode">
-		<Boopable let:boopage>
+	<Boopable let:boopage>
+		<button class="dark-button" on:click={cycleDarkMode} title="Cycle Dark Mode">
 			{#if theme.darkModePreference === 'light'}
 				<div
 					class="icon"
@@ -110,17 +110,20 @@
 				</div>
 			{/if}
 			<span class="visually-hidden">Cycle Dark Mode</span>
-		</Boopable>
-	</button>
-	<button
-		class="alt-button"
-		class:alt={$altMode === 'alt'}
-		class:loaded={typeof $altMode !== 'undefined'}
-		on:click={toggleAltMode}
-		title="Toggle Alternate Color Mode"
-	>
-		<span class="visually-hidden">Toggle Alternate Color Mode</span>
-	</button>
+		</button>
+	</Boopable>
+	<Boopable let:boopage>
+		<button
+			class="alt-button"
+			class:alt={$altMode === 'alt'}
+			class:loaded={typeof $altMode !== 'undefined'}
+			on:click={toggleAltMode}
+			title="Toggle Alternate Color Mode"
+			style="--boopage:{boopage};"
+		>
+			<span class="visually-hidden">Toggle Alternate Color Mode</span>
+		</button>
+	</Boopable>
 </div>
 
 <style>
@@ -131,6 +134,10 @@
 		--height: 1.5rem;
 		--alt-width: 2.5rem;
 		--alt-border-width: 0.1rem;
+	}
+	.toggles > :global(span) {
+		display: flex;
+		align-items: center;
 	}
 	button {
 		-webkit-appearance: none;
@@ -152,7 +159,7 @@
 		width: var(--height);
 		position: relative;
 	}
-	button:not(:last-child) {
+	.toggles > :global(*:not(:last-child)) {
 		margin-right: 0.5rem;
 	}
 	.icon {
@@ -199,17 +206,27 @@
 		top: var(--alt-border-width);
 		transition: background-color var(--transition-speed-medium),
 			transform var(--transition-speed-medium), opacity var(--transition-speed-medium);
+
+		/*
+            We can't use transform for our boop effect
+            on account of it having a transition property;
+            We use the scale property instead,
+            despite its limited browser compatability
+        */
+		scale: calc(1 - 0.1 * var(--boopage));
 	}
 	.alt-button:not(.loaded):after {
 		opacity: 0;
 	}
-	.alt-button:hover:after {
-		transform: translateX(calc(2 * var(--alt-border-width)));
-	}
 	.alt-button.alt:after {
 		transform: translateX(calc(var(--alt-width) - var(--height)));
 	}
-	.alt-button.alt:hover:after {
-		transform: translateX(calc(var(--alt-width) - var(--height) - 2 * var(--alt-border-width)));
+	@supports not (scale: 1) {
+		.alt-button:hover:after {
+			transform: translateX(calc(2 * var(--alt-border-width)));
+		}
+		.alt-button.alt:hover:after {
+			transform: translateX(calc(var(--alt-width) - var(--height) - 2 * var(--alt-border-width)));
+		}
 	}
 </style>
