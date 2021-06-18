@@ -12,6 +12,7 @@
 
 	:global(html) {
 		font-size: 100%;
+		text-size-adjust: 100%;
 	}
 
 	:global(body) {
