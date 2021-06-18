@@ -1,4 +1,6 @@
-const sveltePreprocess = require('svelte-preprocess');
+const preprocess = require('svelte-preprocess');
+const autoprefixer = require('autoprefixer');
+
 const static = require('@sveltejs/adapter-static');
 const pkg = require('./package.json');
 
@@ -6,7 +8,11 @@ const pkg = require('./package.json');
 module.exports = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
-	preprocess: sveltePreprocess(),
+	preprocess: preprocess({
+		postcss: {
+			plugins: [autoprefixer]
+		}
+	}),
 
 	kit: {
 		adapter: static(),
