@@ -13,7 +13,7 @@
 
 	let animation: Animation | null = null;
 
-	const duration = 400;
+	const duration = 200;
 	const easing = 'ease-out';
 
 	let detailsElement: HTMLDetailsElement;
