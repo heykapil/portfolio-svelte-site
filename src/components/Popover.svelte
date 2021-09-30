@@ -63,7 +63,7 @@
 	}
 
 	.text {
-		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c2));
+		box-shadow: inset 0 calc(-1 * var(--border-width)) rgb(var(--c2)), 0 0 rgb(var(--c3));
 		transition: box-shadow var(--transition-speed-short);
 	}
 	.wrapper:hover .text,
