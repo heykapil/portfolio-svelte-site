@@ -1,5 +1,5 @@
 <script>
-	import './$layout.css';
+	import './__layout.css';
 	import FaviconManager from '../components/FaviconManager.svelte';
 </script>
 
