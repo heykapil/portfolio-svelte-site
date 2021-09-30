@@ -77,8 +77,12 @@
 		},
 		{
 			header: 'Midwest Microbio Site',
-			summary: `A minimal marketing website designed and built for a buddy's budding beer business.`,
-			technologies: [{ name: 'Pug' }, { name: 'Parcel' }, { name: 'Bootstrap' }],
+			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Recently transitioned from Pug, Parcel, and Bootstrap.`,
+			technologies: [
+				{ name: 'Svelte', details: 'SvelteKit, TypeScript, Pancake, Spring, Stores' },
+				{ name: 'Tailwind CSS' },
+				{ name: 'd3-force' }
+			],
 			image: midwestImg,
 			imageAlt: `The Midwest Microbio home page`,
 			links: [{ type: 'external', href: 'https://www.midwestmicrobio.com/' }]
