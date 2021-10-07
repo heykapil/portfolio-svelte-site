@@ -173,7 +173,7 @@
 		justify-content: center;
 		position: relative;
 	}
-	:global(.boopable-icon) {
+	.toggles :global(.boopable-icon) {
 		transform: rotate(calc(var(--boopage) * 15deg));
 		will-change: transform;
 	}

@@ -9,24 +9,21 @@
 </script>
 
 <Hero />
-<Nav />
-<About />
-<Work />
-<Projects />
-<Contact />
-<Credit />
+<main>
+	<Nav />
+	<About />
+	<Work />
+	<Projects />
+	<Contact />
+	<Credit />
+</main>
 
 <style>
-	/* :global(section) {
-		min-height: 75vh;
-		display: flex;
-		flex-direction: column;
-	} */
-	:global(h2) {
+	main :global(h2) {
 		text-align: center;
 	}
 	@media (min-width: 42rem) {
-		:global(h2) {
+		main :global(h2) {
 			text-align: unset;
 		}
 	}

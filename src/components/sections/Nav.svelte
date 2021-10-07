@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 
+	import Boopable from '../Boopable.svelte';
 	import ModeToggles from '../DarkModeManager.svelte';
 
 	let menuOpen = false;
@@ -112,7 +113,11 @@
 		bind:checked={menuOpen}
 		title="Toggle Menu Visibility"
 		aria-label="Toggle Menu Visibility"
+		id="menu-toggle"
 	/>
+	<label class="menu-toggle-label" for="menu-toggle">
+		<Boopable let:boopage><span class="menu-toggle-icon" style="--boopage:{boopage};" /></Boopable>
+	</label>
 	<div class="menu">
 		{#each sections as { id, label }}
 			<a
@@ -141,7 +146,8 @@
 		justify-content: space-between;
 		align-items: center;
 	}
-	.menu-toggle {
+	.menu-toggle,
+	.menu-toggle-label {
 		display: none;
 	}
 	.menu {
@@ -204,27 +210,32 @@
 				color var(--transition-speed-medium), transform var(--transition-speed-medium),
 				opacity var(--transition-speed-medium);
 		}
-		.menu-toggle {
+		.menu-toggle-label {
 			display: block;
 			position: relative;
 			width: 2rem;
 			height: 2rem;
 			margin: 0;
 			z-index: 1002;
-			-webkit-appearance: none;
-			appearance: none;
-			border: 0;
-			transform: translateX(0) translateY(0);
 			cursor: pointer;
+			transform: translateX(0) translateY(0);
 		}
-		.menu-toggle,
-		.menu-toggle:before,
-		.menu-toggle:after {
+		.menu-toggle-label,
+		.menu-toggle-icon:before,
+		.menu-toggle-icon:after {
 			transition: transform var(--transition-speed-medium);
 			will-change: transform;
 		}
-		.menu-toggle:before,
-		.menu-toggle:after {
+		.menu-toggle-icon {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			transform: rotate(calc(var(--boopage) * 10deg));
+		}
+		.menu-toggle-icon:before,
+		.menu-toggle-icon:after {
 			content: '';
 			background-color: rgb(var(--text));
 			position: absolute;
@@ -232,19 +243,19 @@
 			left: 0;
 			right: 0;
 		}
-		.menu-toggle:before {
+		.menu-toggle-icon:before {
 			top: calc(2rem / 3 - 0.075rem);
 		}
-		.menu-toggle:after {
+		.menu-toggle-icon:after {
 			bottom: calc(2rem / 3 - 0.075rem);
 		}
-		.menu-toggle:checked {
+		.menu-toggle:checked ~ .menu-toggle-label {
 			transform: translateX(-0.5rem) translateY(1rem);
 		}
-		.menu-toggle:checked:before {
+		.menu-toggle:checked ~ .menu-toggle-label .menu-toggle-icon:before {
 			transform: translateY(calc(2rem / 6)) rotateZ(135deg);
 		}
-		.menu-toggle:checked:after {
+		.menu-toggle:checked ~ .menu-toggle-label .menu-toggle-icon:after {
 			transform: translateY(calc(-2rem / 6)) rotateZ(45deg);
 		}
 		.menu-toggle:checked ~ .menu {

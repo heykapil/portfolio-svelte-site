@@ -71,7 +71,7 @@
 		position: absolute;
 		height: var(--height);
 		left: 0;
-		bottom: calc(-1 * var(--height));
+		bottom: 0;
 		width: calc(100% / 3);
 		background-color: rgb(var(--c2));
 		transition: transform 0.4s, background-color var(--transition-speed-medium);
@@ -97,7 +97,7 @@
 		transition: box-shadow var(--transition-speed-short);
 	}
 	label:hover {
-		box-shadow: 0 var(--height) rgb(var(--c1));
+		box-shadow: inset 0 calc(-1 * var(--height)) rgba(var(--c2), 0.5);
 	}
 	[type='radio']:focus ~ label {
 		outline-style: solid;

@@ -28,7 +28,7 @@ html {
 	}
 }
 
-@media {
+@media (min-width: 42rem) {
 	main {
 		--main-padding: 2rem;
 	}
