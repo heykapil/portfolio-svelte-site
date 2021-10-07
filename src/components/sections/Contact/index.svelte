@@ -4,7 +4,11 @@
 
 	import { MailIcon, GithubIcon, LinkedinIcon, InstagramIcon } from 'svelte-feather-icons';
 
-	import Boopable from '../Boopable.svelte';
+	import Boopable from '../../Boopable.svelte';
+	import MailModal from './MailModal.svelte';
+
+	let isMailModalOpen: boolean;
+	const openMailModal = () => (isMailModalOpen = true);
 
 	const strokePx = 24;
 	const r = strokePx;
@@ -18,7 +22,12 @@
 		y: number;
 		xMax: number;
 		circle?: 'up' | 'down';
-		link?: { title: string; href: string; icon: typeof SvelteComponent };
+		link?: {
+			title: string;
+			href: string;
+			icon: typeof SvelteComponent;
+			onClick?: svelte.JSX.MouseEventHandler<HTMLAnchorElement>;
+		};
 	};
 	let stripes: Stripe[] = [];
 	let svgElement: SVGElement;
@@ -39,7 +48,15 @@
 				y: halfHeight - 2 * strokePx,
 				xMax: halfWidth - 1.5 * widthInterval,
 				circle: 'up',
-				link: { title: 'E-Mail', href: 'mailto:de.cepulis@gmail.com', icon: MailIcon }
+				link: {
+					title: 'E-Mail',
+					href: 'mailto:de.cepulis@gmail.com',
+					icon: MailIcon,
+					onClick: (e) => {
+						e.preventDefault();
+						openMailModal();
+					}
+				}
 			},
 			{
 				color: 'rgb(var(--c2))',
@@ -111,6 +128,7 @@
 
 <svelte:window on:resize={onResize} />
 
+<MailModal bind:isOpen={isMailModalOpen} />
 <section id="contact" class="container">
 	<h2>How to Reach Me</h2>
 	<svg viewBox="0 0 {width} {height}" bind:this={svgElement}>
@@ -146,6 +164,7 @@
 								title={link.title}
 								href={link.href}
 								style="background-color:{color};--boopage:{boopage};"
+								on:click={link.onClick}
 							>
 								<svelte:component this={link.icon} size="1.5x" />
 								<span class="visually-hidden">{link.title}</span>
