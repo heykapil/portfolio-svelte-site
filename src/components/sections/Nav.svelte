@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
+	import { spring } from 'svelte/motion';
 
 	import Boopable from '../Boopable.svelte';
 	import ModeToggles from '../DarkModeManager.svelte';
@@ -25,17 +26,13 @@
 		if (typeof navElement === 'undefined') return;
 		navTop = navElement.offsetTop + 5 * navElement.offsetHeight;
 	};
+	onMount(onResize);
 	onDestroy(() => clearTimeout(resizeTimeout));
-	$: {
-		// run this hook on page load
-		if (typeof navElement === 'undefined') break $;
-		onResize();
-	}
 
 	let hide = false;
 	let scrollY = 0;
 	let lowestScrollY = 0;
-	let showThreshold = 50;
+	let showThreshold = 100;
 	let atDocumentBottom = false;
 	$: {
 		if (scrollY < navTop || menuOpen) {
@@ -59,6 +56,8 @@
 		}
 	}
 
+	// Next, let's set up the intersection observer
+	// that will update the underlines under the links
 	const sections = [
 		{ id: 'about', label: 'About' },
 		{ id: 'work', label: 'Work' },
@@ -101,12 +100,38 @@
 
 		return () => observer.disconnect();
 	});
+
+	// Finally, we're going to override the default link behavior
+	// in order to fire a smooth-scroll animation
+	const scrollSpring = spring(0, { stiffness: 0.1, damping: 1, precision: 1 });
+	const scrollTo = (id: string) => {
+		// We hard-set the spring to the starting point
+		// and then let it run to the target
+		const scrollStart = window.scrollY;
+		const scrollElement = document.querySelector(`#${id}`) as HTMLElement;
+		if (typeof scrollElement !== 'undefined') {
+			const scrollTarget = scrollElement?.offsetTop - navElement.offsetHeight - 22;
+			scrollSpring
+				.set(scrollStart, { hard: true })
+				// we run this twice
+				// because for some reason, once isn't enough
+				// to interrupt a running spring?
+				.then(() => scrollSpring.set(scrollTarget))
+				.then(() => scrollSpring.set(scrollTarget));
+		}
+	};
+	// And then when the scroll spring updates,
+	// so too does the window position
+	scrollSpring.subscribe((value) => {
+		if (typeof window === 'undefined') return;
+		window.scrollTo(0, $scrollSpring);
+	});
 </script>
 
 <svelte:window bind:scrollY on:resize={onResize} />
 
 <nav class="full-bleed" class:hide class:resizing bind:this={navElement}>
-	<a href="#hero" class="no-effect">DC</a>
+	<a href="#hero" class="no-effect" on:click|preventDefault={() => scrollTo('hero')}>DC</a>
 	<input
 		class="menu-toggle"
 		type="checkbox"
@@ -125,6 +150,7 @@
 				href="#{id}"
 				aria-current={currentSectionId === id ? 'section' : undefined}
 				class="no-effect"
+				on:click|preventDefault={() => scrollTo(id)}
 			>
 				{label}
 			</a>
