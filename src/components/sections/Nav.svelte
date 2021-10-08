@@ -5,8 +5,7 @@
 	import Boopable from '../Boopable.svelte';
 	import ModeToggles from '../DarkModeManager.svelte';
 
-	let menuOpen = false;
-	const closeMenu = () => (menuOpen = false);
+	let isMenuOpen = false;
 
 	let resizing = false;
 	let resizeTimeout: ReturnType<typeof setTimeout>;
@@ -35,7 +34,7 @@
 	let showThreshold = 100;
 	let atDocumentBottom = false;
 	$: {
-		if (scrollY < navTop || menuOpen) {
+		if (scrollY < navTop || isMenuOpen) {
 			// first up, no hiding if the nav isn't even at the top
 			// or if the menu is open
 			hide = false;
@@ -135,7 +134,7 @@
 	<input
 		class="menu-toggle"
 		type="checkbox"
-		bind:checked={menuOpen}
+		bind:checked={isMenuOpen}
 		title="Toggle Menu Visibility"
 		aria-label="Toggle Menu Visibility"
 		id="menu-toggle"
@@ -146,16 +145,18 @@
 	<div class="menu">
 		{#each sections as { id, label }}
 			<a
-				on:click={closeMenu}
 				href="#{id}"
 				aria-current={currentSectionId === id ? 'section' : undefined}
 				class="no-effect"
 				on:click|preventDefault={() => scrollTo(id)}
+				on:click={() => (isMenuOpen = false)}
+				on:focus={() => (isMenuOpen = true)}
+				on:blur={() => (isMenuOpen = false)}
 			>
 				{label}
 			</a>
 		{/each}
-		<ModeToggles />
+		<ModeToggles bind:isMenuOpen />
 	</div>
 </nav>
 

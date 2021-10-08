@@ -9,6 +9,9 @@
 
 	import Boopable from './Boopable.svelte';
 
+	// used to open menu on focus
+	export let isMenuOpen: boolean;
+
 	// Local State
 	type Theme = {
 		// set by svelte
@@ -63,7 +66,13 @@
 
 <div class="toggles">
 	<Boopable let:boopage>
-		<button class="dark-button" on:click={cycleDarkMode} title="Cycle Dark Mode">
+		<button
+			class="dark-button"
+			on:click={cycleDarkMode}
+			title="Cycle Dark Mode"
+			on:focus={() => (isMenuOpen = true)}
+			on:blur={() => (isMenuOpen = false)}
+		>
 			{#if theme.darkModePreference === 'light'}
 				<div
 					class="icon"
@@ -118,6 +127,8 @@
 			class:alt={$altMode === 'alt'}
 			class:loaded={typeof $altMode !== 'undefined'}
 			on:click={toggleAltMode}
+			on:focus={() => (isMenuOpen = true)}
+			on:blur={() => (isMenuOpen = false)}
 			title="Toggle Alternate Color Mode"
 			style="--boopage:{boopage};"
 		>

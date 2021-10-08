@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { tick } from 'svelte';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 	import { fade, fly } from 'svelte/transition';
 
@@ -6,6 +7,63 @@
 
 	export let isOpen = false;
 
+	// Accessibility:
+	// -- Bring Focus Into Modal On Open --
+	let previouslyFocusedElement: HTMLElement | undefined;
+	let modalElement: HTMLElement;
+	let focusElements: HTMLElement[];
+	$: {
+		if (isOpen) {
+			// on open...
+			previouslyFocusedElement = document?.activeElement as HTMLElement | undefined;
+			if (modalElement) {
+				// after open...
+				// ...get focusable elements...
+				// https://zellwk.com/blog/keyboard-focusable-elements/
+				focusElements = Array.from(
+					modalElement.querySelectorAll(
+						'a[href], button, input, textarea, select, details,[tabindex]:not([tabindex="-1"])'
+					)
+				).filter(
+					(element) => !element.hasAttribute('disabled') && !element.hasAttribute('aria-hidden')
+				) as HTMLElement[];
+				// ...and focus the first one
+				focusElements[0]?.focus();
+			}
+		} else {
+			// on close...
+			previouslyFocusedElement?.focus();
+		}
+	}
+
+	// -- Trap Focus & Close with Escape --
+	const handleKeyDown = (event: KeyboardEvent) => {
+		if (!isOpen) return;
+
+		if (event.key === 'Escape') {
+			// Close on Escape
+			event.preventDefault();
+			isOpen = false;
+		} else if (event.key === 'Tab') {
+			if (focusElements.length === 0) {
+				// if no elements to focus in modal, ignore tab
+				event.preventDefault();
+			} else if (
+				!event.shiftKey &&
+				document.activeElement === focusElements[focusElements.length - 1]
+			) {
+				// if about to go past last element, circle back
+				event.preventDefault();
+				focusElements[0].focus();
+			} else if (event.shiftKey && document.activeElement === focusElements[0]) {
+				// if about to go before first element, circle back
+				event.preventDefault();
+				focusElements[focusElements.length - 1].focus();
+			}
+		}
+	};
+
+	// Handle Copy/Paste Functionality
 	let copied: 'pending' | 'success' | 'failure' = 'pending';
 	$: {
 		// any time isOpen switches to false, clear the copied state
@@ -15,7 +73,6 @@
 	}
 
 	const copy = (string: string) => {
-		console.log('hey!!');
 		navigator.clipboard
 			.writeText(string)
 			.then(() => {
@@ -27,6 +84,8 @@
 			});
 	};
 </script>
+
+<svelte:window on:keydown={handleKeyDown} />
 
 {#if isOpen}
 	<div class="modal-container">
@@ -40,6 +99,8 @@
 			class="modal"
 			in:fly={{ y: -100, easing: cubicOut, duration: 400 }}
 			out:fly={{ y: -100, easing: cubicIn, duration: 300 }}
+			bind:this={modalElement}
+			aria-modal="true"
 		>
 			<header>
 				<h2 class="h4">E-Mail</h2>
@@ -107,12 +168,18 @@
 	}
 	.overlay {
 		position: absolute;
-		top: 0;
+		height: 100%;
+		width: 100%;
 		left: 0;
 		right: 0;
-		bottom: 0;
-		background-color: rgba(var(--bg), 0.8);
+		background-color: rgba(var(--bg), 0.95);
 		backdrop-filter: blur(10px);
+	}
+	@supports (backdrop-filter: blur(10px)) {
+		.overlay {
+			background-color: rgba(var(--bg), 0.8);
+			backdrop-filter: blur(10px);
+		}
 	}
 	.modal {
 		position: relative;
@@ -139,8 +206,6 @@
 		padding: 0;
 		text-decoration: none;
 		background: none;
-
-		display: inline-block;
 
 		text-align: center;
 		font: inherit;
