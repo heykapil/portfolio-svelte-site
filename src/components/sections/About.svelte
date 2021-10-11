@@ -32,7 +32,8 @@
 						A few years ago, I applied for an embedded systems job at
 						<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>&hellip; and they hired
 						me as web developer for their hand hygiene compliance project,
-						<a href="https://sanibit.com/">Sanibit</a>. That was the happiest mistake of my career.
+						<a href="https://www.sanibit.com/">Sanibit</a>. That was the happiest mistake of my
+						career.
 					</p>
 					<p>
 						Since then, I've built up my skills to match the needs of the modern monstrous monoliths

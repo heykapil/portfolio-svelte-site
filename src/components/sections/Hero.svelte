@@ -4,8 +4,8 @@
 
 <section id="hero" class="container">
 	<p class="eyebrow">Hello there! My name is</p>
-	<h1><RadText>Darius Cepulis.</RadText></h1>
-	<p class="headline">I develop and design great web experiences.</p>
+	<h1><RadText text="Darius Cepulis." /></h1>
+	<p class="headline">I develop and design great <span class="nowrap">web experiences.</span></p>
 </section>
 
 <style>
@@ -34,5 +34,8 @@
 	.eyebrow,
 	h1 {
 		margin-bottom: 0;
+	}
+	.nowrap {
+		white-space: nowrap;
 	}
 </style>

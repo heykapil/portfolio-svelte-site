@@ -2,53 +2,97 @@
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
+	export let text: string;
+
 	// Use scroll value to manage springs
 	let scrollY: number;
+
 	const scrollSpring0 = spring({ scrollY: 0 }, { stiffness: 0.05, damping: 1 });
 	const scrollSpring1 = spring({ scrollY: 0 }, { stiffness: 0.075, damping: 1 });
 	const scrollSpring2 = spring({ scrollY: 0 }, { stiffness: 0.1, damping: 1 });
 	const scrollSpring3 = spring({ scrollY: 0 }, { stiffness: 0.15, damping: 1 });
 	const scrollSpring4 = spring({ scrollY: 0 }, { stiffness: 0.2, damping: 1 });
-
+	let isSpringing = false;
 	$: {
-		scrollSpring0.set({ scrollY });
+		isSpringing = true;
+
+		scrollSpring0.set({ scrollY }).then(() => (isSpringing = false));
 		scrollSpring1.set({ scrollY });
 		scrollSpring2.set({ scrollY });
 		scrollSpring3.set({ scrollY });
 		scrollSpring4.set({ scrollY });
 	}
 
-	// Use spring values to manage offset and hiding
-	function getHidden(offset: number): boolean {
-		if (offset >= 0.01 || offset <= -0.01) {
-			return false;
-		}
-		return true;
+	let container: HTMLSpanElement;
+	let canvas: HTMLCanvasElement;
+
+	let canvasWidth: number;
+	let canvasHeight: number;
+	let dpr = 2;
+
+	let font: string;
+	const updateCanvasSizeAndScale = (width: number, height: number) => {
+		// Set display size (css pixels).
+		canvas.style.width = `${width}px`;
+		canvas.style.height = `${height}px`;
+
+		// Set actual size in memory (scaled to account for extra pixel density).
+		dpr = window.devicePixelRatio ?? 1;
+		canvas.width = width * dpr;
+		canvas.height = height * dpr;
+
+		// Normalize coordinate system to use css pixels.
+		canvas.getContext('2d').scale(dpr, dpr);
+	};
+	const updateCanvasFont = () => {
+		// firefox doesn't support grabbing just .getPropertyValue('font')
+		const canvasComputedStyle = window.getComputedStyle(canvas);
+		const fontStyle = canvasComputedStyle.getPropertyValue('font-style');
+		const fontVariant = canvasComputedStyle.getPropertyValue('font-variant');
+		const fontWeight = canvasComputedStyle.getPropertyValue('font-weight');
+		const fontSize = canvasComputedStyle.getPropertyValue('font-size');
+		const lineHeight = canvasComputedStyle.getPropertyValue('line-height');
+		const fontFamily = canvasComputedStyle.getPropertyValue('font-family');
+
+		font = `${fontStyle} ${fontVariant} ${fontWeight} ${fontSize}/${lineHeight} ${fontFamily}`;
+	};
+	$: {
+		// This hook runs whenever canvasWidth or canvasHeight change
+		if (typeof canvas === 'undefined') break $;
+		updateCanvasSizeAndScale(canvasWidth, canvasHeight);
+		updateCanvasFont();
 	}
-
-	let offset: [number, number, number, number, number] = [0, 0, 0, 0, 0];
-	let hidden: [boolean, boolean, boolean, boolean, boolean] = [true, true, true, true, true];
-
 	onMount(() => {
+		// What's this all going to look like, anyways?
+
+		// Animation loop!
 		let frame: ReturnType<typeof requestAnimationFrame>;
 
 		function loop() {
 			frame = requestAnimationFrame(loop);
 
-			offset = [
-				scrollY - $scrollSpring0.scrollY,
-				scrollY - $scrollSpring1.scrollY,
-				scrollY - $scrollSpring2.scrollY,
-				scrollY - $scrollSpring3.scrollY,
-				scrollY - $scrollSpring4.scrollY
-			];
-			hidden = [
-				getHidden(offset[0]),
-				getHidden(offset[1]),
-				getHidden(offset[2]),
-				getHidden(offset[3]),
-				getHidden(offset[4])
-			];
+			const ctx = canvas.getContext('2d');
+
+			ctx.font = font;
+			ctx.textAlign = 'center';
+			ctx.textBaseline = 'middle';
+
+			ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+			const baseXOffset = canvasWidth / 2;
+			const baseYOffset = canvasHeight / 2 + scrollY;
+
+			const documentComputedStyle = window.getComputedStyle(document.documentElement);
+			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c5')})`;
+			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring0.scrollY);
+			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c4')})`;
+			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring1.scrollY);
+			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c3')})`;
+			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring2.scrollY);
+			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c2')})`;
+			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring3.scrollY);
+			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c1')})`;
+			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring4.scrollY);
 		}
 
 		loop();
@@ -57,112 +101,39 @@
 	});
 </script>
 
-<span class="wrapper">
-	<span
-		class="layer layer-0"
-		aria-hidden
-		class:hidden={hidden[0]}
-		style="
-		color: rgb(var(--c5));
-		transform: translate3d(0,{offset[0]}px,0);"
-	>
-		<slot />
-	</span>
-	<span
-		class="layer layer-1"
-		aria-hidden
-		class:hidden={hidden[1]}
-		style="
-		color: rgb(var(--c4));
-		transform: translate3d(0,{offset[1]}px,0);"
-	>
-		<slot />
-	</span>
-	<span
-		class="layer layer-2"
-		aria-hidden
-		class:hidden={hidden[2]}
-		style="
-		color: rgb(var(--c3));
-		transform: translate3d(0,{offset[2]}px,0);"
-	>
-		<slot />
-	</span>
-	<span
-		class="layer layer-3"
-		aria-hidden
-		class:hidden={hidden[3]}
-		style="
-		color: rgb(var(--c2));
-		transform: translate3d(0,{offset[3]}px,0);"
-	>
-		<slot />
-	</span>
-	<span
-		class="layer layer-4"
-		aria-hidden
-		class:hidden={hidden[4]}
-		style="
-		color: rgb(var(--c1));
-		transform: translate3d(0,{offset[4]}px,0);"
-	>
-		<slot />
-	</span>
-	<span class="base-text">
-		<slot />
-	</span>
+<span class="rad-container" bind:this={container}>
+	{text}
+	<div class="canvas-container" bind:offsetWidth={canvasWidth} bind:offsetHeight={canvasHeight}>
+		<canvas bind:this={canvas} class:show={isSpringing} />
+	</div>
 </span>
 
 <svelte:window bind:scrollY />
 
 <style>
-	span {
-		white-space: nowrap;
+	canvas {
+		opacity: 0;
+		transition: opacity var(--transition-speed-medium);
 	}
-	.wrapper {
+	canvas.show {
+		opacity: 1;
+		transition: opacity 0s; /* appear immediately on start */
+	}
+	.rad-container {
+		white-space: nowrap;
+		display: inline-block;
 		position: relative;
 	}
-	.layer {
-		pointer-events: none;
+	.canvas-container {
+		z-index: -1;
+
 		position: absolute;
 		width: 100%;
-		height: 100%;
 		left: 0;
-		top: 0;
 
-		opacity: 1;
-		transition: opacity 0s;
-
-		transition: color var(--transition-speed-medium);
-		will-change: transform;
-	}
-	.layer.hidden {
-		opacity: 0;
-		transition: opacity 1s;
-	}
-	@media (prefers-reduced-motion) {
-		.layer {
-			opacity: 0.66 !important;
-		}
-		.layer-4 {
-			transform: translate(1px, 1px) !important;
-		}
-		.layer-3 {
-			transform: translate(2px, 2px) !important;
-		}
-		.layer-2 {
-			transform: translate(3px, 3px) !important;
-		}
-		.layer-1 {
-			transform: translate(4px, 4px) !important;
-		}
-		.layer-0 {
-			transform: translate(5px, 5px) !important;
-		}
-	}
-	.base-text {
-		/* Force stacking context */
-		position: relative;
-		z-index: 1;
+		/*  This happens to work because the text is centered;
+			If I reuse this component, I should rethink this */
+		height: calc(100 * var(--load-vh, 1vh));
+		top: calc(-50 * var(--load-vh, 1vh) + 50%);
 	}
 </style>
