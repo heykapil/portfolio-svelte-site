@@ -82,17 +82,21 @@
 			const baseXOffset = canvasWidth / 2;
 			const baseYOffset = canvasHeight / 2 + scrollY;
 
-			const documentComputedStyle = window.getComputedStyle(document.documentElement);
-			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c5')})`;
-			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring0.scrollY);
-			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c4')})`;
-			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring1.scrollY);
-			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c3')})`;
-			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring2.scrollY);
-			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c2')})`;
-			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring3.scrollY);
-			ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c1')})`;
-			ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring4.scrollY);
+			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+			if (!reduceMotion) {
+				const documentComputedStyle = window.getComputedStyle(document.documentElement);
+				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c5')})`;
+				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring0.scrollY);
+				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c4')})`;
+				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring1.scrollY);
+				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c3')})`;
+				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring2.scrollY);
+				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c2')})`;
+				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring3.scrollY);
+				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c1')})`;
+				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring4.scrollY);
+			}
 		}
 
 		loop();
@@ -133,7 +137,9 @@
 
 		/*  This happens to work because the text is centered;
 			If I reuse this component, I should rethink this */
-		height: calc(100 * var(--load-vh, 1vh));
-		top: calc(-50 * var(--load-vh, 1vh) + 50%);
+		/* height: calc(100 * var(--load-vh, 1vh));
+		top: calc(-50 * var(--load-vh, 1vh) + 50%); */
+		height: 300px;
+		top: calc(-150px + 50%);
 	}
 </style>

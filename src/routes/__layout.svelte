@@ -1,9 +1,11 @@
 <script>
 	import './__layout.css';
 	import FaviconManager from '../components/FaviconManager.svelte';
+	import ReduceMotionManager from '../components/ReduceMotionManager.svelte';
 </script>
 
 <FaviconManager />
+<ReduceMotionManager />
 
 <svelte:head>
 	<link rel="preconnect" href="https://fonts.googleapis.com" />

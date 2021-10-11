@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
+	import { reduceMotion } from '../../../stores';
 
 	import type { Positions } from './position.d';
 	import Position from './Position.svelte';
@@ -61,15 +62,19 @@
 	});
 	const scrollTo = (scrollTarget: number) => {
 		const scrollStart = slideshowElement.scrollLeft;
-		isScrolling = true;
-		scrollSpring
-			.set(scrollStart, { hard: true })
-			// we run this twice
-			// because for some reason, once isn't enough
-			// to interrupt a running spring?
-			.then(() => scrollSpring.set(scrollTarget))
-			.then(() => scrollSpring.set(scrollTarget))
-			.then(() => (isScrolling = false));
+		if ($reduceMotion) {
+			scrollSpring.set(scrollTarget, { hard: true });
+		} else {
+			isScrolling = true;
+			scrollSpring
+				.set(scrollStart, { hard: true })
+				// we run this twice
+				// because for some reason, once isn't enough
+				// to interrupt a running spring?
+				.then(() => scrollSpring.set(scrollTarget))
+				.then(() => scrollSpring.set(scrollTarget))
+				.then(() => (isScrolling = false));
+		}
 	};
 	const scrollToPositionAtIndex = (index: number) => {
 		if (positions.length === 0) return;
@@ -97,7 +102,6 @@
 		const distanceToScroll = positionElementOffsets.map((offset) =>
 			Math.abs(offset - currentOffset)
 		);
-		console.log({ positionElementOffsets, currentOffset, distanceToScroll });
 		activePositionIndex = distanceToScroll.indexOf(Math.min(...distanceToScroll));
 	};
 	onMount(onScrollOrResize);

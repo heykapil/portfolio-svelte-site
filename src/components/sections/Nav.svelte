@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { spring } from 'svelte/motion';
+	import { reduceMotion } from '../../stores';
 
 	import Boopable from '../Boopable.svelte';
 	import ModeToggles from '../DarkModeManager.svelte';
@@ -110,13 +111,17 @@
 		const scrollElement = document.querySelector(`#${id}`) as HTMLElement;
 		if (typeof scrollElement !== 'undefined') {
 			const scrollTarget = scrollElement?.offsetTop - navElement.offsetHeight - 22;
-			scrollSpring
-				.set(scrollStart, { hard: true })
-				// we run this twice
-				// because for some reason, once isn't enough
-				// to interrupt a running spring?
-				.then(() => scrollSpring.set(scrollTarget))
-				.then(() => scrollSpring.set(scrollTarget));
+			if ($reduceMotion) {
+				scrollSpring.set(scrollTarget, { hard: true });
+			} else {
+				scrollSpring
+					.set(scrollStart, { hard: true })
+					// we run this twice
+					// because for some reason, once isn't enough
+					// to interrupt a running spring?
+					.then(() => scrollSpring.set(scrollTarget))
+					.then(() => scrollSpring.set(scrollTarget));
+			}
 		}
 	};
 	// And then when the scroll spring updates,
