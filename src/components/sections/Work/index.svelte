@@ -1,6 +1,9 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { spring } from 'svelte/motion';
+
 	import type { Positions } from './position.d';
-	import SlidingDetails from '../../SlidingDetails.svelte';
+	import Position from './Position.svelte';
 
 	const positions: Positions = [
 		{
@@ -26,14 +29,14 @@
 				'Lived and worked in a diverse, multilingual, international environment.'
 			]
 		},
-		{
-			role: 'Student Researcher',
-			employer: 'University of Cincinnati',
-			location: 'Cincinnati, OH',
-			start: 'May',
-			end: 'July 2016',
-			points: ['Simulated neural network hardware in MATLAB to support research.']
-		},
+		// {
+		// 	role: 'Student Researcher',
+		// 	employer: 'University of Cincinnati',
+		// 	location: 'Cincinnati, OH',
+		// 	start: 'May',
+		// 	end: 'July 2016',
+		// 	points: ['Simulated neural network hardware in MATLAB to support research.']
+		// },
 		{
 			role: 'Innovation Lab Co-Op',
 			employer: 'BMW Manufacturing',
@@ -46,72 +49,198 @@
 			]
 		}
 	];
+
+	let activePositionIndex = 0;
+	let slideshowElement: HTMLElement;
+	let isScrolling = false;
+	const scrollSpring = spring(0, { stiffness: 0.15, damping: 1, precision: 1 });
+	// When the scroll spring updates,
+	// so too does the window position
+	scrollSpring.subscribe((value) => {
+		slideshowElement?.scrollTo($scrollSpring, 0);
+	});
+	const scrollTo = (scrollTarget: number) => {
+		const scrollStart = slideshowElement.scrollLeft;
+		isScrolling = true;
+		scrollSpring
+			.set(scrollStart, { hard: true })
+			// we run this twice
+			// because for some reason, once isn't enough
+			// to interrupt a running spring?
+			.then(() => scrollSpring.set(scrollTarget))
+			.then(() => scrollSpring.set(scrollTarget))
+			.then(() => (isScrolling = false));
+	};
+	const scrollToPositionAtIndex = (index: number) => {
+		if (positions.length === 0) return;
+
+		const positionElements = Array.from(
+			slideshowElement.querySelectorAll('.position')
+		) as HTMLElement[];
+		const baseOffset = positionElements[0].offsetLeft;
+		const indexOffset = positionElements[index].offsetLeft - baseOffset;
+
+		scrollTo(indexOffset);
+	};
+	const onScrollOrResize = () => {
+		if (positions.length === 0) return;
+
+		const positionElements = Array.from(
+			slideshowElement.querySelectorAll('.position')
+		) as HTMLElement[];
+		const positionElementOffsets = positionElements.map(
+			(positionElement) => positionElement.offsetLeft
+		);
+		const baseOffset = positionElementOffsets[0];
+		const currentOffset = slideshowElement.scrollLeft + baseOffset;
+
+		const distanceToScroll = positionElementOffsets.map((offset) =>
+			Math.abs(offset - currentOffset)
+		);
+		console.log({ positionElementOffsets, currentOffset, distanceToScroll });
+		activePositionIndex = distanceToScroll.indexOf(Math.min(...distanceToScroll));
+	};
+	onMount(onScrollOrResize);
 </script>
 
-<section id="work" class="container">
-	<h2>Some Places I've Worked</h2>
-	<section class="accordion">
-		{#each positions as { role, employer, location, start, end, points }, index}
-			<SlidingDetails initial={index === 0 ? 'open' : undefined}>
-				<svelte:fragment slot="summary">
-					<h3 class="h5">{role}<br />@ {employer}</h3>
-					<p class="location">{location}</p>
-					<p class="duration">{start} &ndash {end}</p>
-				</svelte:fragment>
-				<ul>
-					{#each points as point}
-						<li>{point}</li>
-					{/each}
-				</ul>
-			</SlidingDetails>
+<svelte:window on:resize={onScrollOrResize} />
+
+<section id="work">
+	<h2 class="container">Some Places I've Worked</h2>
+	<section
+		class="slideshow"
+		on:scroll={onScrollOrResize}
+		bind:this={slideshowElement}
+		class:snap={!isScrolling}
+	>
+		{#each positions as position}
+			<Position {position} />
 		{/each}
 	</section>
+	<ul class="position-indicator">
+		{#each positions as { role, employer }, idx}
+			<li>
+				<button
+					on:click={() => scrollToPositionAtIndex(idx)}
+					class="position-button"
+					aria-label="Scroll to {role}, {employer}"
+					aria-current={activePositionIndex === idx ? 'step' : null}
+				/>
+			</li>
+		{/each}
+	</ul>
 </section>
 
 <style>
 	#work {
 		position: relative;
+		--x-spacing: 0.5rem;
+		/* TODO: iffy compatability? */
+		--card-width: min(85vw, var(--content-width) + 4rem);
 	}
-	.accordion,
-	:global(details) {
-		transition: background-color var(--transition-speed-medium),
-			box-shadow var(--transition-speed-medium);
-		border-radius: 1rem;
-	}
-	.accordion {
-		background-color: rgba(var(--c2), var(--intensity));
-		display: grid;
-		gap: 1rem;
-		padding: 1rem;
-	}
-	:global(details) {
-		background-color: rgba(var(--bg), 0.8);
-		box-shadow: 0 0 0 0 rgb(var(--c2)), 0 0 0 0 rgb(var(--c1));
-	}
-	:global(details:hover) {
-		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c3)),
-			0 0 0 calc(4 * var(--border-width)) rgb(var(--c1));
-	}
-	:global(summary) {
-		padding: 1rem;
-	}
-	:global(.content) {
-		padding: 1rem;
-		padding-top: 0;
+	@media (min-width: 42rem) {
+		#work {
+			--x-spacing: 1rem;
+		}
 	}
 
-	.location {
-		margin-bottom: 0;
+	h2 {
+		padding-bottom: 0;
 	}
-	.duration {
-		margin-top: 0;
+	.slideshow {
+		display: flex;
+		overflow-x: scroll;
+		overflow-y: hidden;
+		scrollbar-width: none;
 	}
-	.h5 {
-		margin-bottom: 1rem;
+	.slideshow.snap {
+		scroll-snap-type: x mandatory;
+	}
+	.slideshow::-webkit-scrollbar {
+		display: none;
 	}
 
-	ul {
+	.slideshow:before,
+	.slideshow:after {
+		content: '';
+		/* center cards in view */
+		flex: 0 0 calc((100vw - var(--card-width)) / 2);
+	}
+
+	#work :global(.position):not(:last-of-type) {
+		margin-right: var(--x-spacing);
+	}
+
+	#work :global(.position) {
+		scroll-snap-align: center;
+	}
+
+	@media (min-width: 42rem) {
+		/* align card with start of container*/
+		.slideshow:before {
+			flex: 0 0 calc(var(--main-padding) + var(--container-margin-width));
+		}
+		.slideshow:after {
+			/* allow last card to align with snap start*/
+			flex: 0 0
+				calc(100vw - var(--container-margin-width) - var(--main-padding) - var(--card-width));
+		}
+		.slideshow {
+			scroll-padding-left: calc(var(--main-padding) + var(--container-margin-width));
+		}
+		#work :global(.position) {
+			scroll-snap-align: start;
+		}
+	}
+
+	.position-indicator {
+		list-style-type: none;
 		margin: 0;
-		padding-left: 2rem;
+		padding: 0;
+
+		display: flex;
+		align-items: center;
+		justify-content: center;
+	}
+	.position-indicator li {
+		margin: 0;
+		padding: 0;
+	}
+	.position-button {
+		appearance: none;
+		-webkit-appearance: none;
+		border: none;
+		background: none;
+		font: inherit;
+		cursor: pointer;
+
+		position: relative;
+		width: 3rem;
+		height: 2rem;
+		margin: 0;
+		padding: 0;
+	}
+	.position-button:after {
+		content: '';
+		display: block;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 1rem;
+		height: 1rem;
+		border-radius: 100%;
+
+		background-color: rgba(var(--c2));
+		box-shadow: 0 0 0 0 rgb(var(--c1)), 0 0 0 0 rgb(var(--c3));
+		transition: background-color var(--transition-speed-short),
+			box-shadow var(--transition-speed-short);
+	}
+	.position-button[aria-current='step']:after {
+		box-shadow: 0 0 0 0 rgb(var(--c1)), 0 0 0 calc(2 * var(--border-width)) rgb(var(--c3));
+	}
+	.position-button:hover:after {
+		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c1)),
+			0 0 0 calc(4 * var(--border-width)) rgb(var(--c3));
 	}
 </style>
