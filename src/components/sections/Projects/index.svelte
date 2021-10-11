@@ -31,12 +31,17 @@
 			links: [{ type: 'info', href: 'https://www.microsensorlabs.com/sanibit' }]
 		},
 		{
-			header: 'Microsensor Labs Site',
-			summary: `A marketing website providing not only information regarding Microsensor Labs' projects, but also a lightweight <a href="https://jamstack.wtf" target="_blank">JAMStack</a> blog and jobs listing built on Netlify and Gatsby.`,
-			technologies: [{ name: 'React', details: 'Gatsby' }, { name: 'Netlify CMS' }],
-			image: microsensorImg,
-			imageAlt: 'The Microsensor Labs home page',
-			links: [{ type: 'external', href: 'https://www.microsensorlabs.com/' }]
+			header: 'Midwest Microbio Site',
+			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Interactive visualizations make visits to the site informative and memorable. Prismic CMS allows easy changes to commonly-updated areas of the site. Recently transitioned from Pug, Parcel, and Bootstrap... because Svelte is just the best.`,
+			technologies: [
+				{ name: 'Svelte', details: 'SvelteKit, TypeScript, Pancake, Spring, Stores' },
+				{ name: 'Tailwind CSS' },
+				{ name: 'Prismic CMS' },
+				{ name: 'd3-force' }
+			],
+			image: midwestImg,
+			imageAlt: `The Midwest Microbio home page`,
+			links: [{ type: 'external', href: 'https://www.midwestmicrobio.com/' }]
 		},
 		{
 			header: 'Sensor Analytics Platform',
@@ -49,6 +54,14 @@
 	];
 
 	const otherProjects: Project[] = [
+		{
+			header: 'Microsensor Labs Site',
+			summary: `A marketing website providing not only information regarding Microsensor Labs' projects, but also a lightweight <a href="https://jamstack.wtf" target="_blank">JAMStack</a> blog and jobs listing built on Netlify and Gatsby.`,
+			technologies: [{ name: 'React', details: 'Gatsby' }, { name: 'Netlify CMS' }],
+			image: microsensorImg,
+			imageAlt: 'The Microsensor Labs home page',
+			links: [{ type: 'external', href: 'https://www.microsensorlabs.com/' }]
+		},
 		{
 			header: 'Wedding Website',
 			summary: `We got married! No better time to learn Svelte + Sapper (now SvelteKit), lean into a bold design, and finally write a tribute to the legendary <a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>, like I've always wanted to.`,
@@ -76,18 +89,6 @@
 			links: [{ type: 'github', href: 'https://github.com/decepulis/weasley-clock' }]
 		},
 		{
-			header: 'Midwest Microbio Site',
-			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Recently transitioned from Pug, Parcel, and Bootstrap.`,
-			technologies: [
-				{ name: 'Svelte', details: 'SvelteKit, TypeScript, Pancake, Spring, Stores' },
-				{ name: 'Tailwind CSS' },
-				{ name: 'd3-force' }
-			],
-			image: midwestImg,
-			imageAlt: `The Midwest Microbio home page`,
-			links: [{ type: 'external', href: 'https://www.midwestmicrobio.com/' }]
-		},
-		{
 			header: 'Formula Fun!',
 			summary: `Some friends started up a betting pool for the 2021 season of Formula One. "Buy" four drivers and win points based on how they do. I wondered if I could beat the game with some statistics&hellip;`,
 			technologies: [{ name: 'Svelte', details: 'TypeScript, Stores' }],
@@ -102,7 +103,7 @@
 </script>
 
 <section id="projects" class="container">
-	<h2>Some Things I've Built</h2>
+	<h2>Some Things I've Made</h2>
 	<section>
 		{#each featuredProjects as { header, summary, technologies, image, imageAlt, links }}
 			<FeaturedProject {image} alt={imageAlt}>
@@ -135,7 +136,7 @@
 		{/each}
 	</section>
 	<section class="other-project-section">
-		<h3>Other Noteworthy Projects</h3>
+		<h3>Other Noteworthy Stuff</h3>
 		{#each otherProjects as { header, summary, technologies, image, imageAlt, links }}
 			<OtherProject {image} alt={imageAlt}>
 				<svelte:fragment slot="header">
