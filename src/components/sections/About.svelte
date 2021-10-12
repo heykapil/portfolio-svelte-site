@@ -1,12 +1,22 @@
 <script lang="ts">
-	import headshot from '../../img/headshot.jpg';
 	import ShortMediumLong from '../ShortMediumLong.svelte';
 </script>
 
 <section id="about" class="container">
 	<h2>About Me</h2>
 	<article>
-		<img loading="lazy" src={headshot} alt="Darius" />
+		<img
+			loading="lazy"
+			srcset="
+				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_385,c_scale/v1634046901/decepulis/headshot_a9atea.jpg,
+				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_770,c_scale/v1634046901/decepulis/headshot_a9atea.jpg 2x,
+				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_1155,c_scale/v1634046901/decepulis/headshot_a9atea.jpg 3x
+			"
+			src="https://res.cloudinary.com/decepulis/image/upload/f_auto,w_385,c_scale/v1634046901/decepulis/headshot_a9atea.jpg"
+			width="2320"
+			height="2320"
+			alt="Darius"
+		/>
 		<div class="content">
 			<ShortMediumLong>
 				<svelte:fragment slot="short">

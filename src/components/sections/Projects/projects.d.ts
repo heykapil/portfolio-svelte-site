@@ -11,7 +11,10 @@ export interface Project {
 	header: string;
 	summary: string;
 	technologies: Technology[];
-	image: string;
+	imageSite: string;
+	imagePath: string;
 	imageAlt: string;
+	imageWidth: number;
+	imageHeight: number;
 	links?: Link[];
 }

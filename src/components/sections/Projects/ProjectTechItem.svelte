@@ -1,17 +1,20 @@
 <script lang="ts">
 	import Popover from '../../Popover.svelte';
+
+	export let name: string;
+	export let details: string | undefined;
 </script>
 
 <li>
-	{#if $$slots.details}
+	{#if typeof details !== 'undefined'}
 		<Popover>
-			<slot />
+			{name}
 			<svelte:fragment slot="content">
 				<slot name="details" />
 			</svelte:fragment>
 		</Popover>
 	{:else}
-		<slot />
+		{name}
 	{/if}
 </li>
 

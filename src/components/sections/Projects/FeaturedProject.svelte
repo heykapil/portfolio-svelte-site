@@ -1,29 +1,46 @@
 <script lang="ts">
 	import ProjectLinkList from './ProjectLinkList.svelte';
 	import ProjectTechList from './ProjectTechList.svelte';
+	import ProjectTechItem from './ProjectTechItem.svelte';
+	import ProjectLinkItem from './ProjectLinkItem.svelte';
 
-	export let image: string;
-	export let alt: string;
+	import type { Project } from './projects';
+	export let project: Project;
 </script>
 
 <article>
-	<img loading="lazy" {alt} src={image} />
+	<img
+		loading="lazy"
+		alt={project.imageAlt}
+		width={project.imageWidth}
+		height={project.imageHeight}
+		srcset="
+			{project.imageSite}/f_auto,w_413,c_scale/{project.imagePath},
+			{project.imageSite}/f_auto,w_826,c_scale/{project.imagePath} 2x,
+			{project.imageSite}/f_auto,w_1239,c_scale/{project.imagePath} 3x
+		"
+		src="{project.imageSite}/{project.imagePath}"
+	/>
 	<div class="content">
-		<slot name="image" />
+		<h4>{project.header}</h4>
 
-		<slot name="header" />
-
-		{#if $$slots.technologies}
+		{#if project.technologies.length > 0}
 			<ProjectTechList>
-				<slot name="technologies" />
+				{#each project.technologies as { name, details }}
+					<ProjectTechItem {name} {details} />
+				{/each}
 			</ProjectTechList>
 		{/if}
 
-		<slot />
+		<p>
+			{@html project.summary}
+		</p>
 
-		{#if $$slots.links}
+		{#if project.links?.length > 0}
 			<ProjectLinkList>
-				<slot name="links" />
+				{#each project.links as { type, href }}
+					<ProjectLinkItem iconType={type} {href} />
+				{/each}
 			</ProjectLinkList>
 		{/if}
 	</div>
