@@ -15,7 +15,16 @@ html {
 	box-sizing: border-box;
 
 	outline-color: rgb(var(--c3));
-	transition: outline-color var(--transition-speed-medium);
+	accent-color: rgb(var(--c3));
+	transition: outline-color var(--transition-speed-medium),
+		accent-color var(--transition-speed-medium);
+}
+::selection {
+	transition: background-color var(--transition-speed-medium);
+	background-color: rgba(var(--c2), 0.5);
+}
+::-moz-selection {
+	background-color: rgba(var(--c2), 0.5);
 }
 @media (prefers-reduced-motion) {
 	*,
