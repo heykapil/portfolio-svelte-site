@@ -205,6 +205,7 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+		position: relative;
 	}
 	.position-indicator li {
 		margin: 0;
@@ -231,20 +232,20 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 1rem;
-		height: 1rem;
+		width: 0.75rem;
+		height: 0.75rem;
 		border-radius: 100%;
 
-		background-color: rgba(var(--c2));
-		box-shadow: 0 0 0 0 rgb(var(--c1)), 0 0 0 0 rgb(var(--c3));
+		background-color: rgb(var(--c1));
+		box-shadow: 0 0 0 0 rgb(var(--c3)), 0 0 0 0 rgb(var(--c2));
 		transition: background-color var(--transition-speed-short),
 			box-shadow var(--transition-speed-short);
 	}
 	.position-button[aria-current='step']:after {
-		box-shadow: 0 0 0 0 rgb(var(--c1)), 0 0 0 calc(2 * var(--border-width)) rgb(var(--c3));
+		box-shadow: 0 0 0 0 rgb(var(--c3)), 0 0 0 calc(2 * var(--border-width)) rgb(var(--c2));
 	}
 	.position-button:hover:after {
-		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c1)),
-			0 0 0 calc(4 * var(--border-width)) rgb(var(--c3));
+		box-shadow: 0 0 0 calc(2 * var(--border-width)) rgb(var(--c3)),
+			0 0 0 calc(4 * var(--border-width)) rgb(var(--c2));
 	}
 </style>
