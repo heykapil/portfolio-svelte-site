@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
+	import { reduceMotion } from '../stores';
 
 	export let text: string;
 
@@ -75,16 +76,19 @@
 
 			ctx.font = font;
 			ctx.textAlign = 'center';
-			ctx.textBaseline = 'middle';
+			ctx.textBaseline = 'alphabetic';
 
 			ctx.clearRect(0, 0, canvas.width, canvas.height);
 
+			const textMetrics = ctx.measureText(text);
+
 			const baseXOffset = canvasWidth / 2;
-			const baseYOffset = canvasHeight / 2 + scrollY;
+			const baseYOffset =
+				//  I have no clue how or why this incantation works
+				//  and at this point I'm too afraid to ask
+				canvasHeight / 2 + scrollY + textMetrics.actualBoundingBoxAscent / 2 + 1.75;
 
-			const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-			if (!reduceMotion) {
+			if (!$reduceMotion) {
 				const documentComputedStyle = window.getComputedStyle(document.documentElement);
 				ctx.fillStyle = `rgb(${documentComputedStyle.getPropertyValue('--c5')})`;
 				ctx.fillText(text, baseXOffset, baseYOffset - $scrollSpring0.scrollY);
@@ -106,15 +110,34 @@
 </script>
 
 <span class="rad-container" bind:this={container}>
-	{text}
 	<div class="canvas-container" bind:offsetWidth={canvasWidth} bind:offsetHeight={canvasHeight}>
 		<canvas bind:this={canvas} class:show={isSpringing} />
 	</div>
+	<span class="text-container">{text}</span>
 </span>
 
 <svelte:window bind:scrollY />
 
 <style>
+	.rad-container {
+		white-space: nowrap;
+		position: relative;
+		display: inline-block;
+	}
+	.text-container {
+		position: relative;
+	}
+	.canvas-container {
+		pointer-events: none;
+		position: absolute;
+		width: 100%;
+		left: 0;
+
+		/*  This happens to work because the text is centered;
+			If I reuse this component, I should rethink this */
+		height: calc(100 * var(--load-vh, 1vh));
+		top: calc(-50 * var(--load-vh, 1vh) + 50%);
+	}
 	canvas {
 		opacity: 0;
 		transition: opacity var(--transition-speed-medium);
@@ -122,24 +145,5 @@
 	canvas.show {
 		opacity: 1;
 		transition: opacity 0s; /* appear immediately on start */
-	}
-	.rad-container {
-		white-space: nowrap;
-		display: inline-block;
-		position: relative;
-	}
-	.canvas-container {
-		z-index: -1;
-
-		position: absolute;
-		width: 100%;
-		left: 0;
-
-		/*  This happens to work because the text is centered;
-			If I reuse this component, I should rethink this */
-		/* height: calc(100 * var(--load-vh, 1vh));
-		top: calc(-50 * var(--load-vh, 1vh) + 50%); */
-		height: 300px;
-		top: calc(-150px + 50%);
 	}
 </style>
