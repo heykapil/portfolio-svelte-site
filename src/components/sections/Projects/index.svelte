@@ -27,7 +27,7 @@
 		},
 		{
 			header: 'Midwest Microbio Site',
-			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Interactive visualizations make visits to the site informative and memorable. Prismic CMS allows easy changes to commonly-updated areas of the site. Recently transitioned from Pug, Parcel, and Bootstrap... because Svelte is just the best.`,
+			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Interactive visualizations make visits to the site informative and memorable. Prismic CMS allows easy changes to commonly-updated areas of the site. Recently transitioned from Pug, Parcel, and Bootstrap&hellip; because Svelte is just the best.`,
 			technologies: [
 				{ name: 'Svelte', details: 'SvelteKit, TypeScript, Pancake, Spring, Stores' },
 				{ name: 'Tailwind CSS' },
@@ -123,11 +123,7 @@
 		{/each}
 	</section>
 	<section class="other-project-section">
-		<OtherProjectBox noBorder>
-			<svelte:fragment slot="header">
-				<h3>Other Noteworthy Stuff</h3>
-			</svelte:fragment>
-		</OtherProjectBox>
+		<h3>Other Noteworthy Stuff</h3>
 		{#each otherProjects as project}
 			<OtherProject {project} />
 		{/each}
@@ -146,6 +142,7 @@
 <style>
 	.other-project-section h3 {
 		margin-top: 0;
+		padding: 0 1rem;
 	}
 	.other-project-section {
 		margin-top: var(--section-padding);
@@ -158,6 +155,9 @@
 		.other-project-section {
 			grid-template-columns: 1fr 1fr;
 			gap: var(--main-padding);
+		}
+		.other-project-section h3 {
+			padding: var(--section-padding);
 		}
 	}
 </style>

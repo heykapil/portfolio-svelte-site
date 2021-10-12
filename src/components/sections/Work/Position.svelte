@@ -17,7 +17,7 @@
 </article>
 
 <style>
-	article {
+	.position {
 		flex: 1 0 var(--card-width);
 		background-color: rgba(var(--c2), var(--intensity-c));
 		border-radius: 1rem;
@@ -29,7 +29,7 @@
 		flex-direction: column;
 		position: relative;
 	}
-	article,
+	.position,
 	header,
 	ul {
 		transition: background-color var(--transition-speed-medium);
@@ -64,7 +64,7 @@
 	li {
 		position: relative;
 	}
-	article > *:last-child {
+	.position > *:last-child {
 		margin-bottom: 0;
 	}
 </style>

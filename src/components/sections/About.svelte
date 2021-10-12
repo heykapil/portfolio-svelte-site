@@ -4,7 +4,7 @@
 
 <section id="about" class="container">
 	<h2>About Me</h2>
-	<article>
+	<div class="about-layout">
 		<img
 			loading="lazy"
 			srcset="
@@ -61,18 +61,18 @@
 				</svelte:fragment>
 			</ShortMediumLong>
 		</div>
-	</article>
+	</div>
 </section>
 
 <style>
-	article {
+	.about-layout {
 		display: grid;
 		gap: 0 var(--main-padding);
 		align-content: center;
 		justify-content: start;
 	}
 	@media (min-width: 42rem) {
-		article {
+		.about-layout {
 			grid-template-columns: auto auto;
 		}
 	}

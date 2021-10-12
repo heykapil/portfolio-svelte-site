@@ -111,7 +111,7 @@
 
 <section id="work">
 	<h2 class="container">Some Places I've Worked</h2>
-	<section
+	<div
 		class="slideshow"
 		on:scroll={onScrollOrResize}
 		bind:this={slideshowElement}
@@ -120,19 +120,17 @@
 		{#each positions as position}
 			<Position {position} />
 		{/each}
-	</section>
-	<ul class="position-indicator">
+	</div>
+	<div class="position-indicator">
 		{#each positions as { role, employer }, idx}
-			<li>
-				<button
-					on:click={() => scrollToPositionAtIndex(idx)}
-					class="position-button"
-					aria-label="Scroll to {role}, {employer}"
-					aria-current={activePositionIndex === idx ? 'step' : null}
-				/>
-			</li>
+			<button
+				on:click={() => scrollToPositionAtIndex(idx)}
+				class="position-button"
+				aria-label="Scroll to {role}, {employer}"
+				aria-current={activePositionIndex === idx ? 'step' : null}
+			/>
 		{/each}
-	</ul>
+	</div>
 </section>
 
 <style>
@@ -198,18 +196,10 @@
 	}
 
 	.position-indicator {
-		list-style-type: none;
-		margin: 0;
-		padding: 0;
-
 		display: flex;
 		align-items: center;
 		justify-content: center;
 		position: relative;
-	}
-	.position-indicator li {
-		margin: 0;
-		padding: 0;
 	}
 	.position-button {
 		appearance: none;
@@ -221,7 +211,7 @@
 
 		position: relative;
 		width: 3rem;
-		height: 2rem;
+		height: 3rem;
 		margin: 0;
 		padding: 0;
 	}

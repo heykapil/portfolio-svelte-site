@@ -24,19 +24,17 @@
 	</fieldset>
 </form>
 
-{#if length === 'short'}
-	<div transition:slide>
-		<slot name="short" />
+{#key length}
+	<div class="sml-content" transition:slide>
+		{#if length === 'short'}
+			<slot name="short" />
+		{:else if length === 'medium'}
+			<slot name="medium" />
+		{:else}
+			<slot name="long" />
+		{/if}
 	</div>
-{:else if length === 'medium'}
-	<div transition:slide>
-		<slot name="medium" />
-	</div>
-{:else}
-	<div transition:slide>
-		<slot name="long" />
-	</div>
-{/if}
+{/key}
 
 <style>
 	form {
@@ -116,10 +114,10 @@
 		width: 1px;
 	}
 
-	div > :global(p:first-child) {
+	.sml-content > :global(p:first-child) {
 		margin-top: 0;
 	}
-	div > :global(p:last-child) {
+	.sml-content > :global(p:last-child) {
 		margin-bottom: 0;
 	}
 </style>
