@@ -10,7 +10,7 @@
 	let isMailModalOpen: boolean;
 	const openMailModal = () => (isMailModalOpen = true);
 
-	const strokePx = 24;
+	const strokePx = 22;
 	const r = strokePx;
 	let height = strokePx * 5 + r * 4;
 
