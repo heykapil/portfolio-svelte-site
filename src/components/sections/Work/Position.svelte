@@ -19,7 +19,7 @@
 <style>
 	article {
 		flex: 1 0 var(--card-width);
-		background-color: rgb(var(--c2));
+		background-color: rgba(var(--c2), var(--intensity-c));
 		border-radius: 1rem;
 		padding: 1rem;
 		min-height: 320px;
@@ -40,7 +40,7 @@
 	header,
 	ul {
 		transition: background-color var(--transition-speed-medium);
-		background-color: rgba(var(--bg), 0.8);
+		background-color: rgba(var(--bg), var(--intensity-bg-c));
 		border-radius: 0.75rem;
 	}
 	.location,

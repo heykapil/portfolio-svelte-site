@@ -18,7 +18,7 @@
 	const maxWidth = 1008;
 
 	type Stripe = {
-		color: `rgb(var(--${string}))` | `rgba(var(--${string}), ${number})`;
+		color: `rgb(var(--${string}))`;
 		y: number;
 		xMax: number;
 		circle?: 'up' | 'down';

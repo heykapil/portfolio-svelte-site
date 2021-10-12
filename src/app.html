@@ -49,11 +49,11 @@
 				if (window.__darkMode === 'light') {
 					root.style.setProperty('--bg', 'var(--light)');
 					root.style.setProperty('--text', 'var(--dark)');
-					root.style.setProperty('--intensity', '1');
+					root.style.setProperty('--intensity-c', '1');
 				} else {
 					root.style.setProperty('--bg', 'var(--dark)');
 					root.style.setProperty('--text', 'var(--light)');
-					root.style.setProperty('--intensity', '0.75');
+					root.style.setProperty('--intensity-c', '0.75');
 				}
 
 				if (window.__altMode === 'primary') {
@@ -105,6 +105,7 @@
 
 				--light: 245, 239, 214;
 				--dark: 43, 40, 40;
+				--intensity-bg-c: 0.8;
 
 				--red: 213, 47, 34;
 				--orange: 236, 101, 55;

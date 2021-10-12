@@ -77,7 +77,7 @@
 		bottom: var(--main-padding);
 		left: 0;
 
-		background-color: rgba(var(--bg), 0.8);
+		background-color: rgba(var(--bg), var(--intensity-bg-c));
 		transition: background-color var(--transition-speed-medium);
 		border-radius: 1rem;
 		z-index: -1;
@@ -122,6 +122,6 @@
 		--project-bg: var(--c4);
 	}
 	article:after {
-		background-color: rgba(var(--project-bg), var(--intensity));
+		background-color: rgba(var(--project-bg), var(--intensity-c));
 	}
 </style>

@@ -79,7 +79,7 @@
 		border-radius: 1rem;
 	}
 	.accordion {
-		background-color: rgba(var(--c2), var(--intensity));
+		background-color: rgba(var(--c2), var(--intensity-c));
 		display: grid;
 		gap: 1rem;
 		padding: 1rem;
