@@ -67,8 +67,8 @@
 			links: [{ type: 'external', href: 'https://www.microsensorlabs.com/' }]
 		},
 		{
-			header: 'Wedding Website',
-			summary: `We got married! No better time to learn Svelte + Sapper (now SvelteKit), lean into a bold design, and finally write a tribute to the legendary <a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>, like I've always wanted to.`,
+			header: 'Our Famliy Website',
+			summary: `Once a wedding RSVP and info website, now a place for me to put our slideshows so I wouldn't have to bore people in person! The perfect opportunity to learn about Svelte + Sapper (now SvelteKit) and Cloudinary, lean into a bold design, and finally write a tribute to the legendary <a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>, like I've always wanted to.`,
 			technologies: [
 				{ name: 'Svelte', details: 'Sapper, SvelteKit, Spring, Stores' },
 				{ name: 'Cloudinary' }
