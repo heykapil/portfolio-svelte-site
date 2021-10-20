@@ -103,7 +103,7 @@
 
 	// Finally, we're going to override the default link behavior
 	// in order to fire a smooth-scroll animation
-	const scrollSpring = spring(0, { stiffness: 0.1, damping: 1, precision: 1 });
+	const scrollSpring = spring(-1, { stiffness: 0.1, damping: 1, precision: 1 });
 	const scrollTo = (id: string) => {
 		// We hard-set the spring to the starting point
 		// and then let it run to the target
@@ -128,7 +128,9 @@
 	// so too does the window position
 	scrollSpring.subscribe((value) => {
 		if (typeof window === 'undefined') return;
-		window.scrollTo(0, $scrollSpring);
+		if (value > 0) {
+			window.scrollTo(0, value);
+		}
 	});
 </script>
 
