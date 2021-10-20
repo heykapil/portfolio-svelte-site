@@ -33,8 +33,8 @@
 						technologies and good design to help healthcare providers wash their hands better.
 					</p>
 					<p>
-						I enjoy working across the stack, from back-ends and infrastructure that handle
-						production-grade demands to front-end experiences that just feel good.
+						I enjoy working across the stack, from production-grade back-ends and infrastructure to
+						front-end experiences that just feel good.
 					</p>
 				</svelte:fragment>
 				<svelte:fragment slot="long">
