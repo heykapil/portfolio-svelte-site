@@ -10,7 +10,7 @@
 		<Popover>
 			{name}
 			<svelte:fragment slot="content">
-				<slot name="details" />
+				{details}
 			</svelte:fragment>
 		</Popover>
 	{:else}
