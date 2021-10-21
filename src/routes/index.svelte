@@ -9,8 +9,8 @@
 </script>
 
 <Hero />
+<Nav />
 <main>
-	<Nav />
 	<About />
 	<Work />
 	<Projects />
@@ -19,6 +19,9 @@
 </main>
 
 <style>
+	main {
+		overflow-x: hidden;
+	}
 	main :global(h2) {
 		text-align: center;
 	}

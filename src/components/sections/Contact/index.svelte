@@ -110,7 +110,7 @@
 
 		const observerConfig: IntersectionObserverInit = {
 			root: null,
-			threshold: 1
+			threshold: 0.9
 		};
 		const observer = new IntersectionObserver((entries) => {
 			const intersecting = entries?.[0]?.isIntersecting;
