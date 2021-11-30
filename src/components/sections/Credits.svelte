@@ -1,4 +1,4 @@
-<section id="credit" class="container">
+<section id="credits" class="container">
 	<h2>Credit Where Credit Is Due</h2>
 	<blockquote>
 		Lesser artists borrow; great artists steal.

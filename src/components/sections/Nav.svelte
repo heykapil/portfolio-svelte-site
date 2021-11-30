@@ -63,7 +63,7 @@
 		{ id: 'work', label: 'Work' },
 		{ id: 'projects', label: 'Projects' },
 		{ id: 'contact', label: 'Contact' },
-		{ id: 'credit', label: 'Credit' }
+		{ id: 'credits', label: 'Credits' }
 	];
 	let sectionObservations: { [id: string]: number } = {};
 
