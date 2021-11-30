@@ -14,6 +14,10 @@
 		<dd>
 			Thank You <a target="_blank" href="https://brittanychiang.com">Brittany Chiang</a>
 		</dd>
+		<dt>Profile</dt>
+		<dd>
+			Thank You <a target="_blank" href="https://www.cassie.codes">Cassie Evans</a>
+		</dd>
 		<dt>Bio Length</dt>
 		<dd>
 			Thank You <a target="_blank" href="https://chriscoyier.net">Chris Coyier</a>

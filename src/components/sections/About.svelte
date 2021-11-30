@@ -1,22 +1,14 @@
 <script lang="ts">
+	import Headshot from '../Headshot.svelte';
 	import ShortMediumLong from '../ShortMediumLong.svelte';
 </script>
 
 <section id="about" class="container">
 	<h2>About Me</h2>
 	<div class="about-layout">
-		<img
-			loading="lazy"
-			srcset="
-				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_385,c_scale/v1634046901/decepulis/headshot_a9atea.jpg,
-				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_770,c_scale/v1634046901/decepulis/headshot_a9atea.jpg 2x,
-				https://res.cloudinary.com/decepulis/image/upload/f_auto,w_1155,c_scale/v1634046901/decepulis/headshot_a9atea.jpg 3x
-			"
-			src="https://res.cloudinary.com/decepulis/image/upload/f_auto,w_385,c_scale/v1634046901/decepulis/headshot_a9atea.jpg"
-			width="2320"
-			height="2320"
-			alt="Darius"
-		/>
+		<div class="headshot">
+			<Headshot />
+		</div>
 		<div class="content">
 			<ShortMediumLong>
 				<svelte:fragment slot="short">
@@ -76,13 +68,17 @@
 			grid-template-columns: auto auto;
 		}
 	}
-	img {
+	.headshot {
 		max-width: calc(var(--container-width) - var(--content-width));
-		width: 100%;
-		height: auto;
-		margin-bottom: 1rem;
+		margin: 0 auto 1rem;
 		border-radius: 1rem;
-		justify-self: center;
+		align-self: flex-start;
+		background-color: rgba(var(--c1), var(--intensity-c));
+	}
+	.headshot,
+	.headshot :global(*) {
+		transition: background-color var(--transition-speed-medium), fill var(--transition-speed-medium),
+			stroke var(--transition-speed-medium);
 	}
 	.content {
 		max-width: var(--content-width);
