@@ -29,8 +29,8 @@
 	const springOpts = { stiffness: 0.1, damping: 1 };
 	const percentX = spring(0, springOpts);
 	const percentY = spring(0, springOpts);
-	$: $percentX = distanceX / maxDistanceX;
-	$: $percentY = distanceY / maxDistanceY;
+	$: $percentX = Math.max(Math.min(distanceX / maxDistanceX, 1), -1);
+	$: $percentY = Math.max(Math.min(distanceY / maxDistanceY, 1), -1);
 
 	const onMouseMove = (e: MouseEvent) => {
 		const { x: mouseX, y: mouseY } = e;
