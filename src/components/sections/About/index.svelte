@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Headshot from '../Headshot.svelte';
-	import ShortMediumLong from '../ShortMediumLong.svelte';
+	import Headshot from './Headshot.svelte';
+	import ShortMediumLong from '../../ShortMediumLong.svelte';
 </script>
 
 <section id="about" class="container">

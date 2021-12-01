@@ -14,7 +14,7 @@
 		<dd>
 			Thank You <a target="_blank" href="https://brittanychiang.com">Brittany Chiang</a>
 		</dd>
-		<dt>Profile</dt>
+		<dt>Profile SVG</dt>
 		<dd>
 			Thank You <a target="_blank" href="https://www.cassie.codes">Cassie Evans</a>
 		</dd>
