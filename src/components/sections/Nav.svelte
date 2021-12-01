@@ -109,8 +109,23 @@
 		// and then let it run to the target
 		const scrollStart = window.scrollY;
 		const scrollElement = document.querySelector(`#${id}`) as HTMLElement;
+		const isLastElement = id === sections[sections.length - 1].id;
 		if (typeof scrollElement !== 'undefined') {
-			const scrollTarget = scrollElement?.offsetTop - navElement.offsetHeight - 22;
+			// we set the target either to the top of the element,
+			// or the bottom of the page, depending on which comes first
+			let topOfPageBottom = document.documentElement.scrollHeight - window.innerHeight;
+			if (!isLastElement) {
+				// here's a funny rule:
+				// we have behavior which underlines the last item in the navbar
+				// when we're at page bottom.
+				// If we didn't mean to scroll to the last item in the navbar, however,
+				// we probably don't want that last item underlined.
+				// To prevent that smart behavior of underlining the last item,
+				// we just offset topOfPageBottom by a teensy bit
+				topOfPageBottom = topOfPageBottom - 1;
+			}
+			const topOfElement = scrollElement?.offsetTop - navElement.offsetHeight - 22;
+			const scrollTarget = Math.min(topOfPageBottom, topOfElement);
 			if ($reduceMotion) {
 				scrollSpring.set(scrollTarget, { hard: true });
 			} else {
