@@ -108,6 +108,7 @@ blockquote {
 	margin-right: 0;
 }
 abbr {
+	text-decoration: underline;
 	text-decoration-color: rgb(var(--c5));
 	text-decoration-style: dotted;
 }
