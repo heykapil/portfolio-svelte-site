@@ -5,7 +5,7 @@
 	const skin = 'hsl(25,85%,82%)';
 	const beard = 'hsl(30,50%,65%)';
 	const hair = 'hsl(35,35%,50%)';
-	const eyes = 'hsl(120,50%,10%)';
+	const eyes = 'hsl(120,78%,12%)';
 	const glasses = 'hsl(30,15%,25%)';
 	const shirt = 'rgb(var(--c3))';
 	const buttons = 'rgba(var(--bg),0.50)';
@@ -21,8 +21,6 @@
 
 	let maxDistanceX = 1;
 	let maxDistanceY = 1;
-	let minDistanceX = 1;
-	let minDistanceY = 1;
 
 	// In practice, we'll be using these percentages
 	// instead of absolute distances in pixels
@@ -31,8 +29,8 @@
 	const springOpts = { stiffness: 0.1, damping: 1 };
 	const percentX = spring(0, springOpts);
 	const percentY = spring(0, springOpts);
-	$: $percentX = distanceX > 0 ? distanceX / maxDistanceX : -distanceX / minDistanceX;
-	$: $percentY = distanceY > 0 ? distanceY / maxDistanceY : -distanceY / minDistanceY;
+	$: $percentX = distanceX / maxDistanceX;
+	$: $percentY = distanceY / maxDistanceY;
 
 	const onMouseMove = (e: MouseEvent) => {
 		const { x: mouseX, y: mouseY } = e;
@@ -54,28 +52,27 @@
 		distanceX = mouseX - svgCenterX;
 		distanceY = mouseY - svgCenterY;
 
-		// calculate max and min distance from svg center
-		maxDistanceX = windowWidth - svgCenterX;
-		maxDistanceY = windowHeight - svgCenterY;
-		minDistanceX = -svgCenterX;
-		minDistanceY = -svgCenterY;
+		// the furthest the mouse can be from the center of the view
+		// is the entire width/height of the viewport
+		maxDistanceX = windowWidth;
+		maxDistanceY = windowHeight;
 	};
 
 	// So we've calculated where the mouse is relative to the center of the svg
 	// and stored that in percentX and percentY.
 	// Now, let's use those numbers to animate a few layers in the svg.
-	$: featuresXMax = svgWidth / 40;
-	$: featuresYMax = svgHeight / 40;
+	$: featuresXMax = svgWidth / 38;
+	$: featuresYMax = svgHeight / 38;
 	$: featuresX = $percentX * featuresXMax;
 	$: featuresY = $percentY * featuresYMax;
 
-	$: eyesXMax = svgWidth / 20;
-	$: eyesYMax = svgHeight / 20;
+	$: eyesXMax = svgWidth / 17;
+	$: eyesYMax = svgHeight / 17;
 	$: eyesX = $percentX * eyesXMax;
 	$: eyesY = $percentY * eyesYMax;
 
 	$: browsYMax = featuresYMax;
-	$: browsYMin = svgHeight / 15;
+	$: browsYMin = svgHeight / 13;
 	$: browsX = featuresX;
 	$: browsY = $percentY > 0 ? $percentY * browsYMax : $percentY * browsYMin;
 
