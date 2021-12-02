@@ -1,6 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onDestroy, onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
+
+	import { altMode, darkMode } from '../../../stores';
 
 	const skin = 'hsl(25,85%,82%)';
 	const beard = 'hsl(30,50%,65%)';
@@ -12,10 +14,13 @@
 	const stripes = 'rgba(var(--bg),0.17)';
 
 	let svgElement: SVGElement;
+
+	// now for some interactivity!
+	// What happens on mouse move?
 	let svgWidth = 300;
 	let svgHeight = 300;
 
-	// Rectangular and polar coordinates of mouse relative to center of svg
+	// Rectangular coordinates of mouse relative to center of svg
 	let distanceX = 0;
 	let distanceY = 0;
 
@@ -26,9 +31,9 @@
 	// instead of absolute distances in pixels
 	// and we won't want transitions to be instant.
 	// Here, we make that transformation and store it in a pair of springs
-	const springOpts = { stiffness: 0.1, damping: 1 };
-	const percentX = spring(0, springOpts);
-	const percentY = spring(0, springOpts);
+	const mouseSpringOpts = { stiffness: 0.1, damping: 1 };
+	const percentX = spring(0, mouseSpringOpts);
+	const percentY = spring(0, mouseSpringOpts);
 	$: $percentX = Math.max(Math.min(distanceX / maxDistanceX, 1), -1);
 	$: $percentY = Math.max(Math.min(distanceY / maxDistanceY, 1), -1);
 
@@ -58,31 +63,83 @@
 		maxDistanceY = windowHeight;
 	};
 
+	// what happens on outfit change?
+	let isChanged = false;
+
+	let changeTimeout: ReturnType<typeof setTimeout>;
+	onDestroy(() => clearTimeout(changeTimeout));
+
+	const onOutfitChange = () => {
+		isChanged = true;
+		changeTimeout = setTimeout(() => {
+			isChanged = false;
+		}, 500);
+	};
+	// Trigger outfit change whenever system theme changes
+	let hasTriggeredOnce = false;
+	$: {
+		if ($darkMode && $altMode) {
+			if (hasTriggeredOnce) onOutfitChange();
+			else hasTriggeredOnce = true;
+		}
+	}
+
+	// What happens on mouse click?
+	let isPoked = false;
+
+	let pokeTimeout: ReturnType<typeof setTimeout>;
+	onDestroy(() => clearTimeout(pokeTimeout));
+
+	const onClick = () => {
+		isPoked = true;
+		pokeTimeout = setTimeout(() => {
+			isPoked = false;
+		}, 200);
+	};
+
 	// So we've calculated where the mouse is relative to the center of the svg
-	// and stored that in percentX and percentY.
-	// Now, let's use those numbers to animate a few layers in the svg.
-	$: featuresXMax = svgWidth / 38;
-	$: featuresYMax = svgHeight / 38;
+	// and stored that in percentX and percentY,
+	// and know the state of pokeage...
+	// Let's use those numbers to animate a few layers in the svg.
+	const changeSpring = spring(0, { stiffness: 0.15, damping: 1 });
+	$: $changeSpring = isChanged ? 1 : 0;
+
+	const pokeSpring = spring(0, { stiffness: 0.2, damping: 1 });
+	$: $pokeSpring = isPoked ? 1 : 0;
+
+	$: headXMax = svgWidth / 60;
+	$: headX = $percentX * headXMax;
+
+	$: headYMax = svgHeight / 60;
+	$: headY = $percentY * headYMax;
+
+	$: featuresXMax = svgWidth / 30;
 	$: featuresX = $percentX * featuresXMax;
+
+	$: featuresYMax = svgHeight / 30;
 	$: featuresY = $percentY * featuresYMax;
 
-	$: eyesXMax = svgWidth / 17;
-	$: eyesYMax = svgHeight / 17;
+	$: eyesXMax = svgWidth / 15;
 	$: eyesX = $percentX * eyesXMax;
-	$: eyesY = $percentY * eyesYMax;
 
-	$: browsYMax = featuresYMax;
-	$: browsYMin = svgHeight / 13;
+	// Lower eyes when changed
+	$: eyesYMax = svgHeight / 15;
+	$: eyesYMouse = $percentY * eyesYMax;
+	$: eyesYChanged = $changeSpring * (svgHeight / 30);
+	$: eyesY = eyesYMouse + eyesYChanged;
+
 	$: browsX = featuresX;
-	$: browsY = $percentY > 0 ? $percentY * browsYMax : $percentY * browsYMin;
 
-	$: earsX = -featuresX;
-	$: earsY = -featuresY;
+	// Raise eyebrows when mouse is overhead, when poked, or when changed
+	$: browsYMax = featuresYMax;
+	$: browsYMin = svgHeight / 10;
+	$: browsYPoked = $pokeSpring * (-svgHeight / 30);
+	$: browsYChanged = $changeSpring * (-svgHeight / 45);
+	$: browsYMouse = $percentY > 0 ? $percentY * browsYMax : $percentY * browsYMin;
+	$: browsY = browsYPoked + browsYChanged + browsYMouse;
 
-	const faceRotateXMax = 7;
-	const faceRotateYMax = 7;
-	$: faceRotateY = Math.abs($percentX * faceRotateYMax);
-	$: faceRotateX = Math.abs($percentY * faceRotateXMax);
+	$: earsX = -headX;
+	$: earsY = -headY;
 
 	// Finally, we'll occasionally swap the eyes out for blinking
 	let isBlinking = false;
@@ -113,28 +170,29 @@
 	style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5"
 	viewBox="0 0 500 500"
 	bind:this={svgElement}
+	on:click={onClick}
 >
 	<defs>
-		<!-- collar back -->
+		<!-- collar back shape -->
 		<path
 			id="reuse-0"
 			d="M187.569 374.084c27.18-.094 107.26-.165 124.862-.151 0 0-12.175-6.118-16.768-17.028 0 0-.583-4.64-8.919-2.519 0 0-18.202.909-30.45.909l-12.928.152c-12.248 0-30.62-1.213-30.62-1.213-8.846-2.121-9.186 3.485-9.186 3.485-2.892 9.243-15.991 16.365-15.991 16.365Z"
 		>
 			/>
-			<!-- shirt front -->
+			<!-- shirt front shape -->
 			<path
 				id="reuse-1"
 				d="m111.699 404.541 100.631-36.73 37.045 84.21 38.717-84.958 100.209 37.478.161.062c27.475 10.77 89.317 104.636 89.317 104.636-12.077 10.152-98.168 7.912-92.37 13.037l-270.478.454.511-.303c5.905-5.22-81.144-3.036-93.221-13.188 0 0 62.09-94.243 89.478-104.698Z"
 				style="fill:{shirt};"
 			/>
-			<!-- face -->
+			<!-- face shape -->
 			<path
 				id="reuse-2"
 				d="M240.898 363.74c-20.666-.47-73.705-37.143-80.647-80.845l-5.43-117.267c0-48.405 39.357-69.968 87.666-69.968h18.463c48.309 0 87.665 21.563 87.665 69.968l-5.43 117.267c-6.941 43.702-59.981 80.375-80.646 80.845h-21.641Z"
 				style="fill:{skin};"
 			/>
-		</path></defs
-	>
+		</path>
+	</defs>
 
 	<!-- collar back -->
 	<use xlink:href="#reuse-0" style="fill:{shirt};" />
@@ -181,12 +239,8 @@
 		/>
 	</g>
 
-	<g
-		style="
-			transform:rotateX({faceRotateX}deg) rotateY({faceRotateY}deg) perspective({svgWidth}px);
-			transform-origin:center
-		"
-	>
+	<!-- head shape -->
+	<g style="transform:translate3d({headX}px,{headY}px,0);">
 		<!-- face -->
 		<use xlink:href="#reuse-2" style="fill:{skin};" />
 
@@ -233,11 +287,16 @@
 	</g>
 
 	<g style="transform:translate3d({featuresX}px,{featuresY}px,0);">
-		<!-- smile -->
-		<path
-			d="M222.207 312.381c13.211 10.96 42.734 8.457 51.515-1.5"
-			style="fill:none;stroke:#000;stroke-opacity:.62;stroke-width:3px"
-		/>
+		<!-- mouth -->
+		{#if isChanged}
+			<ellipse cx="240.207" cy="322.381" rx="12" ry="8" style="fill:#000;fill-opacity:.75" />
+		{:else}
+			<path
+				d="M222.207 312.381
+			c13.211 10.96 42.734 8.457 51.515-1.5"
+				style="fill:none;stroke:#000;stroke-opacity:.62;stroke-width:3px"
+			/>
+		{/if}
 
 		<!-- nose -->
 		<path
