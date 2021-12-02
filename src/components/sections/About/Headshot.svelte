@@ -37,7 +37,8 @@
 	$: $percentX = Math.max(Math.min(distanceX / maxDistanceX, 1), -1);
 	$: $percentY = Math.max(Math.min(distanceY / maxDistanceY, 1), -1);
 
-	const onMouseMove = (e: MouseEvent) => {
+	// This function runs when the user moves their mouse or clicks somewhere on the window
+	const onWindowPointerUpdate = (e: MouseEvent | PointerEvent) => {
 		const { x: mouseX, y: mouseY } = e;
 		const { innerWidth: windowWidth, innerHeight: windowHeight } = window;
 		const {
@@ -90,7 +91,7 @@
 	let pokeTimeout: ReturnType<typeof setTimeout>;
 	onDestroy(() => clearTimeout(pokeTimeout));
 
-	const onClick = () => {
+	const onSvgClick = () => {
 		isPoked = true;
 		pokeTimeout = setTimeout(() => {
 			isPoked = false;
@@ -161,7 +162,7 @@
 	});
 </script>
 
-<svelte:window on:mousemove={onMouseMove} />
+<svelte:window on:pointerdown={onWindowPointerUpdate} on:pointermove={onWindowPointerUpdate} />
 
 <svg
 	xmlns="http://www.w3.org/2000/svg"
@@ -170,7 +171,7 @@
 	style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:1.5"
 	viewBox="0 0 500 500"
 	bind:this={svgElement}
-	on:click={onClick}
+	on:click={onSvgClick}
 >
 	<defs>
 		<!-- collar back shape -->
