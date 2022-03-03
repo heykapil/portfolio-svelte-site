@@ -8,13 +8,25 @@
 
 	const positions: Positions = [
 		{
+			role: 'Experience Engineer',
+			employer: 'Mux',
+			location: 'Chicago, IL',
+			start: 'February 2022',
+			end: 'Present',
+			points: [
+				'The marketing site!',
+				'The docs site!',
+				'Who knows what else!',
+			]
+		},
+		{
 			role: 'Full-Stack Web Developer',
 			employer: 'Microsensor Labs',
 			location: 'Chicago, IL',
 			start: 'November 2018',
-			end: 'Present',
+			end: 'January 2022',
 			points: [
-				'Worked closely with hardware team and stakeholders to design, develop, and deploy a full-stack data analysis and visualization application for improving hygiene compliance in hospitals, currently used by dozens of users in a clinical trial setting.',
+				'Worked closely with hardware team and stakeholders to design, develop, and deploy a full-stack data analysis and visualization application for improving hygiene compliance in hospitals, used by dozens of users in a clinical trial setting.',
 				'Provided input across hardware and software to ensure simple and coherent user interactions and experiences.',
 				'Established and maintained our corporate visual identity while developing marketing materials and web sites.'
 			]
