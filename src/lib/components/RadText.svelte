@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
-	import { reduceMotion } from '../stores';
+	import { reduceMotion } from '$lib/stores';
 
 	export let text: string;
 

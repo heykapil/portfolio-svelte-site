@@ -2,7 +2,7 @@
 	// https://www.joshwcomeau.com/react/boop/
 	import { onDestroy } from 'svelte';
 	import { spring } from 'svelte/motion';
-	import { reduceMotion } from '../stores';
+	import { reduceMotion } from '$lib/stores';
 
 	export let timing = 150;
 	export let spanClass = '';

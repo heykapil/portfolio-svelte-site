@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { reduceMotion } from '../stores';
+	import { reduceMotion } from '$lib/stores';
 	onMount(() => {
 		const reduceQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
 		$reduceMotion = reduceQuery.matches;

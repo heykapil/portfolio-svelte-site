@@ -4,7 +4,7 @@
 
 	import { MailIcon, GithubIcon, LinkedinIcon, InstagramIcon } from 'svelte-feather-icons';
 
-	import Boopable from '../../Boopable.svelte';
+	import Boopable from '$lib/components/Boopable.svelte';
 	import MailModal from './MailModal.svelte';
 
 	let isMailModalOpen: boolean;

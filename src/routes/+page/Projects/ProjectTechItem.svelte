@@ -1,5 +1,5 @@
 <script lang="ts">
-	import Popover from '../../Popover.svelte';
+	import Popover from '$lib/components/Popover.svelte';
 
 	export let name: string;
 	export let details: string | undefined;

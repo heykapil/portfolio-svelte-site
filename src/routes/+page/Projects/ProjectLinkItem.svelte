@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
-	import Boopable from '../../Boopable.svelte';
+	import Boopable from '$lib/components/Boopable.svelte';
 	import type { LinkType } from './projects.d';
 
 	export let href: string;

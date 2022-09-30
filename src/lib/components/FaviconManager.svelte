@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { darkMode, altMode } from '../stores';
+	import { darkMode, altMode } from '$lib/stores';
 
 	$: href =
 		$darkMode === 'dark' && $altMode === 'alt'

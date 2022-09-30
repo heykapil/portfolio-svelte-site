@@ -2,7 +2,7 @@
 	import { onDestroy, onMount } from 'svelte';
 	import { spring } from 'svelte/motion';
 
-	import { altMode, darkMode } from '../../../stores';
+	import { altMode, darkMode } from '$lib/stores';
 
 	const skin = 'hsl(25,85%,82%)';
 	const beard = 'hsl(30,50%,65%)';

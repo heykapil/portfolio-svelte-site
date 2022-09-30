@@ -5,9 +5,8 @@
 
 	import { SunIcon, MoonIcon, MonitorIcon } from 'svelte-feather-icons';
 
-	import { darkMode, altMode } from '../stores';
-
-	import Boopable from './Boopable.svelte';
+	import { darkMode, altMode } from '$lib/stores';
+	import Boopable from '$lib/components/Boopable.svelte';
 
 	// used to open menu on focus
 	export let isMenuOpen: boolean;

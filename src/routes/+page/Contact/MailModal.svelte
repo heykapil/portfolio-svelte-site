@@ -1,9 +1,8 @@
 <script lang="ts">
-	import { tick } from 'svelte';
 	import { cubicIn, cubicOut } from 'svelte/easing';
 	import { fade, fly } from 'svelte/transition';
 
-	import Boopable from '../../Boopable.svelte';
+	import Boopable from '$lib/components/Boopable.svelte';
 
 	export let isOpen = false;
 

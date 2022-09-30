@@ -1,10 +1,10 @@
 <script lang="ts">
 	import { onMount, onDestroy } from 'svelte';
 	import { spring } from 'svelte/motion';
-	import { reduceMotion } from '../../stores';
+	import { reduceMotion } from '$lib/stores';
 
-	import Boopable from '../Boopable.svelte';
-	import ModeToggles from '../DarkModeManager.svelte';
+	import Boopable from '$lib/components/Boopable.svelte';
+	import ModeToggles from '$lib/components/DarkModeManager.svelte';
 
 	let isMenuOpen = false;
 

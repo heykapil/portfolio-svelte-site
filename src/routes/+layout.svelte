@@ -1,7 +1,7 @@
 <script>
 	import './__layout.css';
-	import FaviconManager from '../components/FaviconManager.svelte';
-	import ReduceMotionManager from '../components/ReduceMotionManager.svelte';
+	import FaviconManager from '$lib/components/FaviconManager.svelte';
+	import ReduceMotionManager from '$lib/components/ReduceMotionManager.svelte';
 </script>
 
 <FaviconManager />
