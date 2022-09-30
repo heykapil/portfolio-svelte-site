@@ -1,6 +1,3 @@
-<script lang="ts" context="module">
-</script>
-
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import Boopable from './Boopable.svelte';
@@ -82,7 +79,9 @@
 			// we just proceed as normal
 			return;
 		}
-		e.preventDefault();
+		if (typeof e !== 'undefined') {
+			e.preventDefault();
+		}
 
 		// We toggle the state of this
 		if (state === 'expanding' || state === 'open') {

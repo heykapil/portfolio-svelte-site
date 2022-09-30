@@ -13,11 +13,7 @@
 			location: 'Chicago, IL',
 			start: 'February 2022',
 			end: 'Present',
-			points: [
-				'The marketing site!',
-				'The docs site!',
-				'Who knows what else!',
-			]
+			points: ['The marketing site!', 'The docs site!', 'Who knows what else!']
 		},
 		{
 			role: 'Full-Stack Web Developer',
