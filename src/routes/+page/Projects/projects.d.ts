@@ -7,6 +7,7 @@ export interface Link {
 	type: LinkType;
 	href: string;
 }
+
 export interface Project {
 	header: string;
 	summary: string;

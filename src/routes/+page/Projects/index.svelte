@@ -8,9 +8,47 @@
 
 	const featuredProjects: Project[] = [
 		{
+			header: 'Mux Marketing Site',
+			summary:
+				'Collaborating with the best team in the world to push our <a href="https://www.mux.com/player">marketing</a> <a href="https://www.mux.com/real-time-video">pages</a> further. Rewriting the darn thing from the ground up to make it speedy, search-engine friendly, and just nice to use. Frequently interjecting things like "I\'m not so sure about that scrolljacking design" and "does it have to be an image? We could make it an interactive element".',
+			technologies: [
+				{ name: 'Next.js', details: 'ISR, TypeScript' },
+				{ name: 'Styled Components' },
+				{ name: 'Sanity' },
+				{ name: 'Mux Video' },
+				{ name: 'Framer Motion' }
+			],
+			imageSite,
+			imagePath: 'v1634046941/decepulis/player_gsiujd.png',
+			imageAlt:
+				'The Mux Player landing page. Some hero text welcoming folks to the page, a code snippet, and the player it generates.',
+			imageWidth: 3456,
+			imageHeight: 2160,
+			links: [{ type: 'external', href: 'https://www.mux.com/' }]
+		},
+		{
+			header: 'The Mux Informational',
+			summary:
+				'Ugh Im just so proud of this conference website. Worked with our top-notch designers on an alarmingly short notice to really go all-in on this incredible vibe. Used the most modern of responsive css, from grid auto-fit to clamp. The best part? They trusted me to make those neat animations.',
+			technologies: [
+				{ name: 'Next.js', details: 'ISR, TypeScript' },
+				{ name: 'styled-jsx' },
+				{ name: 'Sanity' },
+				{ name: 'Mux Video' },
+				{ name: 'Framer Motion' }
+			],
+			imageSite,
+			imagePath: 'v1634046941/decepulis/tmi_ozu9ym.png',
+			imageAlt:
+				'A classic Macintosh with some classic 80s typography, proudly introducing The Mux Informational',
+			imageWidth: 3456,
+			imageHeight: 2160,
+			links: [{ type: 'external', href: 'https://tmi.mux.com' }]
+		},
+		{
 			header: 'Sanibit Web Platform',
 			summary:
-				'A full-stack application that analyzes millions of data points to help healthcare providers improve their hygiene and reduce hospital-acquired infections. The app provides easy-to-use and comprehensive data visualizations to managers and supervisors so that they can discover trends and take action. At the same time, it gamifies hygiene for individual providers with friendly competition, engaging interactions and animations, and a rewards system.',
+				'A full-stack application, written bottom-to-top, that analyzes millions of data points to help healthcare providers improve their hygiene and reduce hospital-acquired infections. The app provides easy-to-use and comprehensive data visualizations to managers and supervisors so that they can discover trends and take action. At the same time, it gamifies hygiene for individual providers with friendly competition, engaging interactions and animations, and a rewards system.',
 			technologies: [
 				{ name: 'React', details: 'TypeScript, Router, Context, Spring, Recharts' },
 				{ name: 'Django', details: 'Rest Framework, Channels 2, PostgreSQL, JWT Auth' },
@@ -24,14 +62,47 @@
 			imageWidth: 3010,
 			imageHeight: 2100,
 			links: [{ type: 'info', href: 'https://www.microsensorlabs.com/sanibit' }]
+		}
+	];
+
+	const otherProjects: Project[] = [
+		{
+			header: 'Mux Documentation Site',
+			summary:
+				'Mostly constraining my flashy CSS impulses to help devlopers get to the information they need as ASAP as possible. Developers frequently tell us that our docs are the best part of Mux. Wrapping up a big re-design that provides a more flexible information architecture, as well as a more usable layout atop a major technical transition.',
+			technologies: [
+				{ name: 'Next.js', details: 'ISR, TypeScript' },
+				{ name: 'styled-jsx' },
+				{ name: 'Algolia' },
+				{ name: 'MDX' },
+				{ name: 'Mux Video' }
+			],
+			imageSite,
+			imagePath: 'v1634046941/decepulis/docs_v2_joxbbt.png',
+			imageAlt:
+				'The Mux Documentation site. An easy to use navigation bar, a search bar, and information delivered both in video and in text.',
+			imageWidth: 3456,
+			imageHeight: 2160,
+			links: [{ type: 'external', href: 'https://docs.mux.com/' }]
+		},
+		{
+			header: '@mux/blurhash',
+			summary: `Built alongside <a href="https://github.com/muxinc/elements">@mux/mux-player-react/lazy</a> to give Mux Player a snappy loading experience, particularly in SSR environments like Next.js and SvelteKit`,
+			technologies: [{ name: 'Web Components' }, { name: 'OSS' }, { name: 'node' }],
+			imageSite,
+			imagePath: 'v1634046940/decepulis/blurhash_w4ik6g',
+			imageAlt: `A Mux Player loading with a nice, blurry background. Below it, a network panel with the developer mode "Slow 3G" enabled.`,
+			imageWidth: 2880,
+			imageHeight: 1800,
+			links: [{ type: 'github', href: 'https://github.com/muxinc/blurhash' }]
 		},
 		{
 			header: 'Midwest Microbio Site',
-			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Interactive visualizations make visits to the site informative and memorable. Prismic CMS allows easy changes to commonly-updated areas of the site. Recently transitioned from Pug, Parcel, and Bootstrap&hellip; because Svelte is just the best.`,
+			summary: `A minimal marketing website designed and built for a buddy's budding beer business. Interactive visualizations make visits to the site informative and memorable. Prismic CMS allows easy changes to commonly-updated areas of the site. Formerly Pug, Parcel, and Bootstrap.`,
 			technologies: [
 				{ name: 'Svelte', details: 'SvelteKit, TypeScript, Pancake, Spring, Stores' },
-				{ name: 'Tailwind CSS' },
-				{ name: 'Prismic CMS' },
+				{ name: 'Tailwind' },
+				{ name: 'Prismic' },
 				{ name: 'd3-force' }
 			],
 			imageSite,
@@ -41,20 +112,6 @@
 			imageHeight: 1800,
 			links: [{ type: 'external', href: 'https://www.midwestmicrobio.com/' }]
 		},
-		{
-			header: 'Sensor Analytics Platform',
-			summary: `A stack of applications providing sensor data storage, real-time monitoring, and historical analysis; all with a modular API.`,
-			technologies: [{ name: 'jQuery' }, { name: 'Node.js' }, { name: 'InfluxDB' }],
-			imageSite,
-			imagePath: 'v1634046938/decepulis/pisuite_fh0y4z.png',
-			imageAlt:
-				'The Sensor Analytics Platform home page, featuring a complex query below and a line graph of its result above',
-			imageWidth: 1189,
-			imageHeight: 719
-		}
-	];
-
-	const otherProjects: Project[] = [
 		{
 			header: 'Microsensor Labs Site',
 			summary: `A marketing website providing not only information regarding Microsensor Labs' projects, but also a lightweight <a href="https://jamstack.wtf" target="_blank">JAMStack</a> blog and jobs listing built on Netlify and Gatsby.`,
@@ -68,10 +125,11 @@
 		},
 		{
 			header: 'Our Famliy Website',
-			summary: `Once a wedding RSVP and info website, now a place for me to put our slideshows so I wouldn't have to bore people in person! The perfect opportunity to learn about Svelte + Sapper (now SvelteKit) and Cloudinary, lean into a bold design, and finally write a tribute to the legendary <a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>, like I've always wanted to.`,
+			summary: `A place for me to put our slideshows so I wouldn't have to bore people in person! Also, a sneaky opportunity to finally write a tribute to the legendary <a href="http://www.firewatchgame.com" target="_blank">Firewatch parallax effect</a>.`,
 			technologies: [
 				{ name: 'Svelte', details: 'Sapper, SvelteKit, Spring, Stores' },
-				{ name: 'Cloudinary' }
+				{ name: 'Mux Video' },
+				{ name: 'Sanity' }
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/kcdc_ouq1g7.png',
@@ -99,11 +157,22 @@
 			links: [{ type: 'github', href: 'https://github.com/decepulis/weasley-clock' }]
 		},
 		{
+			header: 'Bosch Sensor Analytics Platform',
+			summary: `How I started in hardware and accidentally ended up a web developer. A stack of applications providing sensor data storage, real-time monitoring, and historical analysis; all with a modular API.`,
+			technologies: [{ name: 'jQuery' }, { name: 'Node.js' }, { name: 'InfluxDB' }],
+			imageSite,
+			imagePath: 'v1634046938/decepulis/pisuite_fh0y4z.png',
+			imageAlt:
+				'The Sensor Analytics Platform home page, featuring a complex query below and a line graph of its result above',
+			imageWidth: 1189,
+			imageHeight: 719
+		},
+		{
 			header: 'Formula Fun!',
-			summary: `Some friends started up a betting pool for the 2021 season of Formula One. "Buy" four drivers and win points based on how they do. I wondered if I could beat the game with some statistics&hellip;`,
+			summary: `Some friends started up a betting pool for the 2021 season of Formula One. "Buy" four drivers and win points based on how they do. I wondered if I could beat the game with a neat app&hellip;`,
 			technologies: [{ name: 'Svelte', details: 'TypeScript, Stores' }],
 			imageSite,
-			imagePath: 'v1634046940/decepulis/formula-fun_d588z9.png',
+			imagePath: 'v1634046940/decepulis/formula_fun_wjpgww.png',
 			imageAlt: `A website featuring a large table of statistics`,
 			imageWidth: 3360,
 			imageHeight: 2100,
@@ -116,7 +185,7 @@
 </script>
 
 <section id="projects" class="container">
-	<h2>Some Things I've Made</h2>
+	<h2>Some Things I've Worked On</h2>
 	<section>
 		{#each featuredProjects as project}
 			<FeaturedProject {project} />

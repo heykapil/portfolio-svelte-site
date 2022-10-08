@@ -13,7 +13,11 @@
 			location: 'Chicago, IL',
 			start: 'February 2022',
 			end: 'Present',
-			points: ['The marketing site!', 'The docs site!', 'Who knows what else!']
+			points: [
+				'Working with the coolest team to build our marketing and docs site, and whatever other microsites come up',
+				'Of course, that means maintaining those sites, too. Digging deep in the weeds to migrate those code bases to Next.js and clean up every last dusty corner.',
+				"Wearing other hats: writing content, maintaining SDKs, and whatever other technical odds 'n ends pop up where a good web developer could make the developer experience better"
+			]
 		},
 		{
 			role: 'Full-Stack Web Developer',

@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Headshot from './Headshot.svelte';
 	import ShortMediumLong from '$lib/components/ShortMediumLong.svelte';
+	import { Maximize2Icon } from 'svelte-feather-icons';
 </script>
 
 <section id="about" class="container">
@@ -12,43 +13,45 @@
 		<div class="content">
 			<ShortMediumLong>
 				<svelte:fragment slot="short">
-					<p>I'm a full-stack web developer.</p>
 					<p>
-						Some people might say that that means I failed to specialize. But I prefer to think of
-						it as "having a variety of interests".
+						I make pretty websites 'n stuff for <a href="https://www.mux.com">Mux</a>. I think the
+						web is pretty neat!
 					</p>
 				</svelte:fragment>
 				<svelte:fragment slot="medium">
 					<p>
-						I'm currently the web developer at
-						<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>, where I use web
-						technologies and good design to help healthcare providers wash their hands better.
+						I'm an Experience Engineer at <a href="https://www.mux.com">Mux</a>, which means I get
+						to use the web and good design to make the developer experience great, from the
+						<a href="https://www.mux.com">top of the marketing funnel</a>
+						to the <a href="https://docs.mux.com">bottom of our docs</a> and
+						<a href="https://tmi.mux.com">everywhere</a>
+						<a href="https://github.com/muxinc/blurhash">in between</a>.
 					</p>
 					<p>
-						I enjoy working across the stack, from production-grade back-ends and infrastructure to
-						front-end experiences that just feel good.
+						Fun fact about me, I actually <i>like</i> writing CSS. Weird, huh?
 					</p>
 				</svelte:fragment>
 				<svelte:fragment slot="long">
 					<p>
-						A few years ago, I applied for an embedded systems job at
-						<a href="https://www.microsensorlabs.com/">Microsensor Labs</a>&hellip; and they hired
-						me as web developer for their hand hygiene compliance project,
-						<a href="https://www.sanibit.com/">Sanibit</a>. That was the happiest mistake of my
-						career.
+						I went to school for Computer Engineering, thinking I'd end up writing assembly or
+						something for some low-level hardware. After that scared the bejeebies out of me, I ran
+						away as fast as I could, as far as I could, to the web, where I found a home.
 					</p>
 					<p>
-						Since then, I've built up my skills to match the needs of the modern monstrous monoliths
-						that are web apps. And I love working on it all, up and down the stack.
+						When my dad asked me about why I ended up in web development, I told him that it's a lot
+						like the deck that he built in his back yard, that he took such pride in. It's building
+						a space that serves a practical use. But it's more than that. It's thinking about how
+						the user will move through that space. How that space will fulfill its purpose without
+						getting in its way. How the user will enjoy that space. The details that will delight
+						them. How that space will work for all the different kinds of people who will interact
+						with it.
 					</p>
 					<p>
-						Optimizing databases and plugging vulnerabilities on our back-end, ensuring reliability
-						with rock-solid tests and infrastructure on our
-						<abbr title="Continuous Integration and Deployment">CI/CD</abbr> pipeline and cloud,
-						geeking out over tooling to make sure developer experience leads to a maintanable
-						product, and (most importantly) using my
-						<abbr title="User Interaction and Experience">UI/UX</abbr>
-						and front-end skills to provide an awesome experience for our users.
+						As an Experience Engineer at Mux, I'm so lucky to get to do that every day. For
+						<a href="https://www.mux.com">marketing</a>, for
+						<a href="https://docs.mux.com">documentation</a>, for
+						<a href="https://tmi.mux.com/">a conference</a>, for
+						<a href="https://github.com/muxinc/blurhash">little utilties</a>, and so much more.
 					</p>
 				</svelte:fragment>
 			</ShortMediumLong>
@@ -65,7 +68,7 @@
 	}
 	@media (min-width: 42rem) {
 		.about-layout {
-			grid-template-columns: auto auto;
+			grid-template-columns: auto 1fr;
 		}
 	}
 	.headshot {

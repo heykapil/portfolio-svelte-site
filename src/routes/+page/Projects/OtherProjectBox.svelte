@@ -6,6 +6,12 @@
 </script>
 
 <article class:no-border={noBorder}>
+	{#if $$slots.image}
+		<div class="image-container">
+			<slot name="image" />
+		</div>
+	{/if}
+
 	<slot name="header" />
 
 	{#if $$slots.technologies}
@@ -47,5 +53,15 @@
 	}
 	article > :global(:last-child) {
 		margin-bottom: 0;
+	}
+	.image-container {
+		border-radius: 0.5rem;
+		overflow: hidden;
+		margin-bottom: 1rem;
+		display: flex;
+	}
+	.image-container > :global(img) {
+		width: 100%;
+		height: auto;
 	}
 </style>

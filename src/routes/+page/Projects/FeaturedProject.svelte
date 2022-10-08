@@ -36,7 +36,7 @@
 			{@html project.summary}
 		</p>
 
-		{#if project.links?.length > 0}
+		{#if typeof project.links !== 'undefined' && project.links.length > 0}
 			<ProjectLinkList>
 				{#each project.links as { type, href }}
 					<ProjectLinkItem iconType={type} {href} />

@@ -8,6 +8,19 @@
 </script>
 
 <OtherProjectBox>
+	<img
+		slot="image"
+		loading="lazy"
+		alt={project.imageAlt}
+		width={project.imageWidth}
+		height={project.imageHeight}
+		srcset="
+		{project.imageSite}/f_auto,w_413,c_scale/{project.imagePath},
+		{project.imageSite}/f_auto,w_826,c_scale/{project.imagePath} 2x,
+		{project.imageSite}/f_auto,w_1239,c_scale/{project.imagePath} 3x
+	"
+		src="{project.imageSite}/{project.imagePath}"
+	/>
 	<svelte:fragment slot="header">
 		<h4>{project.header}</h4>
 	</svelte:fragment>

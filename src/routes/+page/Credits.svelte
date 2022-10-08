@@ -54,10 +54,6 @@
 </section>
 
 <style>
-	dl,
-	blockquote {
-		text-align: center;
-	}
 	dd {
 		margin-left: 0;
 		margin-bottom: 1rem;
