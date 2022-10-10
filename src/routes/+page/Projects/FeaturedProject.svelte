@@ -4,23 +4,29 @@
 	import ProjectTechItem from './ProjectTechItem.svelte';
 	import ProjectLinkItem from './ProjectLinkItem.svelte';
 
-	import type { Project } from './projects';
+	import { isProjectWithImage, isProjectWithStaticVideo } from './types';
+	import type { Project } from './types';
+
 	export let project: Project;
 </script>
 
 <article>
-	<img
-		loading="lazy"
-		alt={project.imageAlt}
-		width={project.imageWidth}
-		height={project.imageHeight}
-		srcset="
+	{#if isProjectWithImage(project)}
+		<img
+			loading="lazy"
+			alt={project.alt}
+			width={project.width}
+			height={project.height}
+			srcset="
 			{project.imageSite}/f_auto,w_413,c_scale/{project.imagePath},
 			{project.imageSite}/f_auto,w_826,c_scale/{project.imagePath} 2x,
 			{project.imageSite}/f_auto,w_1239,c_scale/{project.imagePath} 3x
 		"
-		src="{project.imageSite}/{project.imagePath}"
-	/>
+			src="{project.imageSite}/{project.imagePath}"
+		/>
+	{:else if isProjectWithStaticVideo(project)}
+		<video alt={project.alt} width={project.width} height={project.height} autoplay loop muted />
+	{/if}
 	<div class="content">
 		<h4>{project.header}</h4>
 

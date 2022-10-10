@@ -2,7 +2,7 @@
 	import type { SvelteComponent } from 'svelte';
 	import { InfoIcon, ExternalLinkIcon, GithubIcon } from 'svelte-feather-icons';
 	import Boopable from '$lib/components/Boopable.svelte';
-	import type { LinkType } from './projects.d';
+	import type { LinkType } from './types';
 
 	export let href: string;
 	export let iconType: LinkType;

@@ -57,10 +57,12 @@
 	.image-container {
 		border-radius: 0.5rem;
 		overflow: hidden;
-		margin-bottom: 1rem;
+		margin-bottom: 1.38rem;
 		display: flex;
 	}
-	.image-container > :global(img) {
+	.image-container > :global(img),
+	.image-container > :global(video) {
+		border-radius: 0.5rem;
 		width: 100%;
 		height: auto;
 	}

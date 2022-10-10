@@ -3,7 +3,7 @@
 	import OtherProjectBox from './OtherProjectBox.svelte';
 	import OtherProject from './OtherProject.svelte';
 
-	import type { Project } from './projects';
+	import type { Project } from './types';
 	const imageSite = 'https://res.cloudinary.com/decepulis/image/upload';
 
 	const featuredProjects: Project[] = [
@@ -20,10 +20,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/player_gsiujd.png',
-			imageAlt:
-				'The Mux Player landing page. Some hero text welcoming folks to the page, a code snippet, and the player it generates.',
-			imageWidth: 3456,
-			imageHeight: 2160,
+			alt: 'The Mux Player landing page. Some hero text welcoming folks to the page, a code snippet, and the player it generates.',
+			width: 3456,
+			height: 2160,
 			links: [{ type: 'external', href: 'https://www.mux.com/' }]
 		},
 		{
@@ -39,10 +38,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/tmi_ozu9ym.png',
-			imageAlt:
-				'A classic Macintosh with some classic 80s typography, proudly introducing The Mux Informational',
-			imageWidth: 3456,
-			imageHeight: 2160,
+			alt: 'A classic Macintosh with some classic 80s typography, proudly introducing The Mux Informational',
+			width: 3456,
+			height: 2160,
 			links: [{ type: 'external', href: 'https://tmi.mux.com' }]
 		},
 		{
@@ -58,9 +56,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/sanibit_r7qkjq.png',
-			imageAlt: 'The Sanibit Dashboard, feturing a line graph of hand hygine compliance over time',
-			imageWidth: 3010,
-			imageHeight: 2100,
+			alt: 'The Sanibit Dashboard, feturing a line graph of hand hygine compliance over time',
+			width: 3010,
+			height: 2100,
 			links: [{ type: 'info', href: 'https://www.microsensorlabs.com/sanibit' }]
 		}
 	];
@@ -79,21 +77,19 @@
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/docs_v2_joxbbt.png',
-			imageAlt:
-				'The Mux Documentation site. An easy to use navigation bar, a search bar, and information delivered both in video and in text.',
-			imageWidth: 3456,
-			imageHeight: 2160,
+			alt: 'The Mux Documentation site. An easy to use navigation bar, a search bar, and information delivered both in video and in text.',
+			width: 3456,
+			height: 2160,
 			links: [{ type: 'external', href: 'https://docs.mux.com/' }]
 		},
 		{
 			header: '@mux/blurhash',
 			summary: `Built alongside <a href="https://github.com/muxinc/elements">@mux/mux-player-react/lazy</a> to give Mux Player a snappy loading experience, particularly in SSR environments like Next.js and SvelteKit`,
 			technologies: [{ name: 'Web Components' }, { name: 'OSS' }, { name: 'node' }],
-			imageSite,
-			imagePath: 'v1634046940/decepulis/blurhash_w4ik6g',
-			imageAlt: `A Mux Player loading with a nice, blurry background. Below it, a network panel with the developer mode "Slow 3G" enabled.`,
-			imageWidth: 2880,
-			imageHeight: 1800,
+			videoPath: 'video/mux-blurhash.mp4',
+			width: 720,
+			height: 480,
+			alt: 'While a video player loads, a nice blur effect with a spinner displays',
 			links: [{ type: 'github', href: 'https://github.com/muxinc/blurhash' }]
 		},
 		{
@@ -107,9 +103,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046940/decepulis/midwest-microbio_jfrmkn.png',
-			imageAlt: `The Midwest Microbio home page`,
-			imageWidth: 2880,
-			imageHeight: 1800,
+			alt: `The Midwest Microbio home page`,
+			width: 2880,
+			height: 1800,
 			links: [{ type: 'external', href: 'https://www.midwestmicrobio.com/' }]
 		},
 		{
@@ -118,9 +114,9 @@
 			technologies: [{ name: 'React', details: 'Gatsby' }, { name: 'Netlify CMS' }],
 			imageSite,
 			imagePath: 'v1634046943/decepulis/microsensor_cjc2mn.png',
-			imageAlt: 'The Microsensor Labs home page',
-			imageWidth: 3360,
-			imageHeight: 2100,
+			alt: 'The Microsensor Labs home page',
+			width: 3360,
+			height: 2100,
 			links: [{ type: 'external', href: 'https://www.microsensorlabs.com/' }]
 		},
 		{
@@ -133,9 +129,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046941/decepulis/kcdc_ouq1g7.png',
-			imageAlt: 'The home page of the website; a sunset with a city skyline in front of it.',
-			imageWidth: 3360,
-			imageHeight: 2100,
+			alt: 'The home page of the website; a sunset with a city skyline in front of it.',
+			width: 3360,
+			height: 2100,
 			links: [
 				{ type: 'external', href: 'https://www.kcdc.fun/' },
 				{ type: 'github', href: 'https://github.com/decepulis/kcdc.fun' }
@@ -151,9 +147,9 @@
 			],
 			imageSite,
 			imagePath: 'v1634046940/decepulis/weasley-clock_ogq7wf.png',
-			imageAlt: `A clock, except instead of hours around the edges, locations like 'Home' and 'Away'`,
-			imageWidth: 3360,
-			imageHeight: 2100,
+			alt: `A clock, except instead of hours around the edges, locations like 'Home' and 'Away'`,
+			width: 3360,
+			height: 2100,
 			links: [{ type: 'github', href: 'https://github.com/decepulis/weasley-clock' }]
 		},
 		{
@@ -162,10 +158,9 @@
 			technologies: [{ name: 'jQuery' }, { name: 'Node.js' }, { name: 'InfluxDB' }],
 			imageSite,
 			imagePath: 'v1634046938/decepulis/pisuite_fh0y4z.png',
-			imageAlt:
-				'The Sensor Analytics Platform home page, featuring a complex query below and a line graph of its result above',
-			imageWidth: 1189,
-			imageHeight: 719
+			alt: 'The Sensor Analytics Platform home page, featuring a complex query below and a line graph of its result above',
+			width: 1189,
+			height: 719
 		},
 		{
 			header: 'Formula Fun!',
@@ -173,9 +168,9 @@
 			technologies: [{ name: 'Svelte', details: 'TypeScript, Stores' }],
 			imageSite,
 			imagePath: 'v1634046940/decepulis/formula_fun_wjpgww.png',
-			imageAlt: `A website featuring a large table of statistics`,
-			imageWidth: 3360,
-			imageHeight: 2100,
+			alt: `A website featuring a large table of statistics`,
+			width: 3360,
+			height: 2100,
 			links: [
 				{ type: 'external', href: 'https://formula-fun.netlify.app/' },
 				{ type: 'github', href: 'https://github.com/decepulis/formula-fun' }
