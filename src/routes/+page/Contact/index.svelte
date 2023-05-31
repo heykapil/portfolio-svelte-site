@@ -186,7 +186,7 @@
 		margin-left: -50vw;
 		margin-right: -50vw;
 
-		--transition-speed-stroke: 1.25s;
+		--transition-speed-stroke: 1s;
 
 		overflow: visible;
 	}

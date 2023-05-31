@@ -10,38 +10,38 @@
 		{
 			header: 'Mux Marketing Site',
 			summary:
-				'Collaborating with the best team in the world to push our <a href="https://www.mux.com/player">marketing</a> <a href="https://www.mux.com/real-time-video">pages</a> further. Rewriting the darn thing from the ground up to make it speedy, search-engine friendly, and just nice to use. Frequently interjecting things like "I\'m not so sure about that scrolljacking design" and "does it have to be an image? We could make it an interactive element".',
+				'Collaborating with the best team in the world to push our <a href="https://www.mux.com/player">marketing</a> <a href="https://www.mux.com/real-time-video">pages</a> further. Making sure it\'s speedy, maintainable, search-engine friendly, and just nice to use. Frequently interjecting things like "what do you think of this bezier curve?" and "does it have to be an image? We could make it an interactive element".<br/><br/>I am so stinkin\' proud of our <a href="https://www.mux.com/blog/rebranding-during-a-recession">recent rebrand</a>.',
 			technologies: [
-				{ name: 'Next.js', details: 'ISR, TypeScript' },
-				{ name: 'Styled Components' },
+				{ name: 'Next.js', details: 'RSC, ISR, TypeScript' },
+				{ name: 'Tailwind CSS' },
 				{ name: 'Sanity' },
 				{ name: 'Mux Video' },
 				{ name: 'Framer Motion' }
 			],
 			imageSite,
-			imagePath: 'v1634046941/decepulis/player_gsiujd.png',
-			alt: 'The Mux Player landing page. Some hero text welcoming folks to the page, a code snippet, and the player it generates.',
+			imagePath: 'v1634046941/decepulis/muxcom_ygcvek.png',
+			alt: 'The hero of the Mux home page. An interactive element cycling through the three Mux product categories: video, player, data.',
 			width: 3456,
 			height: 2160,
 			links: [{ type: 'external', href: 'https://www.mux.com/' }]
 		},
 		{
-			header: 'The Mux Informational',
+			header: 'Mux Documentation Site',
 			summary:
-				'Ugh Im just so proud of this conference website. Worked with our top-notch designers on an alarmingly short notice to really go all-in on this incredible vibe. Used the most modern of responsive css, from grid auto-fit to clamp. The best part? They trusted me to make those neat animations.',
+				'Developers frequently tell us that our docs are the best part of Mux. Recently overhauled to support a redesign and information re-architecture, as well as push performance with React Server Components. I wrote a <a href="https://www.mux.com/blog/the-building-blocks-of-great-docs">blog post</a> about that, by the way!',
 			technologies: [
 				{ name: 'Next.js', details: 'ISR, TypeScript' },
-				{ name: 'styled-jsx' },
-				{ name: 'Sanity' },
-				{ name: 'Mux Video' },
-				{ name: 'Framer Motion' }
+				{ name: 'Tailwind CSS' },
+				{ name: 'Algolia' },
+				{ name: 'MDX' },
+				{ name: 'Mux Video' }
 			],
 			imageSite,
-			imagePath: 'v1634046941/decepulis/tmi_ozu9ym.png',
-			alt: 'A classic Macintosh with some classic 80s typography, proudly introducing The Mux Informational',
+			imagePath: 'v1634046941/decepulis/docs_y5gnkh.png',
+			alt: 'The Mux Documentation site. An easy to use navigation bar, a search bar, and information delivered both in video and in text.',
 			width: 3456,
 			height: 2160,
-			links: [{ type: 'external', href: 'https://tmi.mux.com' }]
+			links: [{ type: 'external', href: 'https://docs.mux.com/' }]
 		},
 		{
 			header: 'Sanibit Web Platform',
@@ -65,26 +65,26 @@
 
 	const otherProjects: Project[] = [
 		{
-			header: 'Mux Documentation Site',
+			header: 'The Mux Informational',
 			summary:
-				'Mostly constraining my flashy CSS impulses to help devlopers get to the information they need as ASAP as possible. Developers frequently tell us that our docs are the best part of Mux. Wrapping up a big re-design that provides a more flexible information architecture, as well as a more usable layout atop a major technical transition.',
+				'Worked with our top-notch designers on an alarmingly short notice to really go all-in on this incredible vibe. Used the most modern of responsive css, from grid auto-fit to clamp. The best part? They trusted me to make those neat animations.',
 			technologies: [
 				{ name: 'Next.js', details: 'ISR, TypeScript' },
 				{ name: 'styled-jsx' },
-				{ name: 'Algolia' },
-				{ name: 'MDX' },
-				{ name: 'Mux Video' }
+				{ name: 'Sanity' },
+				{ name: 'Mux Video' },
+				{ name: 'Framer Motion' }
 			],
 			imageSite,
-			imagePath: 'v1634046941/decepulis/docs_v2_joxbbt.png',
-			alt: 'The Mux Documentation site. An easy to use navigation bar, a search bar, and information delivered both in video and in text.',
+			imagePath: 'v1634046941/decepulis/tmi_ozu9ym.png',
+			alt: 'A classic Macintosh with some classic 80s typography, proudly introducing The Mux Informational',
 			width: 3456,
 			height: 2160,
-			links: [{ type: 'external', href: 'https://docs.mux.com/' }]
+			links: [{ type: 'external', href: 'https://tmi.mux.com' }]
 		},
 		{
 			header: '@mux/blurhash',
-			summary: `Built alongside <a href="https://github.com/muxinc/elements">@mux/mux-player-react/lazy</a> to give Mux Player a snappy loading experience, particularly in SSR environments like Next.js and SvelteKit`,
+			summary: `Built alongside <a href="https://github.com/muxinc/elements">@mux/mux-player-react/lazy</a> to give Mux Player a snappy loading experience, particularly in SSR environments like Next.js and SvelteKit. I've got a <a href="https://www.mux.com/blog/mux-player-lazy-loading-with-blurhash">blog post</a> about that one, too!`,
 			technologies: [{ name: 'Web Components' }, { name: 'OSS' }, { name: 'node' }],
 			videoPath: 'video/mux-blurhash.mp4',
 			width: 720,

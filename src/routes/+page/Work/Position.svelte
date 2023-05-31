@@ -7,7 +7,7 @@
 	<header>
 		<h3 class="h5">{position.role}<br />@ {position.employer}</h3>
 		<p class="location">{position.location}</p>
-		<p class="duration">{position.start} &ndash {position.end}</p>
+		<p class="duration">{position.start} &ndash; {position.end}</p>
 	</header>
 	<ul>
 		{#each position.points as point}
