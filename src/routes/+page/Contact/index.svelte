@@ -88,7 +88,7 @@
 				circle: 'down',
 				link: {
 					title: 'Instagram',
-					href: 'https://www.instagram.com/__dardarbinks/',
+					href: 'https://www.instagram.com/darius_cepulis/',
 					icon: InstagramIcon
 				}
 			}
