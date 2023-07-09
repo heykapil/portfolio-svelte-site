@@ -5,7 +5,7 @@
 <section id="hero" class="container">
 	<p class="eyebrow">Hello there! My name is</p>
 	<h1><RadText text="Darius Cepulis." /></h1>
-	<p class="headline">I develop and design great <span class="nowrap">web experiences.</span></p>
+	<p class="headline">I make great <span class="nowrap">web experiences.</span></p>
 </section>
 
 <style>
